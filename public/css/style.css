@@ -1,0 +1,49 @@
+:root {
+    --primary-blue: #004080; 
+    --secondary-blue: #003366;
+    --light-gray: #f8f9fa;
+}
+
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; }
+
+.navbar-custom { background-color: var(--primary-blue); padding: 0.8rem 1rem; }
+.search-bar { border-radius: 20px; border: none; padding: 0.5rem 1.5rem; width: 400px !important; }
+
+.sidebar {
+    background-color: white;
+    min-height: calc(100vh - 70px);
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    padding-top: 20px;
+}
+
+.nav-link-custom {
+    color: #555;
+    padding: 12px 20px;
+    display: block;
+    text-decoration: none;
+    transition: 0.3s;
+    border-radius: 0 25px 25px 0;
+    margin-right: 10px;
+}
+
+.nav-link-custom:hover, .nav-link-custom.active {
+    background-color: #eef4ff;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.nav-link-custom i { margin-right: 10px; }
+
+
+.brand-text {
+    font-weight: 700;           
+    font-size: 1.5rem;          
+    color: #ffffff;            
+    text-decoration: none;     
+    letter-spacing: 0.5px;      
+    transition: 0.3s;
+}
+
+.brand-text:hover {
+    color: #cbdcf7;            
+}
