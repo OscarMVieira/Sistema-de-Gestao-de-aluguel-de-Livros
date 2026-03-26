@@ -1,12 +1,17 @@
-</main>
-    </div>
-</div>
+</main> </div> <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+            
+            <div class="footer-info">
+                <p>&copy; <?php echo date("Y"); ?> <strong>Biblioteca Digital</strong>. Todos os direitos reservados.</p>
+                <small>Projeto de Engenharia de Software - IPCB</small>
+            </div>
+        </div>
+    </footer>
 
-<footer class="text-center py-4 text-muted small">
-    <hr class="w-25 mx-auto">
-    Engenharia de Software 2026 | IPCB - Escola Superior de Tecnologia
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

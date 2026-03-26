@@ -47,3 +47,47 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-
 .brand-text:hover {
     color: #cbdcf7;            
 }
+.main-footer {
+    background-color: #0b4c7d; 
+    color: white;
+    padding: 30px 0;
+    margin-top: 50px;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.social-icon {
+    color: white;
+    font-size: 22px;
+    transition: transform 0.3s, color 0.3s;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: #a5c0d6; 
+    transform: translateY(-3px);
+}
+
+.footer-info p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.footer-info small {
+    opacity: 0.7;
+    font-size: 12px;
+}
