@@ -1,5 +1,5 @@
 :root {
-    --azul-principal: #1a73e8; /* Azul Google, mais moderno */
+    --azul-principal: #1a73e8; 
     --vermelho-admin: #d93025;
     --verde-sucesso: #1e8e3e;
     --cinza-borda: #dadce0;
@@ -9,7 +9,7 @@
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
-    /* Fundo moderno: Imagem de biblioteca com overlay suave e efeito de profundidade */
+    /* Fundo moderno: Imagem da biblioteca*/
     background: linear-gradient(135deg, rgba(21, 101, 192, 0.7), rgba(0, 0, 0, 0.5)), 
                 url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000');
     background-size: cover;
@@ -36,7 +36,7 @@ header {
     text-transform: uppercase;
 }
 
-/* Glassmorphism - Efeito de vidro moderno */
+/* Efeito  */
 .form-container {
     width: 90%;
     max-width: 420px;

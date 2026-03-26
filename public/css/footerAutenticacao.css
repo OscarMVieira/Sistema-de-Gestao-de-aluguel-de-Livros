@@ -1,4 +1,4 @@
-/* footer.css */
+/*  */
 
 .auth-footer {
     width: 100%;
@@ -8,7 +8,7 @@
     z-index: 1; /* Garante que fica acima do fundo */
 }
 
-/* Linha com gradiente que "desaparece" nas pontas, como na Amazon */
+/* Linha com gradiente que "desaparece" nas pontas*/
 .footer-divider {
     height: 2px;
     margin-bottom: 1px;
@@ -21,7 +21,7 @@
 }
 
 .footer-links a {
-    color: #f7f7f7; /* Tom claro para contrastar com o teu fundo escuro */
+    color: #f7f7f7; /* Tom claro para contrastar com fundo */
     text-decoration: none;
     font-size: 11px;
     margin: 0 12px;
