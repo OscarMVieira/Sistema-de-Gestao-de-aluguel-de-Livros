@@ -1,7 +1,5 @@
 :root {
     --azul-principal: #1a73e8; 
-    --vermelho-admin: #d93025;
-    --verde-sucesso: #1e8e3e;
     --cinza-borda: #dadce0;
     --shadow-heavy: 0 12px 28px rgba(0, 0, 0, 0.2), 0 8px 10px rgba(0, 0, 0, 0.1);
 }
@@ -15,7 +13,6 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,7 +34,7 @@ header {
 }
 
 /* Efeito  */
-.form-container {
+.formContainer {
     width: 90%;
     max-width: 420px;
     background-color: rgba(255, 255, 255, 0.92); 
@@ -55,7 +52,7 @@ h2 {
     font-weight: 700;
 }
 
-.input-group {
+.inputGroup {
     text-align: left;
     margin-bottom: 20px;
 }
@@ -108,23 +105,23 @@ input:focus {
     filter: brightness(1.1);
 }
 
-.btn-primary { 
+.btnPrimary { 
     background: linear-gradient(45deg, #1565c0, #1e88e5); 
 }
 
 
-.link-footer {
+.linkFooter {
     margin-top: 30px;
     font-size: 14px;
     color: #70757a;
 }
 
-.link-footer a {
+.linkFooter a {
     color: var(--azul-principal);
     text-decoration: none;
     font-weight: 700;
 }
 
-.link-footer a:hover {
+.linkFooter a:hover {
     text-decoration: underline;
 }
