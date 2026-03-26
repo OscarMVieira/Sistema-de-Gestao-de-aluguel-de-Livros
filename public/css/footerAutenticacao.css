@@ -1,6 +1,6 @@
 /*  */
 
-.auth-footer {
+.autenticacaoFooter {
     width: 100%;
     margin-top: 40px;
     padding-bottom: 30px;
@@ -9,18 +9,18 @@
 }
 
 /* Linha com gradiente que "desaparece" nas pontas*/
-.footer-divider {
+.footerDivider{
     height: 2px;
     margin-bottom: 1px;
     background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
     border: 0;
 }
 
-.footer-links {
+.footerLinks {
     margin-bottom: 8px;
 }
 
-.footer-links a {
+.footerLinks a {
     color: #f7f7f7; /* Tom claro para contrastar com fundo */
     text-decoration: none;
     font-size: 11px;
@@ -29,12 +29,12 @@
     transition: color 0.2s;
 }
 
-.footer-links a:hover {
+.footerLinks a:hover {
     color: #ffffff;
     text-decoration: underline;
 }
 
-.footer-copyright {
+.footerCopyright {
     color: #bdbdbd;
     font-size: 11px;
     font-family: 'Segoe UI', sans-serif;
