@@ -1,0 +1,250 @@
+/* Reset básico e Fontes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #0b4c7d;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 25px;
+    height: 70px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ex-icon {
+    font-size: 28px;
+    font-weight: bold;
+    font-family: serif;
+}
+
+.logo-text {
+    font-size: 20px;
+}
+
+.search-bar {
+    background: white;
+    border-radius: 4px;
+    display: flex;
+    width: 300px;
+}
+
+.search-bar input {
+    border: none;
+    padding: 8px;
+    width: 100%;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    padding: 0 10px;
+    color: #0b4c7d;
+    cursor: pointer;
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-icon {
+    background: white;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 3px;
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #555;
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 50%;
+}
+
+.user-avatar i {
+    font-size: 30px;
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Layout Principal */
+.main-container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    padding: 20px 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    border: 1px solid #0b4c7d;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.sidebar li {
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.sidebar li.active {
+    background-color: #0b4c7d;
+}
+
+.sidebar li.active a {
+    color: white;
+}
+
+/* Conteúdo */
+.content {
+    flex-grow: 1;
+    padding: 40px;
+    text-align: center;
+}
+
+.mainTitle {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.gridLayout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* CartõesDosLivros*/
+.cartSection h2, .dateSection h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.bookCard {
+    background: white;
+    border: 1px solid #a5c0d6;
+    border-radius: 4px;
+    display: flex;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-align: left;
+    gap: 15px;
+}
+
+.bookInfo h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.bookInfo .author {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.quantityControl {
+    font-weight: bold;
+}
+
+.limitText {
+    text-align: left;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Calendário */
+.calendarCard {
+    border: 1px solid #a5c0d6;
+    border-radius: 4px;
+    padding: 20px;
+    background: white;
+}
+
+.calendarHeader {
+    background-color: #0b4c7d;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.calendarHeader button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.calendarTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.calendarTable th {
+    padding-bottom: 15px;
+}
+
+.calendarTable td {
+    padding: 8px 0;
+}
+
+.confirmBtn {
+    background-color: #0b4c7d;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.confirmBtn:hover {
+    background-color: #083a61;
+}
