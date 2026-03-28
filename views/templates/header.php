@@ -28,7 +28,7 @@
             <div class="user-avatar">
                 <i class="fa-solid fa-circle-user"></i>
             </div>
-            <button class="logout-btn">Logout</button>
+        <a href="../auth/paginaLogin.php" class="logout-btn" style="text-decoration: none;">Logout</a>
         </div>
     </header>
 
