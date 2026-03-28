@@ -20,15 +20,18 @@
         </div>
 
         <div class="user-controls">
+            <div class="user-avatar">
+                <i class="fa-solid fa-circle-user"></i>
+            </div>
+
+            <span class="username">Ana Costa</span>
+
             <div class="cart-icon">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="badge">0</span>
             </div>
-            <span class="username">Ana Costa</span>
-            <div class="user-avatar">
-                <i class="fa-solid fa-circle-user"></i>
-            </div>
-        <a href="../auth/paginaLogin.php" class="logout-btn" style="text-decoration: none;">Logout</a>
+
+            <button class="logout-btn">Logout</button>
         </div>
     </header>
 
@@ -36,10 +39,14 @@
         <aside class="sidebar">
             <nav>
                 <ul>
-                    <li class="active"><a href="#"><i class="fa-solid fa-house"></i> Início</a></li>
+                    <li class="<?= ($activePage == 'inicio') ? 'active' : '' ?>">
+                        <a href="#"><i class="fa-solid fa-house"></i> Início</a>
+                    </li>
                     <li><a href="#"><i class="fa-solid fa-file-invoice"></i> Gestão de Pedidos</a></li>
                     <li><a href="#"><i class="fa-solid fa-users"></i> Gerir Clientes</a></li>
-                    <li><a href="#"><i class="fa-solid fa-book"></i> Gestão Catálogo</a></li>
+                    <li class="<?= ($activePage == 'catalogo') ? 'active' : '' ?>">
+                        <a href="paginaCatalogo.php"><i class="fa-solid fa-book"></i> Gestão Catálogo</a>
+                    </li>
                 </ul>
             </nav>
         </aside>
