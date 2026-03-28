@@ -15,12 +15,12 @@
 
         <!-- Main Content -->
         <main class="content">
-            <h1 class="mainTitle">Carrinho</h1>
+            <h1 class="mainTitle">O meu carrinho 🛒</h1>
 
             <div class="gridLayout">
                 <!-- Coluna do Carrinho -->
                 <section class="cartSection">
-                    <h2>Carrinho de Requisições</h2>
+                    <h2>📚Livros selecionados</h2>
                     
                     <!-- Item 1 -->
                     <div class="bookCard">
@@ -53,7 +53,7 @@
 
                 <!-- Coluna do Calendário -->
                 <section class="dateSection">
-                    <h2>Duração da Requisição</h2>
+                    <h2>🕒Duração da Requisição</h2>
                     <div class="calendarCard">
                         <div class="calendarHeader">
                             <button>&lt;</button>
