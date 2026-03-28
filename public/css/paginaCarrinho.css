@@ -1,12 +1,7 @@
-/* ============================================================
-   APENAS ESTILOS ESPECÍFICOS DO CARRINHO
-   ============================================================ */
-
-/* Contentor do Carrinho para dar o espaço */
 .cart-container {
     flex: 1;
     padding: 20px 40px;
-    margin-left: 20px; /* Margem igual à do Catálogo */
+    margin-left: 20px; 
     max-width: 1200px;
 }
 
@@ -17,7 +12,7 @@
     text-align: center;
 }
 
-/* Layout em Grelha (Carrinho vs Calendário) */
+/* Layout em Grelha */
 .gridLayout {
     display: grid;
     grid-template-columns: 1fr 1fr;
