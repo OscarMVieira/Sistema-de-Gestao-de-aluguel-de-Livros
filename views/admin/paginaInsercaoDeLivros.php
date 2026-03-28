@@ -9,17 +9,6 @@
 </head>
 <body>
     <div class="layoutPrincipal">
-        <aside class="menuLateral">
-            <nav class="caixaMenu">
-                <ul>
-                    <li class="itemDoMenu"><i class="fas fa-home"></i> Início</li>
-                    <li class="itemDoMenu"><i class="far fa-file-alt"></i> Gestão de Pedidos</li>
-                    <li class="itemDoMenu"><i class="fas fa-users"></i> Gerir Clientes</li>
-                    <li class="itemDoMenu ativo"><i class="far fa-copy"></i> Gestão Catálogo</li>
-                </ul>
-            </nav>
-        </aside>
-
         <main class="areaConteudo">
             <h1 class="tituloPagina">Criar Novo Livro</h1>
 
