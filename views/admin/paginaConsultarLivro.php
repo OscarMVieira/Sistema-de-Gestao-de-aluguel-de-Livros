@@ -3,7 +3,9 @@ $activePage = 'catalogo';
 include '../templates/header.php'; 
 ?>
 
-<div class="centralizador-conteudo" style="width: 100%; max-width: 1000px;">
+<link rel="stylesheet" href="../../public/css/detalhesLivro.css">
+
+<div class="centralizador-pagina">
     <h1 class="tituloPagina">Informações Livro</h1>
 
     <div class="gradeInfo">
