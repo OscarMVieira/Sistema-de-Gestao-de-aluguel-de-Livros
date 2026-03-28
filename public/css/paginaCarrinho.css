@@ -116,3 +116,35 @@
 .confirmBtn:hover {
     background-color: #003366;
 }
+
+.content {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.cart-container {
+    padding: 20px 40px;
+    width: 100%;
+    max-width: 1000px; 
+    margin: 0 auto;    
+    
+}
+
+
+.mainTitle {
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.gridLayout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 20px;
+    justify-content: center;
+}
