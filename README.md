@@ -1,5 +1,5 @@
 # 📚 Sistema de Gestão de Aluguer de Livros
-> **Projetode Engenharia de Software** | EST
+> **Projeto de Engenharia de Software** | EST
 
 <p align="left">
   <img src="https://img.shields.io/github/repo-size/OscarMVieira/Sistema-de-Gestao-de-aluguel-de-Livros?style=for-the-badge&color=blue" alt="Repo Size">
@@ -16,7 +16,7 @@ Este projeto foi desenvolvido com o propósito de criar uma biblioteca digital, 
 | Camadas | Tecnologias utilizadas |
 | :--- | :--- |
 | **Linguagem Principal** | PHP |
-| **Frontend** | HTML, CSS |
+| **Frontend** | HTML, CSS, JavaScript |
 | **Base de Dados** | MySQL |
 | **Ambiente Local** | XAMPP / Apache |
 
