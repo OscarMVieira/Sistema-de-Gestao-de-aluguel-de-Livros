@@ -22,40 +22,6 @@ body {
     flex: 1;
 }
 
-.menuLateral {
-    width: 250px;
-    padding: 20px;
-}
-
-.caixaMenu {
-    border: 1px solid var(--bordaAzul);
-    border-radius: 4px;
-    padding: 15px;
-}
-
-.caixaMenu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.itemDoMenu {
-    padding: 12px;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--cinza);
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.itemDoMenu.ativo {
-    background-color: var(--azulMarinho);
-    color: white;
-    border-radius: 4px;
-}
-
 /* --- Conteúdo e Informações --- */
 .areaConteudo {
     flex: 1;
