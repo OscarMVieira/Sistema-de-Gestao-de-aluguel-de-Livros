@@ -1,0 +1,223 @@
+/* --- Estilos Globais --- */
+:root {
+    --azulMarinho: #004080;
+    --bordaAzul: #99B2CC;
+    --preto: #000000;
+    --cinza: #666666;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Layout e Menu --- */
+.layoutPrincipal {
+    display: flex;
+    flex: 1;
+}
+
+.menuLateral {
+    width: 250px;
+    padding: 20px;
+}
+
+.caixaMenu {
+    border: 1px solid var(--bordaAzul);
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.caixaMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.itemDoMenu {
+    padding: 12px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--cinza);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.itemDoMenu.ativo {
+    background-color: var(--azulMarinho);
+    color: white;
+    border-radius: 4px;
+}
+
+/* --- Conteúdo e Informações --- */
+.areaConteudo {
+    flex: 1;
+    padding: 0 40px;
+    text-align: center;
+}
+
+.tituloPagina {
+    font-size: 42px;
+    font-weight: bold;
+    margin: 40px 0;
+}
+
+.gradeInfo {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.caixaCard {
+    border: 1px solid var(--bordaAzul);
+    border-radius: 4px;
+    padding: 20px;
+    background: white;
+}
+
+.selecaoCapa {
+    width: 300px;
+}
+
+.detalhesLivro {
+    width: 600px;
+    text-align: left;
+}
+
+.tituloCard {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tituloCardSublinhado {
+    border-bottom: 2px solid var(--bordaAzul);
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.bordaImagem {
+    border: 1px solid var(--bordaAzul);
+    padding: 10px;
+    display: inline-block;
+}
+
+.bordaImagem img {
+    width: 180px;
+    height: 260px;
+    display: block;
+}
+
+/* --- Formulário --- */
+.linhaForm {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Input para oque for escrito */
+.linhaForm input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--bordaAzul);
+    border-radius: 4px;
+}
+
+.containerCampos {
+    display: flex;
+    border: 1px solid var(--bordaAzul);
+    border-radius: 4px;
+    padding: 10px;
+    gap: 15px;
+}
+
+.campoIndividual {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+    font-size: 12px;
+}
+
+/* Input para oque for escrito */
+.campoIndividual input {
+    width: 100%;
+    border: 1px solid #CCC;
+    padding: 5px;
+}
+
+/* --- Ações --- */
+.botaoAcoes {
+    text-align: center;
+}
+
+.botaoVoltar {
+    background-color: var(--azulMarinho);
+    color: white;
+    border: none;
+    padding: 12px 80px;
+    font-size: 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Texto acima da capa */
+.textoUpload {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Botão azul pequeno*/
+.botaoAzulPequeno {
+    background-color: var(--azulMarinho);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 80%;
+    margin-top: 15px;
+}
+
+/* Contentor para alinhar os botões de baixo (Azul à esquerda, brancos à direita) */
+.containerAcoesFinal {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 930px;
+    margin: 0 auto 40px auto;
+}
+
+/* Coluna para os botões brancos */
+.grupoBotoesBrancos {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Estilo para os botões de Limpar e Cancelar */
+.botaoBranco {
+    background: white;
+    border: 1px solid #CCC;
+    color: var(--cinza);
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 12px;
+    width: 200px;
+    cursor: pointer;
+}
+
+.botaoBranco:hover {
+    background-color: #f7f7f7;
+}
