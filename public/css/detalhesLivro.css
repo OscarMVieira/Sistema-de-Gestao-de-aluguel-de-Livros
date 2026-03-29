@@ -1,5 +1,3 @@
-/* --- Estilos Globais --- */
-
 :root {
     --azulMarinho: #004080;
     --bordaAzul: #99B2CC;
@@ -16,16 +14,11 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-/* --- Layout e Menu --- */
+
 .layoutPrincipal {
     display: flex;
     flex: 1;
 }
-
-
-
-/* --- Conteúdo e Informações --- */
-
 .areaConteudo {
     flex: 1;
     padding: 0 40px;
@@ -57,8 +50,6 @@ body {
     margin-bottom: 40px;
     width: 100%;
 }
-
-
 
 .caixaCard {
     border: 1px solid var(--bordaAzul);
@@ -99,15 +90,12 @@ body {
     display: block;
 }
 
-/* --- Formulário --- */
-
 .linhaForm {
 
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
 }
-/* Input para oque for escrito */
 
 .linhaForm input {
 
@@ -116,8 +104,6 @@ body {
     border: 1px solid var(--bordaAzul);
     border-radius: 4px;
 }
-
-
 
 .containerCampos {
 
@@ -137,22 +123,15 @@ body {
     font-size: 12px;
 }
 
-/* Input para oque for escrito */
-
 .campoIndividual input {
 
     width: 100%;
     border: 1px solid #CCC;
     padding: 5px;
 }
-/* --- Ações --- */
 
-.botaoAcoes {
-    text-align: center;
-}
 
 .botaoVoltar {
-
     background-color: var(--azulMarinho);
     color: white;
     border: none;
@@ -161,9 +140,23 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    text-decoration: none;
+    display: inline-block;  
+    transition: background-color 0.3s ease, transform 0.2s ease; 
 }
 
-/* Texto acima da capa */
+.botaoVoltar:hover {
+    background-color: #0056b3; 
+    color: #ffffff;
+    transform: scale(1.02);    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.botaoAcoes {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+}
 
 .textoUpload {
 
@@ -171,8 +164,6 @@ body {
     margin-bottom: 10px;
     font-weight: 500;
 }
-
-/* Botão azul pequeno*/
 
 .botaoAzulPequeno {
 
@@ -187,8 +178,6 @@ body {
     margin-top: 15px;
 }
 
-/* Contentor para alinhar os botões de baixo (Azul à esquerda, brancos à direita) */
-
 .containerAcoesFinal {
 
     display: flex;
@@ -198,16 +187,12 @@ body {
     margin: 0 auto 40px auto;
 }
 
-/* Coluna para os botões brancos */
-
 .grupoBotoesBrancos {
 
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
-
-/* Estilo para os botões de Limpar e Cancelar */
 
 .botaoBranco {
 

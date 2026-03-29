@@ -1,9 +1,7 @@
 <?php 
 $activePage = 'catalogo'; 
-include '../templates/header.php'; 
-?>
+include '../templates/headerCliente.php'; ?>
 
-<-- FALTA ATUALIZAR O HEADER DEPOIS -->
 <link rel="stylesheet" href="../../public/css/detalhesLivro.css">
 
 <div class="centralizador-pagina">
@@ -36,7 +34,7 @@ include '../templates/header.php';
     </div>
 
     <div class="botaoAcoes">
-        <button class="botaoVoltar">Voltar</button>
+        <a href="paginaCatalogo.php" class="botaoVoltar">Voltar</a>
     </div>
 </div>
 
