@@ -16,7 +16,7 @@ include '../templates/header.php';
             <div class="clienteRow">
                 <span class="clienteNome">Nome: Joana Silva</span>
                 <div class="clienteActions">
-                    <a href="historicoCliente.php" class="actionBtn">Ver Histórico</a>
+                    <a href="paginaVerHistorico.php" class="actionBtn">Ver Histórico</a>
                     <a href="paginaDetalhesCliente.php" class="actionBtn">Ver Detalhes</a>
                 </div>
             </div>
@@ -24,7 +24,7 @@ include '../templates/header.php';
             <div class="clienteRow">
                 <span class="clienteNome">Nome: João Gomes</span>
                 <div class="clienteActions">
-                    <a href="historicoCliente.php" class="actionBtn">Ver Histórico</a>
+                    <a href="paginaVerHistorico.php" class="actionBtn">Ver Histórico</a>
                     <a href="paginaDetalhesCliente.php" class="actionBtn">Ver Detalhes</a>
                 </div>
             </div>
