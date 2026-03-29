@@ -1,0 +1,107 @@
+/* paginaDetalhesCliente.css */
+
+/* Alinhamento para o novo main sem sidebar */
+.content-full {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    justify-content: flex-start;
+    padding: 60px 20px !important;
+    background-color: white;
+    min-height: 80vh;
+}
+
+.detalhesWrapper {
+    width: 100%;
+    max-width: 700px; /* Controla a largura máxima do formulário */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detalhesTitle {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #000;
+    text-align: center;
+}
+
+/* Card com borda azul */
+.detalhesCard {
+    width: 100%;
+    border: 1px solid #004080;
+    border-radius: 4px;
+    padding: 30px;
+    background-color: white;
+}
+
+.cardSubtitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.fieldRow {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.labelBox {
+    border: 1px solid #004080;
+    border-radius: 6px;
+    padding: 8px 15px;
+    min-width: 160px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.fieldRow input {
+    flex: 1;
+    border: 1px solid #004080;
+    border-radius: 6px;
+    padding: 8px 15px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #fff;
+    outline: none;
+}
+
+.buttonContainer {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btnVoltar-link {
+    width: 100%;
+    max-width: 350px;
+    text-decoration: none;
+}
+
+.btnVoltar {
+    width: 100%;
+    background-color: #004080;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btnVoltar:hover {
+    background-color: #003366;
+}
