@@ -16,24 +16,24 @@ include '../templates/header.php';
             <div class="clienteRow">
                 <span class="clienteNome">Nome: Joana Silva</span>
                 <div class="clienteActions">
-                    <button class="actionBtn">Ver Histórico</button>
-                    <button class="actionBtn">Ver Detalhes</button>
+                    <a href="historicoCliente.php" class="actionBtn">Ver Histórico</a>
+                    <a href="paginaDetalhesCliente.php" class="actionBtn">Ver Detalhes</a>
                 </div>
             </div>
 
             <div class="clienteRow">
                 <span class="clienteNome">Nome: João Gomes</span>
                 <div class="clienteActions">
-                    <button class="actionBtn">Ver Histórico</button>
-                    <button class="actionBtn">Ver Detalhes</button>
+                    <a href="historicoCliente.php" class="actionBtn">Ver Histórico</a>
+                    <a href="paginaDetalhesCliente.php" class="actionBtn">Ver Detalhes</a>
                 </div>
             </div>
 
             <div class="clienteRow">
                 <span class="clienteNome">Nome: Andre Pinho</span>
                 <div class="clienteActions">
-                    <button class="actionBtn">Ver Histórico</button>
-                    <button class="actionBtn">Ver Detalhes</button>
+                    <a href="paginaVerHistorico.php" class="actionBtn">Ver Histórico</a>
+                    <a href="paginaDetalhesCliente.php" class="actionBtn">Ver Detalhes</a>
                 </div>
             </div>
         </div>
