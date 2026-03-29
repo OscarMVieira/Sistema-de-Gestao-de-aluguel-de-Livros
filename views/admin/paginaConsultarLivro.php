@@ -35,7 +35,7 @@ include '../templates/header.php';
     </div>
 
     <div class="botaoAcoes">
-        <button class="botaoVoltar">Voltar</button>
+        <a href="paginaCatalogo.php" class="botaoVoltar">Voltar</a>
     </div>
 </div>
 
