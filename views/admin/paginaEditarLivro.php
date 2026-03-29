@@ -42,7 +42,7 @@ include '../templates/header.php';
         
         <div class="grupoBotoesBrancos">
             <button class="botaoBranco">Limpar Formulário</button>
-            <a href="paginaCatalogo.php" class="botaoBranco">Cancelar</a>
+            <a href="../cliente/paginaCatalogo.php" class="botaoBranco">Voltar</a>
         </div>
     </div>
 </div>
