@@ -147,12 +147,7 @@ body {
 }
 /* --- Ações --- */
 
-.botaoAcoes {
-    text-align: center;
-}
-
 .botaoVoltar {
-
     background-color: var(--azulMarinho);
     color: white;
     border: none;
@@ -161,9 +156,24 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    text-decoration: none; 
+    display: inline-block; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Texto acima da capa */
+
+.botaoVoltar:hover {
+    background-color: #0056b3; 
+    color: #ffffff;
+    transform: scale(1.02); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.botaoAcoes {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+}
 
 .textoUpload {
 
@@ -172,10 +182,7 @@ body {
     font-weight: 500;
 }
 
-/* Botão azul pequeno*/
-
 .botaoAzulPequeno {
-
     background-color: var(--azulMarinho);
     color: white;
     border: none;
@@ -185,9 +192,12 @@ body {
     font-size: 14px;
     width: 80%;
     margin-top: 15px;
+    transition: background-color 0.3s ease;
 }
 
-/* Contentor para alinhar os botões de baixo (Azul à esquerda, brancos à direita) */
+.botaoAzulPequeno:hover {
+    background-color: #0056b3;
+}
 
 .containerAcoesFinal {
 
@@ -198,8 +208,6 @@ body {
     margin: 0 auto 40px auto;
 }
 
-/* Coluna para os botões brancos */
-
 .grupoBotoesBrancos {
 
     display: flex;
@@ -207,10 +215,7 @@ body {
     gap: 8px;
 }
 
-/* Estilo para os botões de Limpar e Cancelar */
-
 .botaoBranco {
-
     background: white;
     border: 1px solid #CCC;
     color: var(--cinza);
@@ -219,9 +224,12 @@ body {
     font-size: 12px;
     width: 200px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box; 
 }
 
 .botaoBranco:hover {
-
     background-color: #f7f7f7;
+    border-color: #999;
+    color: #333;
 }
