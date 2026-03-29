@@ -1,4 +1,4 @@
-<?php include '../templates/header.php'; ?>
+<?php include '../templates/headerSemSidebar.php'; ?>
 
 <link rel="stylesheet" href="../../public/css/paginaPerfil.css">
 
