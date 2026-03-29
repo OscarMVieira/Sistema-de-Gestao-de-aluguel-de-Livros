@@ -41,8 +41,8 @@
         <aside class="sidebar">
             <nav>
                 <ul>
-                    <li><a href="#"><i class="fa-solid fa-file-invoice"></i> Gestão de Pedidos</a></li>
-                    <li><a href="#"><i class="fa-solid fa-users"></i> Gerir Clientes</a></li>
+                    <li><a href="#"><i class="fa-solid fa-user"></i> Perfil</a></li>
+                    <li><a href="#"><i class="fa-solid fa-box"></i> Meus pedidos</a></li>
                 </ul>
             </nav>
         </aside>
