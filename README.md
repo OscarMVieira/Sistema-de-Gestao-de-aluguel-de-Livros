@@ -30,13 +30,13 @@ Conforme planeado e de acordo com o nosso relatório de Engenharia de Software:
 ### ⏳ Em Desenvolvimento / Próximos Passos
 - **Sprint 1** Criação do repositório no GitHub e montagem do “esqueleto” do site (HTML/CSS) introduzindo também algumas funcionalidades iniciais e básicas com PHP. Concluir os requisitos Funcionais e Não Funcionais.
 
-- **Sprint 2:** Desenvolvimento do sistema de autenticação seguro e registo manual de novos clientes. Continuação da lógica de conexão entre PHP e a base de dados.
+- **Sprint 2:** Desenvolvimento do sistema de autenticação seguro e registo manual de novos clientes. Continuação da lógica de conexão entre PHP e a base de dados e implementação de JavaScript para algumas funcionalidades.
 
-- **Sprint 3:** Implementação das funcionalidades de requisição (seleção de livros e definição do tempo de aluguer) e criação da área do cliente para visualização de informações.
+- **Sprint 3:** Implementação de todas as funcionalidades do sistema tais como a requisição de um livro, visualização dos pedidos, gestão dos pedidos, criar/editar livros e visualizar/moderar clientes. 
 
-- **Sprint 4:** Desenvolvimento da Área do Administrador para consulta de clientes, histórico de pedidos e o workflow da mudança de estados das requisições (Novo, Levantado, Terminada, Inativa).
+- **Sprint 4:** Aperfeiçoar as funcionalidades do sistema e implementar todas as proteções necessárias de acordo com as nossas leis de negócio. 
 
-- **Sprint 5:** Implementação da atualização do estado no levantamento e entrega dos livros pelo administrador, melhorias necessárias nos dashboards, testes finais e preparação da documentação final para concluir o projeto.
+- **Sprint 5:** Melhorias necessárias nos dashboards, testes finais e preparação da documentação final para concluir o projeto.
 
 ## 📐 Documentação Técnica
 De acordo com o planeamento da disciplina de Engenharia de Software, o nosso projeto inclui:
