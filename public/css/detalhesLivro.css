@@ -129,7 +129,7 @@ body {
     border: 1px solid #CCC;
     padding: 5px;
 }
-
+/* --- Ações --- */
 
 .botaoVoltar {
     background-color: var(--azulMarinho);
@@ -166,7 +166,6 @@ body {
 }
 
 .botaoAzulPequeno {
-
     background-color: var(--azulMarinho);
     color: white;
     border: none;
@@ -176,6 +175,11 @@ body {
     font-size: 14px;
     width: 80%;
     margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.botaoAzulPequeno:hover {
+    background-color: #0056b3;
 }
 
 .containerAcoesFinal {
@@ -195,7 +199,6 @@ body {
 }
 
 .botaoBranco {
-
     background: white;
     border: 1px solid #CCC;
     color: var(--cinza);
@@ -204,9 +207,12 @@ body {
     font-size: 12px;
     width: 200px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box; 
 }
 
 .botaoBranco:hover {
-
     background-color: #f7f7f7;
+    border-color: #999;
+    color: #333;
 }
