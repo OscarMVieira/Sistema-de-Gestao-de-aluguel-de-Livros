@@ -46,7 +46,7 @@
                 
                 <div class="grupoBotoesBrancos">
                     <button class="botaoBranco">Limpar Formulário</button>
-                    <button class="botaoBranco">Cancelar</button>
+                    <a href="../cliente/paginaCatalogo.php" class="botaoBranco">Voltar</a>
                 </div>
             </div>
         </main>
