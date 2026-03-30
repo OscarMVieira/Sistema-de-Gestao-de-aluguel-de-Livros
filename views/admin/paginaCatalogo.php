@@ -1,4 +1,4 @@
-<?php include '../templates/headerCliente.php'; ?>
+<?php include '../templates/headerCatalogoAdmin.php'; ?>
 
 <link rel="stylesheet" href="../../public/css/paginaCatalogo.css">
 

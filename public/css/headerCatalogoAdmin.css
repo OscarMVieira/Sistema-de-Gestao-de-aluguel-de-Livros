@@ -1,0 +1,263 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+.navbar {
+    background-color: #004080;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    height: 70px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+}
+
+.home-nav-icon {
+    color: white;
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.home-nav-icon:hover {
+    color: #a5c0d6;
+    transform: scale(1.1);
+}
+
+.search-bar {
+    background: white;
+    border-radius: 20px;
+    display: flex;
+    width: 400px;
+    overflow: hidden;
+}
+
+.search-bar input {
+    border: none;
+    padding: 8px 20px;
+    width: 100%;
+    outline: none;
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    padding: 0 15px;
+    color: #004080;
+    cursor: pointer;
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.user-avatar i {
+    font-size: 1.8rem;
+    color: white;
+    display: block;
+}
+
+.username {
+    font-weight: 500;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.cart-icon {
+    background: white;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.cart-icon:hover {
+    background: #e6e6e6;
+}
+
+.cart-icon i {
+    font-size: 1.1rem;
+}
+
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #555;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-left: 5px;
+}
+
+.logout-btn:hover {
+    background: white;
+    color: #004080;
+}
+
+.main-container {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - 140px);
+}
+
+.sidebar {
+    width: 250px;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column; 
+    flex-shrink: 0;
+}
+
+.sidebar-nav, 
+.sidebar-nav ul {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    list-style: none;
+}
+
+.sidebar a {
+    color: #555;
+    padding: 12px 25px;
+    display: block;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.sidebar li.active a, 
+.sidebar a:hover {
+    background-color: #eef4ff;
+    color: #004080;
+    font-weight: 600;
+    border-right: 4px solid #004080;
+}
+
+.sidebar a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 20px;
+}
+
+.btn-create-book {
+    background-color: #004080 !important;
+    color: white !important;
+    text-align: center;
+    border-radius: 8px;
+    padding: 12px !important;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s;
+    border: none;
+}
+
+.btn-create-book:hover {
+    background-color: #0b4c7d !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border-right: none !important;
+}
+
+.content {
+    flex: 1;
+    padding: 30px;
+}
+
+.main-footer {
+    background-color: #0b4c7d;
+    color: white;
+    padding: 40px 0; 
+    text-align: center;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 20px; 
+}
+
+.social-icon {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem; 
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-icon:hover {
+    color: #a5c0d6; 
+    transform: translateY(-3px); 
+}
+
+.footer-info p {
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
+
+.footer-info small {
+    color: #a5c0d6;
+    font-size: 0.8rem;
+}
