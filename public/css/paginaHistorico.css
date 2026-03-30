@@ -1,0 +1,91 @@
+:root {
+    --azulMarinho: #004080;
+    --bordaAzul: #99B2CC;
+    --preto: #000000;
+    --cinza: #666666;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.layoutPrincipal {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.areaConteudo {
+    flex: 1;
+    max-width: 1000px;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tituloEsquerda {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 40px 0 20px 0;
+    text-align: left;
+}
+
+.caixaCard {
+    border: 1px solid var(--bordaAzul);
+    border-radius: 4px;
+    background: white;
+}
+
+.containerTabela {
+    padding: 20px;
+    min-height: 600px;
+    display: block;
+}
+
+.tabelaHistorico {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.tabelaHistorico th {
+    padding: 15px;
+    font-weight: normal;
+    color: var(--preto);
+    font-size: 18px;
+}
+
+.tabelaHistorico td {
+    padding: 12px;
+    font-size: 16px;
+    color: var(--preto);
+}
+
+.alinhamentoVoltar {
+    margin-top: 20px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.botaoVoltarPadrao {
+    background-color: var(--azulMarinho);
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.botaoVoltarPadrao:hover {
+    background-color: #003366;
+}
