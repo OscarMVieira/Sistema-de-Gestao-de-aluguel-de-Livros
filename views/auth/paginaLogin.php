@@ -13,7 +13,7 @@
 
     <div class="formContainer">
         <h2>Login</h2>
-        <form action="processar_login.php" method="POST">
+        <form action="processarLogin.php" method="POST">
             <div class="inputGroup">
                 <label>E-mail</label>
                 <input type="email" name="email" placeholder="E-mail" required>
