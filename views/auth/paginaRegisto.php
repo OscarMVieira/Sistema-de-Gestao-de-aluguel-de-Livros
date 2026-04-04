@@ -14,7 +14,7 @@
 
     <div class="formContainer">
         <h2>Novo Registo</h2>
-        <form action="processar_registo.php" method="POST">
+        <form action="processarRegisto.php" method="POST">
             <div class="inputGroup">
                 <label>Nome Completo</label>
                 <input type="text" name="nome" placeholder="Nome Completo" required>
