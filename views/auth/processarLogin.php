@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        // Verifica a password (comparação direta como nos teus exemplos)
+        // Verifica a password 
         if ($pass_login == $row['password']) {
             $_SESSION['username'] = $row['username'];
             $_SESSION['tipo']     = $row['tipoContaId'];
