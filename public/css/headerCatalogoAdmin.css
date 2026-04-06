@@ -82,6 +82,23 @@ body {
     gap: 15px; 
 }
 
+.user-profile-link {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    transition: 0.3s;
+}
+
+.user-profile-link:hover {
+    opacity: 0.8;
+}
+
+.cart-link {
+    text-decoration: none;
+}
+
 .user-avatar i {
     font-size: 1.8rem;
     color: white;

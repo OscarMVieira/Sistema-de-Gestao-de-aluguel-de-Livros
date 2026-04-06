@@ -15,7 +15,7 @@
         </div>
         
         <div class="search-container">
-            <a href="index.php" class="home-nav-icon">
+            <a href="../cliente/paginaCatalogo.php" class="home-nav-icon">
                 <i class="fa-solid fa-house"></i>
             </a>
             <div class="search-bar">
@@ -25,14 +25,20 @@
         </div>
 
         <div class="user-controls">
-            <div class="user-avatar">
-                <i class="fa-solid fa-circle-user"></i>
-            </div>
-            <span class="username">Ana Costa</span>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span class="badge">0</span>
-            </div>
+            <a href="../auth/paginaPerfil.php" class="user-profile-link">
+                <div class="user-avatar">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+                <span class="username">Ana Costa</span>
+            </a>
+
+            <a href="paginaCarrinho.php" class="cart-link">
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge">0</span>
+                </div>
+            </a>
+
             <button class="logout-btn">Logout</button>
         </div>
     </header>
@@ -41,8 +47,8 @@
         <aside class="sidebar">
             <nav>
                 <ul>
-                    <li><a href="#"><i class="fa-solid fa-user"></i> Perfil</a></li>
-                    <li><a href="#"><i class="fa-solid fa-box"></i> Meus pedidos</a></li>
+                    <li><a href="../auth/paginaPerfil.php"><i class="fa-solid fa-user"></i> Perfil</a></li>
+                    <li><a href="meusPedidos.php"><i class="fa-solid fa-box"></i> Meus pedidos</a></li>
                 </ul>
             </nav>
         </aside>
