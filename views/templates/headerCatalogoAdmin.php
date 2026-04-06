@@ -15,7 +15,7 @@
         </div>
         
         <div class="search-container">
-            <a href="index.php" class="home-nav-icon">
+            <a href="../admin/paginaCatalogo.php" class="home-nav-icon">
                 <i class="fa-solid fa-house"></i>
             </a>
             <div class="search-bar">
@@ -25,14 +25,20 @@
         </div>
 
         <div class="user-controls">
-            <div class="user-avatar">
-                <i class="fa-solid fa-circle-user"></i>
-            </div>
-            <span class="username">Ana Costa</span>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span class="badge">0</span>
-            </div>
+            <a href="../auth/paginaPerfil.php" class="user-profile-link">
+                <div class="user-avatar">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+                <span class="username">Ana Costa</span>
+            </a>
+
+            <a href="../cliente/paginaCarrinho.php" class="cart-link">
+                <div class="cart-icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge">0</span>
+                </div>
+            </a>
+
             <button class="logout-btn">Logout</button>
         </div>
     </header>
@@ -41,11 +47,11 @@
         <aside class="sidebar">
             <nav class="sidebar-nav">
                 <ul>
-                    <li><a href="#"><i class="fa-solid fa-file-invoice"></i> Gestão de Pedidos</a></li>
-                    <li><a href="#"><i class="fa-solid fa-users"></i> Gerir Clientes</a></li>
+                    <li><a href="gestaoPedidos.php"><i class="fa-solid fa-file-invoice"></i> Gestão de Pedidos</a></li>
+                    <li><a href="gerirClientes.php"><i class="fa-solid fa-users"></i> Gerir Clientes</a></li>
                     
                     <li class="sidebar-footer">
-                        <a href="criarLivro.php" class="btn-create-book">
+                        <a href="paginaInsercaoDeLivros.php" class="btn-create-book">
                             <i class="fa-solid fa-plus"></i> Criar Livro
                         </a>
                     </li>
