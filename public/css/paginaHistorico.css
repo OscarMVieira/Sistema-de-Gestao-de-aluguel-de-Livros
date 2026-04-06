@@ -1,0 +1,87 @@
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    width: 100%;
+    min-height: 80vh;
+}
+
+.seccaoHistorico {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.containerHistorico {
+    width: 100%;
+    max-width: 950px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tituloHistorico {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.cartaoTabela {
+    background-color: white;
+    border: 1px solid #99B2CC;
+    border-radius: 8px;
+    padding: 25px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    height: auto;      
+    overflow: visible; 
+}
+
+.tabelaHistorico {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabelaHistorico th {
+    color: #004080;
+    padding: 15px;
+    border-bottom: 2px solid #004080;
+    font-size: 18px;
+    text-align: center;
+}
+
+.tabelaHistorico td {
+    padding: 18px 15px;
+    text-align: center;
+    font-size: 16px;
+    color: #444;
+    border-bottom: 1px solid #eee;
+}
+
+.areaBotoes {
+    margin-top: 35px;
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.botaoVoltar {
+    background-color: #004080;
+    color: white;
+    padding: 12px 60px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    display: inline-block;
+}
+
+.botaoVoltar:hover {
+    background-color: #002d5a;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
