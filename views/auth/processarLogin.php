@@ -17,8 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($pass_login == $row['password']) {
             $_SESSION['username'] = $row['username'];
             $_SESSION['tipo']     = $row['tipoContaId'];
+            $_SESSION['email']     = $row['email'];
 
-            // Redirecionamento automático conforme seja utilizador ou admin 
+
+            // Redirecionamento automático conforme seja o utilizador ou o admin 
             if ($row['tipoContaId'] == 1) {
                 header("Location: ../admin/paginaCatalogo.php"); 
             } else {
