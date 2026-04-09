@@ -152,6 +152,8 @@ body {
     cursor: pointer;
     transition: 0.3s;
     margin-left: 5px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .logout-btn:hover {

@@ -135,6 +135,8 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .logout-btn:hover {

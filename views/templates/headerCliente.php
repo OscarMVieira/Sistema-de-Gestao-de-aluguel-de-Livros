@@ -39,7 +39,7 @@
                 </div>
             </a>
 
-            <button class="logout-btn">Logout</button>
+            <a href="../auth/paginaLogin.php" class="logout-btn">Logout</a>
         </div>
     </header>
 
