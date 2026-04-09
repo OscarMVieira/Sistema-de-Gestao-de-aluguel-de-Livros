@@ -25,11 +25,9 @@ Conforme planeado e de acordo com o nosso relatório de Engenharia de Software:
 
 ### ✅ Concluído
 
-**por enquanto nada**
-
-### ⏳ Em Desenvolvimento / Próximos Passos
 - **Sprint 1** Criação do repositório no GitHub e montagem do “esqueleto” do site (HTML/CSS) introduzindo também algumas funcionalidades iniciais e básicas com PHP. Concluir os requisitos Funcionais e Não Funcionais.
 
+### ⏳ Em Desenvolvimento / Próximos Passos
 - **Sprint 2:** Desenvolvimento do sistema de autenticação seguro e registo manual de novos clientes. Continuação da lógica de conexão entre PHP e a base de dados e implementação de JavaScript para algumas funcionalidades.
 
 - **Sprint 3:** Implementação de todas as funcionalidades do sistema tais como a requisição de um livro, visualização dos pedidos, gestão dos pedidos, criar/editar livros e visualizar/moderar clientes. 
@@ -55,7 +53,7 @@ De acordo com o planeamento da disciplina de Engenharia de Software, o nosso pro
 *(falta Substituir os nomes e as fotos das imagens abaixo pelos nossas prints`img/`)*
 
 <p align="center">
-  <img src="img/login.png" width="45%" alt="Ecrã de Login">
+  <img src="public/img/paginaLogin.png" width="45%" alt="Ecrã de Login">
   <img src="img/dashboard.png" width="45%" alt="Dashboard">
 </p>
 
