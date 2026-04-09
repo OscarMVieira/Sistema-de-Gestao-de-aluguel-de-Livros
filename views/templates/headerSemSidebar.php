@@ -33,9 +33,11 @@
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="badge">0</span>
             </div>
-            <button class="logout-btn">Logout</button>
+            <a href="../auth/paginaLogin.php" class="logout-btn">Logout</a>
         </div>
     </header>
 
     <div class="main-container">
         <main class="content-full">
+
+--FALTA ADICIONAR UMA CONDICAO PARA SABER SE E ADMIN OU CLIENTE PARA QUANDO CLICAR NA CASA VOLTAR PARA PAGINA DE CATALOGO DO ADMIN OU DO CLIENTE
