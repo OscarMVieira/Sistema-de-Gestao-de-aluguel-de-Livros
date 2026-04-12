@@ -1,4 +1,12 @@
-<?php include '../templates/headerCatalogoAdmin.php'; ?>
+<?php 
+
+include '../templates/headerCatalogoAdmin.php'; 
+require_once '../basedados/basedados.h'; 
+
+//Buscar os livros da BD
+$sql = "SELECT * FROM livros ORDER BY ID_Livro DESC"; 
+$resultado = $conn->query($sql);
+?>
 
 <link rel="stylesheet" href="../../public/css/paginaCatalogo.css">
 
@@ -16,21 +24,54 @@
     </div>
 
     <div class="book-grid">
-        <div class="book-item">
-            <div class="book-cover">
-                <img src="https://via.placeholder.com/150x220" alt="Capa do Livro">
-                <span class="tag">Disponível</span>
+        <?php 
+        //Verificar se temos livros para apresentar
+        if ($resultado->num_rows > 0) {
+            
+            //Percorrer todos os livros
+            while($livro = $resultado->fetch_assoc()) { 
+                
+                //Disponibilidade
+                if ($livro['Disponibilidade'] == 1) {
+                    $classeExtra = "";            //Verde se disponivel
+                    $textoStatus = "Disponível";
+                } else {
+                    $classeExtra = "out";         //Vermelho se indisponivel
+                    $textoStatus = "Indisponível";
+                }
+    
+        ?>
+            <div class="book-item">
+                <div class="book-cover">
+                    
+                    <img src="../../public/img/<?php echo $livro['Capa']; ?>" alt="Capa do Livro">
+                    
+                    <span class="tag <?php echo $classeExtra; ?>">
+                        <?php echo $textoStatus; ?>
+                    </span>
+                </div>
+
+                <div class="book-details">
+                    <h3><?php echo htmlspecialchars($livro['Titulo_Livro']); ?></h3>
+                    <p class="author"><?php echo htmlspecialchars($livro['Autor_Livro']); ?></p>
+                    <p class="genre">Quantidade: <?php echo $livro['Quantidade']; ?></p>
+                    
+                    <button class="add-to-cart-btn">
+                        <i class="fa-solid fa-cart-plus"></i> Adicionar
+                    </button>
+                </div>
             </div>
-            <div class="book-details">
-                <h3>O Gato Que Salvava Livros</h3>
-                <p class="author">Sosuke Natsukawa</p>
-                <p class="genre">Ficção Japonesa</p>
-                <button class="add-to-cart-btn">
-                    <i class="fa-solid fa-cart-plus"></i> Adicionar
-                </button>
-            </div>
-        </div>
-        </div>
+        <?php 
+            } 
+            
+        } else {
+            //Caso não existam livros
+            echo "<p style='text-align:center; width:100%;'>Ainda não existem livros registados no sistema.</p>";
+        }
+        ?>
+    </div>
 </div>
 
-<?php include '../templates/footer.php'; ?>
+<?php 
+include '../templates/footer.php'; 
+?>
