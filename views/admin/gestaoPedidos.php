@@ -1,4 +1,15 @@
-<?php include '../templates/header.php'; ?>
+<?php 
+include '../templates/header.php'; 
+require_once '../basedados/basedados.h';
+//FALTA CRIAR UM PROCESSAR PEDIDOS EM VEZ DE USAR AQUI PARA EVITAR PROBLEMAS DE SEGURANCA
+// buscar dados reais das 3 tabelas
+$query = "SELECT r.*, u.username, l.titulo, l.autor 
+          FROM requisicoes r
+          JOIN users u ON r.user_id = u.id
+          JOIN livros l ON r.livro_id = l.id
+          ORDER BY r.data_pedido DESC";
+$resultado = mysqli_query($conn, $query);
+?>
 
 <link rel="stylesheet" href="../../public/css/gestaoPedidos.css">
 
@@ -6,15 +17,15 @@
     <h1 class="page-title">Gestão de Pedidos</h1>
     
     <div class="gestao-card">
-        <h2 class="section-title">Gestão de Pedidos</h2>
+        <h2 class="section-title">Lista de Requisições Ativas</h2>
         
         <table class="gestao-table">
             <thead>
                 <tr>
                     <th>Pedido</th>
                     <th>Data Pedido</th>
-                    <th>Livro(s)</th>
-                    <th>Autores</th>
+                    <th>Livro</th>
+                    <th>Cliente</th>
                     <th>Estado</th>
                     <th>Levantamento</th>
                     <th>Devolução</th>
@@ -22,68 +33,61 @@
                 </tr>
             </thead>
             <tbody>
+                <?php 
+                //criar uma linha por cada registo da BD
+                if (mysqli_num_rows($resultado) > 0) {
+                    while($row = mysqli_fetch_assoc($resultado)): 
+                        $statusClass = strtolower($row['estado']);
+                ?>
                 <tr>
-                    <td>1</td>
-                    <td>23/07/2026</td>
-                    <td>O Gato Que Salvava Livros, etc...</td>
-                    <td>Sosuke Natsukawa</td>
+                    <td>#<?php echo $row['id']; ?></td>
+                    <td><?php echo date('d/m/Y', strtotime($row['data_pedido'])); ?></td>
+                    <td><?php echo htmlspecialchars($row['titulo']); ?></td>
+                    <td><?php echo htmlspecialchars($row['username']); ?></td>
                     <td>
                         <div class="status-wrapper">
-                            <span class="status-badge terminada" onclick="toggleStatusMenu(this)">Terminada</span>
-                            <select class="status-select" onchange="updateStatus(this)">
-                                <option value="terminada" selected>Terminada</option>
-                                <option value="levantado">Levantado</option>
-                                <option value="inativa">Inativa</option>
+                            <span class="status-badge <?php echo $statusClass; ?>" onclick="toggleStatusMenu(this)">
+                                <?php echo $row['estado']; ?>
+                            </span>
+                            <select class="status-select" onchange="updateStatus(this, <?php echo $row['id']; ?>)">
+                                <option value="Pendente" <?php echo ($row['estado'] == 'Pendente') ? 'selected' : ''; ?>>Pendente</option>
+                                <option value="Levantado" <?php echo ($row['estado'] == 'Levantado') ? 'selected' : ''; ?>>Levantado</option>
+                                <option value="Terminada" <?php echo ($row['estado'] == 'Terminada') ? 'selected' : ''; ?>>Terminada</option>
+                                <option value="Inativa" <?php echo ($row['estado'] == 'Inativa') ? 'selected' : ''; ?>>Inativa</option>
                             </select>
                         </div>
                     </td>
-                    <td>24/07/2026</td>
-                    <td>27/07/2026</td>
-                    <td><i class="fa-regular fa-file-lines obs-icon"></i></td>
+                    <td><?php echo $row['data_levantamento'] ? date('d/m/Y', strtotime($row['data_levantamento'])) : '---'; ?></td>
+                    <td><?php echo $row['data_devolucao'] ? date('d/m/Y', strtotime($row['data_devolucao'])) : '---'; ?></td>
+                    <td><i class="fa-regular fa-file-lines obs-icon" title="<?php echo htmlspecialchars($row['observacao']); ?>"></i></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>26/08/2026</td>
-                    <td>Os Lusíadas</td>
-                    <td>Luís de Camões</td>
-                    <td>
-                        <div class="status-wrapper">
-                            <span class="status-badge levantado" onclick="toggleStatusMenu(this)">Levantado</span>
-                            <select class="status-select" onchange="updateStatus(this)">
-                                <option value="terminada">Terminada</option>
-                                <option value="levantado" selected>Levantado</option>
-                                <option value="inativa">Inativa</option>
-                            </select>
-                        </div>
-                    </td>
-                    <td>28/07</td>
-                    <td>30/07/2026</td>
-                    <td><i class="fa-regular fa-file-lines obs-icon"></i></td>
-                </tr>
+                <?php 
+                    endwhile; 
+                } else {
+                    echo "<tr><td colspan='8' style='text-align:center;'>Nenhum pedido encontrado na base de dados.</td></tr>";
+                }
+                ?>
             </tbody>
         </table>
     </div>
 </div>
 
 <script>
-// Função para mostrar a lista de seleção
 function toggleStatusMenu(badge) {
     const wrapper = badge.parentElement;
     wrapper.classList.toggle('active');
 }
 
-// Função para atualizar o visual após mudar o estado
-function updateStatus(select) {
+function updateStatus(select, id) {
     const badge = select.previousElementSibling;
     const newValue = select.value;
     const newText = select.options[select.selectedIndex].text;
     
-    // Atualiza o texto e a classe do badge
     badge.textContent = newText;
-    badge.className = 'status-badge ' + newValue;
-    
-    // Fecha o menu
+    badge.className = 'status-badge ' + newValue.toLowerCase();
     select.parentElement.classList.remove('active');
+    
+    console.log("Atualizar pedido " + id + " para " + newValue);
 }
 </script>
 
