@@ -56,6 +56,10 @@ $resultado = $conn->query($sql);
                     <p class="author"><?php echo htmlspecialchars($livro['Autor_Livro']); ?></p>
                     <p class="genre">Quantidade: <?php echo $livro['Quantidade']; ?></p>
                     
+                    <a href="paginaConsultarLivro.php?id=<?php echo $livro['ID_Livro']; ?>" class="btn-detalhes">
+                        <i class="fa-solid fa-eye"></i> Ver Detalhes
+                    </a>
+                    
                     <button class="add-to-cart-btn">
                         <i class="fa-solid fa-cart-plus"></i> Adicionar
                     </button>
