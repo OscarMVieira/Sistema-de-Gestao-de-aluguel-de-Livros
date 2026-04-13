@@ -1,9 +1,11 @@
 <?php 
 
+session_start(); 
+
 include '../templates/headerCliente.php'; 
 require_once '../basedados/basedados.h'; 
 
-//Buscar os livros da BD
+
 $sql = "SELECT * FROM livros ORDER BY ID_Livro DESC"; 
 $resultado = $conn->query($sql);
 ?>
@@ -25,27 +27,27 @@ $resultado = $conn->query($sql);
 
     <div class="book-grid">
         <?php 
-        //Verificar se temos livros para apresentar
+
         if ($resultado->num_rows > 0) {
             
-            //Percorrer todos os livros
+
             while($livro = $resultado->fetch_assoc()) { 
                 
-                //Disponibilidade
-                if ($livro['Disponibilidade'] == 1) {
-                    $classeExtra = "";            //Verde se disponivel
+
+                if ($livro['Disponibilidade'] == 1 && $livro['Quantidade'] > 0) {
+                    $classeExtra = "";            
                     $textoStatus = "Disponível";
+                    $estiloBotao = ""; 
                 } else {
-                    $classeExtra = "out";         //Vermelho se indisponivel
+                    $classeExtra = "out";         
                     $textoStatus = "Indisponível";
+
+                    $estiloBotao = "pointer-events: none; opacity: 0.5;"; 
                 }
-    
         ?>
             <div class="book-item">
                 <div class="book-cover">
-                    
                     <img src="../../public/img/<?php echo $livro['Capa']; ?>" alt="Capa do Livro">
-                    
                     <span class="tag <?php echo $classeExtra; ?>">
                         <?php echo $textoStatus; ?>
                     </span>
@@ -60,22 +62,22 @@ $resultado = $conn->query($sql);
                         <i class="fa-solid fa-eye"></i> Ver Detalhes
                     </a>
                     
-                    <button class="add-to-cart-btn">
-                        <i class="fa-solid fa-cart-plus"></i> Adicionar
-                    </button>
+                    <a href="logicaCarrinho.php?id=<?php echo $livro['ID_Livro']; ?>&acao=add" 
+                       class="add-to-cart-btn" 
+                       style="text-decoration: none; <?php echo $estiloBotao; ?>">
+                        <i class="fa-solid fa-cart-plus"></i> Requisitar
+                    </a>
                 </div>
             </div>
         <?php 
             } 
             
         } else {
-            //Caso não existam livros
             echo "<p style='text-align:center; width:100%;'>Ainda não existem livros registados no sistema.</p>";
         }
         ?>
     </div>
 </div>
- 
 
 <?php 
 include '../templates/footer.php'; 
