@@ -1,22 +1,25 @@
-CREATE TABLE IF NOT EXISTS livros (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(255) NOT NULL,
-    autor VARCHAR(255) NOT NULL,
-    genero VARCHAR(100),
-    capa_url VARCHAR(255),
-    estado_livro VARCHAR(50) DEFAULT 'Disponível'
-);
-
-CREATE TABLE IF NOT EXISTS requisicoes (
+CREATE TABLE requisicoes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT, -- Liga ao id da tabela users
     livro_id INT, -- Liga ao id da tabela livros
     data_pedido DATE NOT NULL,
     data_levantamento DATE DEFAULT NULL,
     data_devolucao DATE DEFAULT NULL,
-    estado VARCHAR(50) DEFAULT 'Pendente', --
+    estado VARCHAR(50) DEFAULT 'Pendente', 
     observacao TEXT,
     -- Criar as ligações (Constraints)
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (livro_id) REFERENCES livros(id) ON DELETE CASCADE
+    FOREIGN KEY (livro_id) REFERENCES livros(ID_Livro) ON DELETE CASCADE
 );
+
+CREATE TABLE livros (
+    ID_Livro INT AUTO_INCREMENT PRIMARY KEY,
+    Titulo_Livro VARCHAR(255) NOT NULL, 
+    Autor_Livro VARCHAR(255) NOT NULL,
+    genero VARCHAR(255),
+    Capa VARCHAR(255),
+    Quantidade INT DEFAULT 1,
+    Disponibilidade BOOLEAN DEFAULT TRUE
+    
+);
+
