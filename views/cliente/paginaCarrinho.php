@@ -1,67 +1,62 @@
-<?php include '../templates/headerSemSidebar.php'; ?>
+<?php 
+session_start();
+require_once '../basedados/basedados.h'; //
+include '../templates/headerSemSidebar.php'; 
+
+$hoje = date('Y-m-d');
+$dataLimite = date('Y-m-d', strtotime('+30 days'));
+$carrinho = $_SESSION['carrinho'] ?? [];
+?>
 
 <link rel="stylesheet" href="../../public/css/paginaCarrinho.css">
 
 <div class="cart-container">
     <h1 class="mainTitle">Carrinho</h1>
 
-    <div class="gridLayout">
+    <form action="confirmarRequisicao.php" method="POST" class="gridLayout">
+        
         <section class="cartSection">
             <h2>Carrinho de Requisições</h2>
-            
-            <div class="bookCard">
-                <img src="https://via.placeholder.com/80x120" alt="Capa do Livro">
-                <div class="bookInfo">
-                    <h3>O Gato Que Salvava Livros</h3>
-                    <p class="author">Sosuke Natsukawa</p>
-                    <div class="quantityControl">
-                        <span>+ / -</span>
-                        <span class="qty-number">(1)</span>
+            <?php 
+            if (empty($carrinho)): 
+                echo "<p>O seu carrinho está vazio.</p>";
+            else:
+                foreach ($carrinho as $id => $qtd): 
+                    $sql = "SELECT * FROM livros WHERE ID_Livro = $id";
+                    $res = $conn->query($sql);
+                    $livro = $res->fetch_assoc();
+            ?>
+                <div class="bookCard">
+                    <img src="../../public/img/<?php echo $livro['Capa']; ?>" alt="Capa">
+                    
+                    <div class="bookInfo">
+                        <h3><?php echo htmlspecialchars($livro['Titulo_Livro']); ?></h3>
+                        <p class="author"><?php echo htmlspecialchars($livro['Autor_Livro']); ?></p>
+                        <div class="quantityControl">
+                             <a href="logicaCarrinho.php?id=<?php echo $id; ?>&acao=sub"> - </a>
+                             <span><?php echo $qtd; ?> Unid.</span>
+                             <a href="logicaCarrinho.php?id=<?php echo $id; ?>&acao=add"> + </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="bookCard">
-                <img src="https://via.placeholder.com/80x120" alt="Capa do Livro">
-                <div class="bookInfo">
-                    <h3>O Gato Que Salvava Livros</h3>
-                    <p class="author">Sosuke Natsukawa</p>
-                    <div class="quantityControl">
-                        <span>+ / -</span>
-                        <span class="qty-number">(1)</span>
-                    </div>
-                </div>
-            </div>
-
-            <p class="limitText">Limite: 2 de 3 Livros</p>
+            <?php endforeach; endif; ?>
         </section>
 
         <section class="dateSection">
             <h2>Duração da Requisição</h2>
             <div class="calendarCard">
-                <div class="calendarHeader">
-                    <button>&lt;</button>
-                    <span>Junho – 2026</span>
-                    <button>&gt;</button>
-                </div>
-                <table class="calendarTable">
-                    <thead>
-                        <tr>
-                            <th>Do</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sab</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
-                        <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
-                        <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
-                        <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
-                        <tr><td>29</td><td>30</td><td></td><td></td><td></td><td></td><td></td></tr>
-                    </tbody>
-                </table>
-                <button class="confirmBtn">CONFIRMAR REQUISIÇÃO</button>
+                <p style="margin-bottom: 15px;">Data de Devolução (Máx 30 dias):</p>
+                <input type="date" name="data_devolucao" 
+                       min="<?php echo $hoje; ?>" 
+                       max="<?php echo $dataLimite; ?>" 
+                       required 
+                       style="width:100%; padding:10px; border: 1px solid #a5c0d6; border-radius: 4px; margin-bottom: 20px;">
+                
+                <button type="submit" class="confirmBtn">CONFIRMAR REQUISIÇÃO</button>
             </div>
         </section>
-    </div>
+        
+    </form> 
 </div>
 
 <?php include '../templates/footer.php'; ?>

@@ -75,6 +75,7 @@ $resultado = $conn->query($sql);
         ?>
     </div>
 </div>
+ 
 
 <?php 
 include '../templates/footer.php'; 
