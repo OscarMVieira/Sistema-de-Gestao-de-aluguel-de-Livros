@@ -1,13 +1,11 @@
 <?php 
 $activePage = 'catalogo'; 
 include '../templates/headerCliente.php'; 
-require_once '../basedados/basedados.h'; // Adicionado para ligar à base de dados
+require_once '../basedados/basedados.h';
 
-// 1. Verificar se o ID do livro foi passado no URL
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     
-    // 2. Procurar os dados do livro específico
     $sql = "SELECT * FROM livros WHERE ID_Livro = $id";
     $resultado = $conn->query($sql);
     
