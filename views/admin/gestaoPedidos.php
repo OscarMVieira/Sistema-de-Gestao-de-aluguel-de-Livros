@@ -1,13 +1,14 @@
 <?php 
 include '../templates/header.php'; 
-require_once '../basedados/basedados.h';
-//FALTA CRIAR UM PROCESSAR PEDIDOS EM VEZ DE USAR AQUI PARA EVITAR PROBLEMAS DE SEGURANCA
-// buscar dados reais das 3 tabelas
-$query = "SELECT r.*, u.username, l.titulo, l.autor 
+
+require_once '../basedados/basedados.h'; 
+
+$query = "SELECT r.*, u.username, l.Titulo_Livro, l.Autor_Livro 
           FROM requisicoes r
           JOIN users u ON r.user_id = u.id
-          JOIN livros l ON r.livro_id = l.id
+          JOIN livros l ON r.livro_id = l.ID_Livro 
           ORDER BY r.data_pedido DESC";
+
 $resultado = mysqli_query($conn, $query);
 ?>
 
@@ -17,7 +18,7 @@ $resultado = mysqli_query($conn, $query);
     <h1 class="page-title">Gestão de Pedidos</h1>
     
     <div class="gestao-card">
-        <h2 class="section-title">Lista de Requisições Ativas</h2>
+        <h2 class="section-title">Lista de Requisições</h2>
         
         <table class="gestao-table">
             <thead>
@@ -27,23 +28,23 @@ $resultado = mysqli_query($conn, $query);
                     <th>Livro</th>
                     <th>Cliente</th>
                     <th>Estado</th>
-                    <th>Levantamento</th>
-                    <th>Devolução</th>
                     <th>Observação</th>
                 </tr>
             </thead>
             <tbody>
                 <?php 
-                //criar uma linha por cada registo da BD
-                if (mysqli_num_rows($resultado) > 0) {
+                //Ciclo PHP para listar os pedidos da base de dados
+                if ($resultado && mysqli_num_rows($resultado) > 0) {
                     while($row = mysqli_fetch_assoc($resultado)): 
                         $statusClass = strtolower($row['estado']);
                 ?>
                 <tr>
                     <td>#<?php echo $row['id']; ?></td>
                     <td><?php echo date('d/m/Y', strtotime($row['data_pedido'])); ?></td>
-                    <td><?php echo htmlspecialchars($row['titulo']); ?></td>
+                    
+                    <td><?php echo htmlspecialchars($row['Titulo_Livro']); ?></td>
                     <td><?php echo htmlspecialchars($row['username']); ?></td>
+                    
                     <td>
                         <div class="status-wrapper">
                             <span class="status-badge <?php echo $statusClass; ?>" onclick="toggleStatusMenu(this)">
@@ -57,14 +58,15 @@ $resultado = mysqli_query($conn, $query);
                             </select>
                         </div>
                     </td>
-                    <td><?php echo $row['data_levantamento'] ? date('d/m/Y', strtotime($row['data_levantamento'])) : '---'; ?></td>
-                    <td><?php echo $row['data_devolucao'] ? date('d/m/Y', strtotime($row['data_devolucao'])) : '---'; ?></td>
-                    <td><i class="fa-regular fa-file-lines obs-icon" title="<?php echo htmlspecialchars($row['observacao']); ?>"></i></td>
+                    <td>
+                        <i class="fa-regular fa-file-lines obs-icon" title="<?php echo htmlspecialchars($row['observacao']); ?>"></i>
+                    </td>
                 </tr>
                 <?php 
                     endwhile; 
                 } else {
-                    echo "<tr><td colspan='8' style='text-align:center;'>Nenhum pedido encontrado na base de dados.</td></tr>";
+                    // Mensagem caso a tabela esteja vazia ou a query falhe
+                    echo "<tr><td colspan='6' style='text-align:center; padding: 20px;'>Nenhum pedido encontrado na base de dados.</td></tr>";
                 }
                 ?>
             </tbody>
@@ -73,22 +75,24 @@ $resultado = mysqli_query($conn, $query);
 </div>
 
 <script>
+// Função para abrir/fechar o menu de seleção
 function toggleStatusMenu(badge) {
-    const wrapper = badge.parentElement;
-    wrapper.classList.toggle('active');
+    badge.parentElement.classList.toggle('active');
 }
 
+//enviar a alteração para o processarStatus.php
 function updateStatus(select, id) {
-    const badge = select.previousElementSibling;
     const newValue = select.value;
-    const newText = select.options[select.selectedIndex].text;
     
-    badge.textContent = newText;
-    badge.className = 'status-badge ' + newValue.toLowerCase();
-    select.parentElement.classList.remove('active');
-    
-    console.log("Atualizar pedido " + id + " para " + newValue);
+    if(confirm("Deseja alterar o estado do pedido #" + id + " para " + newValue + "?")) {
+        // Redireciona para o processador de status
+        window.location.href = "processarStatus.php?id=" + id + "&novo_estado=" + newValue;
+    } else {
+        location.reload();
+    }
 }
 </script>
 
-<?php include '../templates/footer.php'; ?>
+<?php 
+include '../templates/footer.php'; 
+?>
