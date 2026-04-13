@@ -6,7 +6,9 @@ CREATE TABLE users (
     email VARCHAR(100) UNIQUE,
     password VARCHAR(255),
     documento VARCHAR(20),
-    tipoContaId INT DEFAULT 3
+    tipoContaId INT DEFAULT 3,
+    foto VARCHAR(255) DEFAULT 'default_perfil.png'
+
 );
 
 --  cria o Admin aqui!! 
