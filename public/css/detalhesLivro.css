@@ -216,3 +216,24 @@ body {
     border-color: #999;
     color: #333;
 }
+
+.botaoEditar {
+    background-color: #ffffff; 
+    color: var(--azulMarinho);
+    padding: 10px 25px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.botaoEditar:hover {
+    background-color: #0056b3; 
+    color: #ffffff;
+    transform: scale(1.02);    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
