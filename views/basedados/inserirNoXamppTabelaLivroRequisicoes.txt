@@ -12,14 +12,5 @@ CREATE TABLE requisicoes (
     FOREIGN KEY (livro_id) REFERENCES livros(ID_Livro) ON DELETE CASCADE
 );
 
-CREATE TABLE livros (
-    ID_Livro INT AUTO_INCREMENT PRIMARY KEY,
-    Titulo_Livro VARCHAR(255) NOT NULL, 
-    Autor_Livro VARCHAR(255) NOT NULL,
-    genero VARCHAR(255),
-    Capa VARCHAR(255),
-    Quantidade INT DEFAULT 1,
-    Disponibilidade BOOLEAN DEFAULT TRUE
-    
-);
+
 
