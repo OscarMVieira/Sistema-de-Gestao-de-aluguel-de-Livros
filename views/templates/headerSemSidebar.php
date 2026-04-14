@@ -15,7 +15,7 @@
         </div>
         
         <div class="search-container">
-            <a href="index.php" class="home-nav-icon">
+            <a href="../cliente/paginaCatalogo.php" class="home-nav-icon">
                 <i class="fa-solid fa-house"></i>
             </a>
             <div class="search-bar">
