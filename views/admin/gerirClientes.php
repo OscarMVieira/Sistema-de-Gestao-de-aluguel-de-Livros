@@ -1,5 +1,9 @@
 <?php 
 include '../templates/header.php'; 
+require_once '../basedados/basedados.h';
+
+$sql = "SELECT * FROM users WHERE tipoContaId = 3"; 
+$resultado = $conn->query($sql);
 ?>
 
 <link rel="stylesheet" href="../../public/css/gerirClientes.css">
@@ -13,29 +17,25 @@ include '../templates/header.php';
         </div>
         
         <div class="cardBody">
-            <div class="clienteRow">
-                <span class="clienteNome">Nome: Joana Silva</span>
-                <div class="clienteActions">
-                    <a href="paginaVerHistorico.php" class="actionBtn">Ver Histórico</a>
-                    <a href="paginaDetalhesCliente.php" class="actionBtn">Ver Detalhes</a>
+            <?php
+            if ($resultado && $resultado->num_rows > 0) {
+                
+                while($cliente = $resultado->fetch_assoc()) { 
+            ?>
+                <div class="clienteRow">
+                    <span class="clienteNome">Nome: <?php echo htmlspecialchars($cliente['username']); ?></span>
+                    
+                    <div class="clienteActions">
+                        <a href="paginaVerHistorico.php?id=<?php echo $cliente['id']; ?>" class="actionBtn">Ver Histórico</a>
+                        <a href="paginaDetalhesCliente.php?id=<?php echo $cliente['id']; ?>" class="actionBtn">Ver Detalhes</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="clienteRow">
-                <span class="clienteNome">Nome: João Gomes</span>
-                <div class="clienteActions">
-                    <a href="paginaVerHistorico.php" class="actionBtn">Ver Histórico</a>
-                    <a href="paginaDetalhesCliente.php" class="actionBtn">Ver Detalhes</a>
-                </div>
-            </div>
-
-            <div class="clienteRow">
-                <span class="clienteNome">Nome: Andre Pinho</span>
-                <div class="clienteActions">
-                    <a href="paginaVerHistorico.php" class="actionBtn">Ver Histórico</a>
-                    <a href="paginaDetalhesCliente.php" class="actionBtn">Ver Detalhes</a>
-                </div>
-            </div>
+            <?php 
+                } 
+            } else {
+                echo "<p style='text-align:center; padding: 20px;'>Não foram encontrados clientes no sistema.</p>";
+            }
+            ?>
         </div>
     </div>
 </div>
