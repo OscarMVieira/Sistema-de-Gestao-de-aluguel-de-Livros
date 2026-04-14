@@ -9,3 +9,13 @@ CREATE TABLE livros (
     
 );
 
+INSERT INTO livros (Titulo_Livro, Autor_Livro, Genero, Capa, Quantidade, Disponibilidade) VALUES
+('1984', 'George Orwell', 'Ficção Científica', '1984.jpg', 5, 1),
+('O Principezinho', 'Antoine de Saint-Exupéry', 'Infantil', 'principezinho.jpg', 3, 1),
+('Dom Quixote', 'Miguel de Cervantes', 'Clássico', 'dom_quixote.jpg', 2, 1),
+('Harry Potter e a Pedra Filosofal', 'J.K. Rowling', 'Fantasia', 'hp_pedra_filosofal.jpg', 10, 1),
+('O Senhor dos Anéis', 'J.R.R. Tolkien', 'Fantasia', 'senhor_aneis.jpg', 0, 0),
+('Orgulho e Preconceito', 'Jane Austen', 'Romance', 'orgulho_preconceito.jpg', 4, 1),
+('Memorial do Convento', 'José Saramago', 'Literatura Portuguesa', 'memorial_convento.jpg', 6, 1),
+('Crime e Castigo', 'Fiódor Dostoiévski', 'Drama', 'crime_castigo.jpg', 1, 1);
+
