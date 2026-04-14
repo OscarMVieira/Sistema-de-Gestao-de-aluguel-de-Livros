@@ -35,7 +35,7 @@
         </div>
 
         <div class="areaBotoes">
-            <a href="../cliente/paginaCatalogo.php" class="botaoVoltar">Voltar</a>
+            <a href="../admin/gerirClientes.php" class="botaoVoltar">Voltar</a>
         </div>
 
     </div>
