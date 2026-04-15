@@ -19,7 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['tipo']     = $row['tipoContaId'];
             $_SESSION['email']     = $row['email'];
             // Depois de confirmares que a password está correta:
-$_SESSION['user_id'] = $row['id']; // Garante que o 'id' é o nome da coluna na tua tabela 'users'
+            $_SESSION['user_id'] = $row['id']; // Garante que o 'id' é o nome da coluna na tua tabela 'users'
+            $_SESSION['tipoContaId'] = $row['tipoContaId'];
 
 
             // Redirecionamento automático conforme seja o utilizador ou o admin 
