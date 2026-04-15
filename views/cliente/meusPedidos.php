@@ -1,4 +1,26 @@
-<?php include '../templates/headerCliente.php'; ?>
+<?php 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+include '../templates/headerCliente.php'; 
+require_once '../basedados/basedados.h'; 
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../auth/paginaLogin.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+
+$query = "SELECT r.*, l.Titulo_Livro, l.Autor_Livro 
+          FROM requisicoes r
+          JOIN livros l ON r.livro_id = l.ID_Livro 
+          WHERE r.user_id = '$user_id'
+          ORDER BY r.data_pedido DESC";
+
+$resultado = mysqli_query($conn, $query);
+?>
 
 <link rel="stylesheet" href="../../public/css/meusPedidos.css">
 
@@ -15,35 +37,33 @@
                     <th>Data Pedido</th>
                     <th>Livro(s)</th>
                     <th>Autores</th>
-                    <th>Duração</th>
                     <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
+                <?php 
+                //Ciclo para mostrar cada pedido da base de dados
+                if (mysqli_num_rows($resultado) > 0) {
+                    while($row = mysqli_fetch_assoc($resultado)): 
+                        $statusClass = strtolower($row['estado']);
+                ?>
                 <tr>
-                    <td>1</td>
-                    <td>23/07/2026</td>
-                    <td>O Gato Que Salvava Livros, etc...</td>
-                    <td>Sosuke Natsukawa</td>
-                    <td>1 Dia</td>
-                    <td><span class="status-badge terminada">Terminada</span></td>
+                    <td>#<?php echo $row['id']; ?></td>
+                    <td><?php echo date('d/m/Y', strtotime($row['data_pedido'])); ?></td>
+                    <td><?php echo htmlspecialchars($row['Titulo_Livro']); ?></td>
+                    <td><?php echo htmlspecialchars($row['Autor_Livro']); ?></td>
+                    <td>
+                        <span class="status-badge <?php echo $statusClass; ?>">
+                            <?php echo $row['estado']; ?>
+                        </span>
+                    </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>26/08/2026</td>
-                    <td>Os Lusíadas</td>
-                    <td>Luís de Camões</td>
-                    <td>7 Dias</td>
-                    <td><span class="status-badge levantado">Levantado</span></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>2/09/2026</td>
-                    <td>O mundo dos Gatos</td>
-                    <td>Sosuke Natsukawa</td>
-                    <td>14 Dias</td>
-                    <td><span class="status-badge inativa">Inativa</span></td>
-                </tr>
+                <?php 
+                    endwhile; 
+                } else {
+                    echo "<tr><td colspan='5' style='text-align:center;'>Ainda não fizeste nenhuma requisição.</td></tr>";
+                }
+                ?>
             </tbody>
         </table>
     </div>
