@@ -72,3 +72,6 @@
 .terminada { background-color: #00b300; }
 .levantado { background-color: #0059b3; }
 .inativa { background-color: #ff3333; }
+.pendente { 
+    background-color: #f39c12;
+}
