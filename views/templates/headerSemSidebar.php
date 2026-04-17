@@ -3,12 +3,11 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+$home_url = "../auth/paginaLogin.php"; 
 if (isset($_SESSION['tipoContaId'])) {
     if ($_SESSION['tipoContaId'] == 1) {
-        // Se for Admin 
         $home_url = "../admin/paginaCatalogo.php"; 
     } else {
-        // Se for Cliente 
         $home_url = "../cliente/paginaCatalogo.php"; 
     }
 }
@@ -34,10 +33,12 @@ if (isset($_SESSION['tipoContaId'])) {
             <a href="<?php echo $home_url; ?>" class="home-nav-icon">
                 <i class="fa-solid fa-house"></i>
             </a>
-            <div class="search-bar">
-                <input type="text" placeholder="Pesquisar livros...">
+            
+            <form action="<?php echo $home_url; ?>" method="GET" class="search-bar">
+                <input type="text" id="inputPesquisa" name="pesquisa" placeholder="Pesquisar livros..." autocomplete="off">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+                <div id="boxSugestoes" class="sugestoes-popup"></div>
+            </form>
         </div>
 
         <div class="user-controls">
@@ -56,7 +57,50 @@ if (isset($_SESSION['tipoContaId'])) {
         </div>
     </header>
 
+    <script>
+const input = document.getElementById('inputPesquisa');
+const box = document.getElementById('boxSugestoes');
+
+input.addEventListener('input', async () => {
+    const busca = input.value;
+
+    if (busca.length < 2) {
+        box.style.display = 'none';
+        return;
+    }
+
+    try {
+        const resposta = await fetch(`../basedados/sugestoes.php?q=${busca}`);
+        if (!resposta.ok) throw new Error("Erro de comunicação");
+
+        const livros = await resposta.json();
+
+        if (livros && livros.length > 0) {
+            box.innerHTML = '';
+            livros.forEach(livro => {
+                const div = document.createElement('div');
+                div.className = 'sugestao-item';
+                div.textContent = livro.titulo; 
+                
+                
+                div.onclick = () => {
+                    window.location.href = `../cliente/paginaConsultarLivro.php?id=${livro.id}`;
+                };
+                box.appendChild(div);
+            });
+            box.style.display = 'block';
+        } else {
+            box.style.display = 'none';
+        }
+    } catch (erro) {
+        console.error("Erro:", erro);
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (e.target !== input) box.style.display = 'none';
+});
+</script>
+
     <div class="main-container">
         <main class="content-full">
-
---FALTA ADICIONAR UMA CONDICAO PARA SABER SE E ADMIN OU CLIENTE PARA QUANDO CLICAR NA CASA VOLTAR PARA PAGINA DE CATALOGO DO ADMIN OU DO CLIENTE
