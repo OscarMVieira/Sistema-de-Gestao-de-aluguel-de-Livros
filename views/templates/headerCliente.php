@@ -18,10 +18,63 @@
             <a href="../cliente/paginaCatalogo.php" class="home-nav-icon">
                 <i class="fa-solid fa-house"></i>
             </a>
-            <div class="search-bar">
-                <input type="text" placeholder="Pesquisar livros...">
+            
+            <form action="../cliente/paginaCatalogo.php" method="GET" class="search-bar">
+                <input type="text" id="inputPesquisa" name="pesquisa" placeholder="Pesquisar livros..." autocomplete="off">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+                <div id="boxSugestoes" class="sugestoes-popup"></div>
+            </form>
+
+            <script>
+            const input = document.getElementById('inputPesquisa');
+            const box = document.getElementById('boxSugestoes');
+
+            input.addEventListener('input', async () => {
+                const busca = input.value;
+
+                // Só pesquisa se tiver pelo menos 2 letras
+                if (busca.length < 2) {
+                    box.style.display = 'none';
+                    return;
+                }
+
+                try {
+                    // Faz a chamada ao motor de busca
+                    const resposta = await fetch(`../basedados/sugestoes.php?q=${busca}`);
+                    
+                    if (!resposta.ok) throw new Error("Erro ao buscar dados");
+
+                    const livros = await resposta.json();
+
+                    if (livros && livros.length > 0) {
+                        box.innerHTML = '';
+                        livros.forEach(livro => {
+                            const div = document.createElement('div');
+                            div.className = 'sugestao-item';
+                            // O motor agora envia um objeto com 'titulo' e 'id'
+                            div.textContent = livro.titulo; 
+                            
+                            // AO CLICAR: Vai direto para a página de detalhes usando o ID
+                            div.onclick = () => {
+                                window.location.href = `paginaConsultarLivro.php?id=${livro.id}`;
+                            };
+                            box.appendChild(div);
+                        });
+                        box.style.display = 'block';
+                    } else {
+                        box.style.display = 'none';
+                    }
+                } catch (erro) {
+                    console.error("Erro na pesquisa:", erro);
+                    box.style.display = 'none';
+                }
+            });
+
+            // Fecha o popup se clicar fora dele
+            document.addEventListener('click', (e) => {
+                if (e.target !== input) box.style.display = 'none';
+            });
+            </script>
         </div>
 
         <div class="user-controls">
@@ -29,7 +82,7 @@
                 <div class="user-avatar">
                     <i class="fa-solid fa-circle-user"></i>
                 </div>
-                <span class="username">Ana Costa</span>
+                <span class="username"><?php echo $_SESSION['username'] ?? 'Ana Costa'; ?></span>
             </a>
 
             <a href="paginaCarrinho.php" class="cart-link">
