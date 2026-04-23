@@ -82,7 +82,7 @@
                 <div class="user-avatar">
                     <i class="fa-solid fa-circle-user"></i>
                 </div>
-                <span class="username"><?php echo $_SESSION['username'] ?? 'Ana Costa'; ?></span>
+                <span class="username"><?php echo $_SESSION['username'] ?? 'Convidado'; ?></span>
             </a>
 
             <a href="paginaCarrinho.php" class="cart-link">

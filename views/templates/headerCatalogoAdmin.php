@@ -31,7 +31,7 @@
                 <div class="user-avatar">
                     <i class="fa-solid fa-circle-user"></i>
                 </div>
-                <span class="username">Administrador</span>
+                <span class="username"><?php echo $_SESSION['username'] ?? 'Convidado'; ?></span>
             </a>
 
             <a href="../cliente/paginaCarrinho.php" class="cart-link">

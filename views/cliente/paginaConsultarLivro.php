@@ -1,4 +1,8 @@
 <?php 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $activePage = 'catalogo'; 
 include '../templates/headerCliente.php'; 
 require_once '../basedados/basedados.h';
