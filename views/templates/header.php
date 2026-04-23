@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-pt">
 <head>
@@ -29,7 +34,7 @@
                 <div class="user-avatar">
                     <i class="fa-solid fa-circle-user"></i>
                 </div>
-                <span class="username">Ana Costa</span>
+                <span class="username"><?php echo $_SESSION['username'] ?? 'Convidado'; ?></span>
             </a>
 
             <a href="../cliente/paginaCarrinho.php" class="cart-link">
