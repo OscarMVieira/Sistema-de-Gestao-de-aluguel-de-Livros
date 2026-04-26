@@ -1,8 +1,18 @@
+body {
+    margin: 0;
+    background: linear-gradient(rgba(245, 245, 245, 0.7), rgba(245, 245, 245, 0.7)), 
+                url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .catalog-container {
     flex: 1;              
     padding: 30px;
     min-width: 0;         
     box-sizing: border-box;
+    background-color: transparent !important; /* Garante que o catálogo mostre o fundo */
 }
 
 .main-title {

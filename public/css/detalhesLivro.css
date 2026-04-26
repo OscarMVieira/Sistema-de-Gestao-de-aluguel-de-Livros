@@ -9,7 +9,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', sans-serif;
-    background-color: #FFFFFF;
+    /* Imagem visível com overlay suave de 70% */
+    background: linear-gradient(rgba(245, 245, 245, 0.7), rgba(245, 245, 245, 0.7)), 
+                url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -18,11 +23,13 @@ body {
 .layoutPrincipal {
     display: flex;
     flex: 1;
+    background-color: transparent !important;
 }
 .areaConteudo {
     flex: 1;
     padding: 0 40px;
     text-align: center;
+    background-color: transparent !important;
 }
 
 .content {
@@ -33,6 +40,7 @@ body {
     padding: 20px;
     width: 100%;
     box-sizing: border-box;
+    background-color: transparent !important; /* Remove o branco que tapa o fundo */
 }
 
 .tituloPagina {
