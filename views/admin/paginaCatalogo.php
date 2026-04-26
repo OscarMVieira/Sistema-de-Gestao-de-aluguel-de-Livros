@@ -1,12 +1,27 @@
 <?php 
-
 session_start(); 
 
 include '../templates/headerCatalogoAdmin.php'; 
 require_once '../basedados/basedados.h'; 
 
-$sql = "SELECT * FROM livros ORDER BY ID_Livro DESC"; 
+$pesquisa = isset($_GET['pesquisa']) ? $conn->real_escape_string($_GET['pesquisa']) : '';
+$genero_filtro = isset($_GET['genero']) ? $conn->real_escape_string($_GET['genero']) : '';
+
+$sql = "SELECT * FROM livros WHERE 1=1";
+
+if ($pesquisa != '') {
+    $sql .= " AND (Titulo_Livro LIKE '%$pesquisa%' OR Autor_Livro LIKE '%$pesquisa%')";
+}
+
+if ($genero_filtro != '') {
+    $sql .= " AND Genero = '$genero_filtro'";
+}
+
+$sql .= " ORDER BY ID_Livro DESC"; 
 $resultado = $conn->query($sql);
+
+$sql_generos = "SELECT DISTINCT Genero FROM livros WHERE Genero IS NOT NULL AND Genero != ''";
+$res_generos = $conn->query($sql_generos);
 ?>
 
 <link rel="stylesheet" href="../../public/css/paginaCatalogo.css">
@@ -14,23 +29,35 @@ $resultado = $conn->query($sql);
 <div class="catalog-container">
     <h1 class="main-title">Catálogo de Livros</h1>
 
-    <div class="catalog-filters">
-        <input type="text" placeholder="Filtrar por género ou autor...">
-        <select>
+    <form method="GET" action="paginaCatalogo.php" class="catalog-filters">
+        <input type="text" name="pesquisa" placeholder="Filtrar por título ou autor..." 
+               value="<?php echo htmlspecialchars($pesquisa); ?>">
+        
+        <select name="genero" onchange="this.form.submit()">
             <option value="">Todos os Géneros</option>
-            <option value="ficcao">Ficção</option>
-            <option value="romance">Romance</option>
-            <option value="tecnico">Técnico</option>
+            <?php 
+            if ($res_generos->num_rows > 0) {
+                while($gen = $res_generos->fetch_assoc()) {
+                    $selected = ($genero_filtro == $gen['Genero']) ? 'selected' : '';
+                    echo "<option value='".htmlspecialchars($gen['Genero'])."' $selected>".htmlspecialchars($gen['Genero'])."</option>";
+                }
+            }
+            ?>
         </select>
-    </div>
+        
+        <button type="submit" class="btn-filtro">
+            <i class="fa-solid fa-filter"></i> Filtrar
+        </button>
+
+        <?php if ($pesquisa != '' || $genero_filtro != ''): ?>
+            <a href="paginaCatalogo.php" class="btn-limpar">Limpar Filtros</a>
+        <?php endif; ?>
+    </form>
 
     <div class="book-grid">
         <?php 
-
         if ($resultado->num_rows > 0) {
-            
             while($livro = $resultado->fetch_assoc()) { 
-                
                 if ($livro['Disponibilidade'] == 1 && $livro['Quantidade'] > 0) {
                     $classeExtra = "";            
                     $textoStatus = "Disponível";
@@ -67,9 +94,8 @@ $resultado = $conn->query($sql);
             </div>
         <?php 
             } 
-            
         } else {
-            echo "<p style='text-align:center; width:100%;'>Ainda não existem livros registados no sistema.</p>";
+            echo "<p style='text-align:center; width:100%;'>Não foram encontrados livros com os filtros selecionados.</p>";
         }
         ?>
     </div>
