@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f4f7f6;
+    background-color: transparent;
     color: #333;
 }
 
@@ -171,10 +171,13 @@ body {
 
 .sidebar {
     width: 250px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     box-shadow: 2px 0 5px rgba(0,0,0,0.05);
     padding-top: 20px;
     flex-shrink: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .sidebar ul {
@@ -182,19 +185,20 @@ body {
 }
 
 .sidebar a {
-    color: #555;
+    color: #111 !important;
     padding: 12px 25px;
     display: block;
     text-decoration: none;
     transition: 0.3s;
     font-size: 0.95rem;
+    font-weight: 600;
 }
 
 .sidebar li.active a, 
 .sidebar a:hover {
-    background-color: #eef4ff;
+    background-color: rgba(238, 244, 255, 0.5);
     color: #004080;
-    font-weight: 600;
+    font-weight: 700;
     border-right: 4px solid #004080;
 }
 
