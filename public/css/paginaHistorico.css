@@ -1,3 +1,12 @@
+body {
+    margin: 0;
+    background: linear-gradient(rgba(245, 245, 245, 0.7), rgba(245, 245, 245, 0.7)), 
+                url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .content {
     display: flex;
     justify-content: center;
@@ -5,6 +14,7 @@
     padding: 40px 20px;
     width: 100%;
     min-height: 80vh;
+    background-color: transparent !important; /* Permite ver a biblioteca atrás da tabela */
 }
 
 .seccaoHistorico {

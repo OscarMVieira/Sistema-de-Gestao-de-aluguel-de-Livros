@@ -2,16 +2,6 @@
 </div> 
 <footer class="main-footer">
     <div class="footer-content">
-        <div class="footer-social">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-        </div>
-        
         <div class="footer-info">
             <p>&copy; <?php echo date("Y"); ?> <strong>Biblioteca Digital</strong>. Todos os direitos reservados.</p>
             <small>Projeto de Engenharia de Software - IPCB</small>
