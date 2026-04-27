@@ -12,6 +12,7 @@ include '../templates/headerSemSidebar.php';
 ?>
 
 <link rel="stylesheet" href="../../public/css/paginaPerfil.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="perfil-container">
     <h1 class="perfil-title">Perfil</h1>
@@ -63,5 +64,22 @@ include '../templates/headerSemSidebar.php';
         <a href="../admin/paginaCatalogo.php" class="btnVoltarLargo">Voltar</a>
     </div>
 </div>
+
+<script>
+// Verifica se o parâmetro 'sucesso=1' está na URL
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('sucesso') === '1') {
+    Swal.fire({
+        icon: 'success',
+        title: 'Perfil Atualizado!',
+        text: 'As tuas alterações foram guardadas com sucesso.',
+        confirmButtonColor: '#004080',
+        confirmButtonText: 'OK'
+    }).then(() => {
+        // Limpa a URL para o alerta não repetir no refresh
+        window.history.replaceState({}, document.title, window.location.pathname);
+    });
+}
+</script>
 
 <?php include '../templates/footer.php'; ?>
