@@ -38,6 +38,10 @@ $resultado = $conn->query($sql);
             ?>
         </div>
     </div>
+
+    <div class="containerBotao">
+        <a href="paginaCatalogo.php" class="btnVoltarLargo">Voltar</a>
+    </div>
 </div>
 
 <?php include '../templates/footer.php'; ?>
