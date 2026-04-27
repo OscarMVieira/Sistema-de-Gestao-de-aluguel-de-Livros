@@ -5,7 +5,6 @@ if (isset($_GET['id']) && isset($_GET['obs'])) {
     $id = $_GET['id'];
     $obs = $_GET['obs'];
 
-    // Sanitização básica para a query
     $obs = mysqli_real_escape_string($conn, $obs);
 
     $query = "UPDATE requisicoes SET observacao = '$obs' WHERE id = $id";

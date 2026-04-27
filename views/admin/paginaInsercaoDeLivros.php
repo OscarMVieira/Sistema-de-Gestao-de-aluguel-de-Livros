@@ -36,13 +36,12 @@
                 </section>
             </div>
             
-
             <div class="containerAcoesFinal">
-                <button type="submit" class="botaoVoltar">Criar Livro</button>
+                <button type="submit" class="btnAzulLargo">Criar Livro</button>
                 
-                <div class="grupoBotoesBrancos">
-                    <button type="reset" class="botaoBranco">Limpar Formulário</button>
-                    <a href="../admin/paginaCatalogo.php" class="botaoBranco">Voltar</a>
+                <div class="grupoBotoesAcaoDireita">
+                    <button type="reset" class="btnAzulMedio">Limpar Formulário</button>
+                    <a href="../admin/paginaCatalogo.php" class="btnAzulMedio">Voltar</a>
                 </div>
             </div>
         </form> 

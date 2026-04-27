@@ -9,7 +9,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', sans-serif;
-    /* Imagem visível com overlay suave de 70% */
     background: linear-gradient(rgba(245, 245, 245, 0.7), rgba(245, 245, 245, 0.7)), 
                 url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000');
     background-size: cover;
@@ -25,22 +24,12 @@ body {
     flex: 1;
     background-color: transparent !important;
 }
+
 .areaConteudo {
     flex: 1;
     padding: 0 40px;
     text-align: center;
     background-color: transparent !important;
-}
-
-.content {
-    flex: 1;
-    display: flex; 
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: transparent !important; /* Remove o branco que tapa o fundo */
 }
 
 .tituloPagina {
@@ -65,183 +54,126 @@ body {
     padding: 20px;
     background: white;
 }
-.selecaoCapa {
-    width: 300px;
+
+.selecaoCapa { 
+    width: 300px; 
+}
+.detalhesLivro { 
+    width: 600px; 
+    text-align: left; 
 }
 
-.detalhesLivro {
-    width: 600px;
-    text-align: left;
+.tituloCard { 
+    font-size: 24px; 
+    margin-bottom: 20px; 
+    text-align: center; 
 }
 
-.tituloCard {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
+.tituloCardSublinhado { 
+    border-bottom: 2px solid var(--bordaAzul); 
+    padding-bottom: 10px; 
+    text-align: left; 
 }
 
-.tituloCardSublinhado {
-    border-bottom: 2px solid var(--bordaAzul);
-    padding-bottom: 10px;
-    text-align: left;
+.bordaImagem { 
+    border: 1px solid var(--bordaAzul); 
+    padding: 10px; 
+    display: inline-block; 
 }
 
-.bordaImagem {
-    border: 1px solid var(--bordaAzul);
-    padding: 10px;
-    display: inline-block;
+.bordaImagem img { 
+    width: 180px; 
+    height: 260px; 
+    display: block; 
 }
 
-.bordaImagem img {
-    width: 180px;
-    height: 260px;
-    display: block;
+.linhaForm { 
+    display: flex; 
+    gap: 20px; 
+    margin-bottom: 20px; 
 }
 
-.linhaForm {
-
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
+.linhaForm input { 
+    flex: 1; 
+    padding: 10px; 
+    border: 1px solid var(--bordaAzul); 
+    border-radius: 4px; 
 }
 
-.linhaForm input {
-
-    flex: 1;
-    padding: 10px;
-    border: 1px solid var(--bordaAzul);
-    border-radius: 4px;
+.containerCampos { 
+    display: flex; 
+    border: 1px solid var(--bordaAzul); 
+    border-radius: 4px; 
+    padding: 10px; 
+    gap: 15px; 
 }
 
-.containerCampos {
-
-    display: flex;
-    border: 1px solid var(--bordaAzul);
-    border-radius: 4px;
-    padding: 10px;
-    gap: 15px;
+.campoIndividual { 
+    display: flex; 
+    align-items: center; 
+    gap: 5px; 
+    flex: 1; 
+    font-size: 12px; 
 }
 
-.campoIndividual {
-
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    flex: 1;
-    font-size: 12px;
-}
-
-.campoIndividual input {
-
-    width: 100%;
-    border: 1px solid #CCC;
-    padding: 5px;
-}
-/* --- Ações --- */
-
-.botaoVoltar {
-    background-color: var(--azulMarinho);
-    color: white;
-    border: none;
-    padding: 12px 80px;
-    font-size: 24px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    text-decoration: none;
-    display: inline-block;  
-    transition: background-color 0.3s ease, transform 0.2s ease; 
-}
-
-.botaoVoltar:hover {
-    background-color: #0056b3; 
-    color: #ffffff;
-    transform: scale(1.02);    
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.botaoAcoes {
-    text-align: center;
-    margin-top: 20px;
-    width: 100%;
-}
-
-.textoUpload {
-
-    font-size: 16px;
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-
-.botaoAzulPequeno {
-    background-color: var(--azulMarinho);
-    color: white;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    width: 80%;
-    margin-top: 15px;
-    transition: background-color 0.3s ease;
-}
-
-.botaoAzulPequeno:hover {
-    background-color: #0056b3;
+.campoIndividual input { 
+    width: 100%; 
+    border: 1px solid #CCC; 
+    padding: 5px; 
 }
 
 .containerAcoesFinal {
-
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    max-width: 930px;
-    margin: 0 auto 40px auto;
+    max-width: 1000px;
+    margin: 40px auto;
 }
 
-.grupoBotoesBrancos {
-
+.grupoBotoesAcaoDireita {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 15px;
 }
 
-.botaoBranco {
-    background: white;
-    border: 1px solid #CCC;
-    color: var(--cinza);
-    padding: 8px 15px;
-    border-radius: 4px;
-    font-size: 12px;
-    width: 200px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-sizing: border-box; 
-}
-
-.botaoBranco:hover {
-    background-color: #f7f7f7;
-    border-color: #999;
-    color: #333;
-}
-
-.botaoEditar {
-    background-color: #ffffff; 
-    color: var(--azulMarinho);
-    padding: 10px 25px;
-    border-radius: 4px;
+.btnAzulLargo {
+    background-color: var(--azulMarinho);
+    color: white;
+    padding: 15px 100px;
+    font-size: 26px;
+    font-weight: bold;
     text-decoration: none;
-    font-weight: 600;
-    margin-left: 10px;
+    border-radius: 8px;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    transition: 0.3s;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    min-width: 420px;
+    text-align: center;
 }
 
-.botaoEditar:hover {
-    background-color: #0056b3; 
-    color: #ffffff;
-    transform: scale(1.02);    
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.btnAzulMedio {
+    background-color: var(--azulMarinho);
+    color: white;
+    padding: 12px 60px;
+    font-size: 20px;      
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    min-width: 300px;    
+    text-align: center;
+}
+
+.btnAzulLargo:hover, .btnAzulMedio:hover {
+    background-color: #003366;
+    transform: scale(1.02);
+    color: white;
 }

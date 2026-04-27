@@ -80,16 +80,15 @@ $res_generos = $conn->query($sql_generos);
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     
-    // 1. Feedback de "ENVIADO PARA O CARRINHO" (Personalizado em Azul)
     if (urlParams.get('status') === 'adicionado') {
         Swal.fire({
             title: 'Adicionado!',
             text: 'O livro foi enviado para o seu carrinho com sucesso.',
-            icon: 'info',               // Ícone de Informação (Azul) em vez do check verde
-            iconColor: '#004080',       // Cor azul para o ícone
+            icon: 'info',
+            iconColor: '#004080',
             confirmButtonColor: '#004080',
             confirmButtonText: 'Continuar a escolher',
-            background: '#f0f4f8',      // Fundo levemente azulado para diferenciar
+            background: '#f0f4f8',
             showClass: {
                 popup: 'animate__animated animate__fadeInDown'
             }
@@ -100,7 +99,6 @@ $res_generos = $conn->query($sql_generos);
         });
     }
 
-    // 2. Mensagem de Limite Atingido (Amarelo/Aviso)
     if (urlParams.get('status') === 'limite') {
         Swal.fire({
             icon: 'warning',
@@ -113,13 +111,12 @@ $res_generos = $conn->query($sql_generos);
         });
     }
 
-    // 3. Mensagem de SUCESSO FINAL (Verde/Check) - Esta é a que aparece no fim de tudo
     if (urlParams.get('msg') === 'sucesso') {
         Swal.fire({
             icon: 'success',
             title: 'Requisição Concluída!',
             text: 'O seu pedido foi registado e está pronto para processamento.',
-            confirmButtonColor: '#28a745', // Botão verde para indicar finalização
+            confirmButtonColor: '#28a745',
             confirmButtonText: 'Entendido'
         }).then(() => {
             window.history.replaceState({}, document.title, window.location.pathname);

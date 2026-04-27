@@ -28,7 +28,6 @@ $livro = $resultado->fetch_assoc();
                     <img src="../../public/img/<?php echo $livro['Capa']; ?>" alt="Capa">
                 </div>
                 <input type="file" name="capa" style="margin-top: 10px;">
-                <button type="button" class="botaoAzulPequeno">Mudar Capa</button>
             </section>
 
             <section class="caixaCard detalhesLivro">
@@ -50,13 +49,14 @@ $livro = $resultado->fetch_assoc();
         </div>
 
         <div class="containerAcoesFinal">
-            <button type="submit" class="botaoVoltar">Editar Livro</button>
+            <button type="submit" class="btnAzulLargo">Editar Livro</button>
             
-            <div class="grupoBotoesBrancos">
-                <button type="reset" class="botaoBranco">Limpar Formulário</button>
-                <a href="paginaConsultarLivro.php?id=<?php echo $id; ?>" class="botaoBranco">Voltar</a>
+            <div class="grupoBotoesAcaoDireita">
+                <button type="reset" class="btnAzulMedio">Limpar Formulário</button>
+                <a href="paginaConsultarLivro.php?id=<?php echo $id; ?>" class="btnAzulMedio">Voltar</a>
             </div>
         </div>
-    </form> </div>
+    </form> 
+</div>
 
 <?php include '../templates/footer.php'; ?>
