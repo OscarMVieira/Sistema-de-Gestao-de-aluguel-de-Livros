@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <div class="logo">BIBLIOTECA DIGITALl</div>
+        <div class="logo">BIBLIOTECA DIGITAL</div>
     </header>
 
     <div class="formContainer">
