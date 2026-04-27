@@ -1,6 +1,5 @@
 <?php 
 include '../templates/header.php'; 
-
 require_once '../basedados/basedados.h'; 
 
 $query = "SELECT r.*, u.username, l.Titulo_Livro, l.Autor_Livro 
@@ -33,7 +32,6 @@ $resultado = mysqli_query($conn, $query);
             </thead>
             <tbody>
                 <?php 
-                //Ciclo PHP para listar os pedidos da base de dados
                 if ($resultado && mysqli_num_rows($resultado) > 0) {
                     while($row = mysqli_fetch_assoc($resultado)): 
                         $statusClass = strtolower($row['estado']);
@@ -59,14 +57,24 @@ $resultado = mysqli_query($conn, $query);
                         </div>
                     </td>
                     <td>
-                        <i class="fa-regular fa-file-lines obs-icon" title="<?php echo htmlspecialchars($row['observacao']); ?>"></i>
+                        <?php if ($row['estado'] == 'Inativa'): ?>
+                            <div class="obs-wrapper">
+                                <textarea id="obs-<?php echo $row['id']; ?>" class="obs-field" placeholder="Observação"><?php echo htmlspecialchars($row['observacao']); ?></textarea>
+                                <button type="button" class="obs-save-btn" onclick="saveObservation(<?php echo $row['id']; ?>)" title="Gravar na BD">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </button>
+                            </div>
+                        <?php else: ?>
+                            <span class="obs-display">
+                                <?php echo !empty($row['observacao']) ? htmlspecialchars($row['observacao']) : '---'; ?>
+                            </span>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <?php 
                     endwhile; 
                 } else {
-                    // Mensagem caso a tabela esteja vazia ou a query falhe
-                    echo "<tr><td colspan='6' style='text-align:center; padding: 20px;'>Nenhum pedido encontrado na base de dados.</td></tr>";
+                    echo "<tr><td colspan='6' style='text-align:center; padding: 20px;'>Nenhum pedido encontrado.</td></tr>";
                 }
                 ?>
             </tbody>
@@ -75,24 +83,23 @@ $resultado = mysqli_query($conn, $query);
 </div>
 
 <script>
-// Função para abrir/fechar o menu de seleção
 function toggleStatusMenu(badge) {
     badge.parentElement.classList.toggle('active');
 }
 
-//enviar a alteração para o processarStatus.php
 function updateStatus(select, id) {
     const newValue = select.value;
-    
-    if(confirm("Deseja alterar o estado do pedido #" + id + " para " + newValue + "?")) {
-        // Redireciona para o processador de status
+    if(confirm("Alterar estado do pedido #" + id + " para " + newValue + "?")) {
         window.location.href = "processarStatus.php?id=" + id + "&novo_estado=" + newValue;
     } else {
         location.reload();
     }
 }
+
+function saveObservation(id) {
+    const obsText = document.getElementById('obs-' + id).value;
+    window.location.href = "processarObservacao.php?id=" + id + "&obs=" + encodeURIComponent(obsText);
+}
 </script>
 
-<?php 
-include '../templates/footer.php'; 
-?>
+<?php include '../templates/footer.php'; ?>
