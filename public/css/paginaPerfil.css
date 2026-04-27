@@ -16,7 +16,6 @@ body {
     padding: 40px;
 }
 
-/* Container centralizado para todo o conteúdo da página */
 .perfil-container {
     width: 100%;
     max-width: 1100px;
@@ -25,7 +24,6 @@ body {
     align-items: center;
 }
 
-/* Título Principal */
 .perfil-title {
     font-size: 36px;
     margin-bottom: 50px;
@@ -34,42 +32,31 @@ body {
     color: #333;
 }
 
-/* Card principal que engloba tudo */
 .perfil-main-card {
     border: 1px solid #a5c0d6; 
-    border-radius: 8px; /* Cantos mais suaves */
+    border-radius: 8px; 
     padding: 40px;
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.98) !important; /* Branco quase total para ser bem forte */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra para destacar do fundo */
+    background-color: rgba(255, 255, 255, 0.98) !important; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
 }
-/* Grelha de duas colunas (Foto e Info) */
+
 .perfil-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Coluna da info é 2x maior */
+    grid-template-columns: 1fr 2fr; 
     gap: 60px;
     width: 100%;
 }
 
-/* Estilos comuns para as secções */
-.photo-section, 
-.info-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-
 .section-label {
-    color: #004080; /* Azul escuro do rótulo */
+    color: #004080; 
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 20px;
 }
 
-/* Card para a foto de perfil */
 .photo-card {
     border: 1px solid #a5c0d6;
     border-radius: 8px;
@@ -77,12 +64,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
     width: 100%;
-    background-color: white; /* Totalmente sólido */
+    background-color: white; 
 }
 
-/* Imagem do perfil */
 .photo-card img {
     border-radius: 50%;
     width: 150px;
@@ -91,23 +76,24 @@ body {
     margin-bottom: 20px;
 }
 
-/* Botões específicos da página */
-.perfil-btn {
-    background-color: #004080; /* Azul escuro */
+.confirmar-btn {
+    background-color: #004080;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 18px;
     font-weight: bold;
+    border-radius: 8px;
+    border: none;
     cursor: pointer;
-    transition: 0.3s;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
 }
 
-.perfil-btn:hover {
+.confirmar-btn:hover {
     background-color: #003366;
 }
 
-/* Linhas dos campos de informação */
 .field-row {
     display: flex;
     align-items: center;
@@ -116,7 +102,6 @@ body {
     width: 100%;
 }
 
-
 .field-row label {
     font-weight: 600;
     color: #333;
@@ -124,38 +109,43 @@ body {
     text-align: right;
 }
 
-/* Inputs */
 .field-row input {
     border: 1px solid #a5c0d6;
     border-radius: 4px;
     padding: 10px 15px;
-    flex-grow: 1; /* Ocupa o resto do espaço */
+    flex-grow: 1; 
     font-size: 1rem;
     color: #555;
 }
 
-/* Botão de Edição */
-.edit-btn {
-    background: none;
-    border: 1px solid #a5c0d6;
-    color: #555;
-    padding: 10px 20px;
-    border-radius: 4px;
+.containerBotao {
+    text-align: center;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.btnVoltarLargo {
+    background-color: #004080;
+    color: white;
+    padding: 15px 120px;
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btnVoltarLargo:hover {
+    background-color: #003366;
+    transform: scale(1.04);
+}
+
+.perfil-btn.mudar-foto {
+    background-color: #004080;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9rem;
-    transition: 0.2s;
-}
-
-.edit-btn:hover {
-    background-color: #eef4ff;
-    color: #004080;
-    border-color: #004080;
-}
-
-/* Botão de Confirmação Centrado */
-.confirmar-btn {
-    padding: 15px 40px;
-    font-size: 1.2rem;
-    margin-top: 50px;
-    width: auto; /* Não estica o botão */
 }

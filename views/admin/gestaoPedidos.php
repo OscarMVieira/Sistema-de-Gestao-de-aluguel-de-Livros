@@ -80,6 +80,10 @@ $resultado = mysqli_query($conn, $query);
             </tbody>
         </table>
     </div>
+
+    <div class="containerBotao">
+        <a href="paginaCatalogo.php" class="btnVoltarLargo">Voltar</a>
+    </div>
 </div>
 
 <script>

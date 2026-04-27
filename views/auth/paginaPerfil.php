@@ -1,9 +1,7 @@
 <?php 
 session_start();
 
-
 require_once '../basedados/basedados.h';// Liga à BD
-
 
 $email_sessao = $_SESSION['email']; 
 $sql = "SELECT * FROM users WHERE email = '$email_sessao'";
@@ -18,7 +16,7 @@ include '../templates/headerSemSidebar.php';
 <div class="perfil-container">
     <h1 class="perfil-title">Perfil</h1>
 
-    <form action="processarPerfil.php" method="POST" enctype="multipart/form-data">
+    <form action="processarPerfil.php" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; width: 100%;">
         <div class="perfil-main-card">
             <div class="perfil-grid">
                 
@@ -28,6 +26,7 @@ include '../templates/headerSemSidebar.php';
                         <img src="../../public/img/<?php echo $user['foto']; ?>" alt="Perfil">
                         <input type="file" name="nova_foto" class="perfil-btn mudar-foto" style="width: 100%; margin-top:10px;">
                     </div>
+                    <button type="submit" class="perfil-btn confirmar-btn">Confirmar Alterações</button>
                 </div>
 
                 <div class="info-section">
@@ -58,8 +57,11 @@ include '../templates/headerSemSidebar.php';
 
             </div> 
         </div> 
-        <button type="submit" class="perfil-btn confirmar-btn">Confirmar Alterações</button>
     </form>
+
+    <div class="containerBotao">
+        <a href="../admin/paginaCatalogo.php" class="btnVoltarLargo">Voltar</a>
+    </div>
 </div>
 
 <?php include '../templates/footer.php'; ?>
