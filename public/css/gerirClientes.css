@@ -125,6 +125,6 @@ body {
 
 .btnVoltarLargo:hover {
     background-color: #003366;
-    transform: scale(1.02);
+    transform: scale(1.04);
     color: white;
 }
