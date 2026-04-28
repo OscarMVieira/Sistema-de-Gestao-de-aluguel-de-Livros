@@ -52,4 +52,28 @@ $livro = $resultado->fetch_assoc();
     </div>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+// Captura os parâmetros da URL
+const urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.get('editado') === 'sucesso') {
+    Swal.fire({
+        icon: 'success',
+        title: 'Livro Atualizado!',
+        text: 'As alterações foram gravadas com sucesso.',
+        confirmButtonColor: '#004080',
+        confirmButtonText: 'OK'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Limpa o parâmetro da URL para não repetir o alerta no refresh
+            const idLivro = urlParams.get('id');
+            const novaUrl = window.location.pathname + "?id=" + idLivro;
+            window.history.replaceState({}, document.title, novaUrl);
+        }
+    });
+}
+</script>
 <?php include '../templates/footer.php'; ?>
