@@ -77,48 +77,25 @@ $res_generos = $conn->query($sql_generos);
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    
-    if (urlParams.get('status') === 'adicionado') {
-        Swal.fire({
-            title: 'Adicionado!',
-            text: 'O livro foi enviado para o carrinho com sucesso.',
-            icon: 'info',
-            iconColor: '#004080',
-            confirmButtonColor: '#004080',
-            confirmButtonText: 'Continuar a escolher',
-            background: '#f0f4f8'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-        });
-    }
+const urlParams = new URLSearchParams(window.location.search);
 
-    if (urlParams.get('status') === 'limite') {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Limite Atingido',
-            text: 'Só pode adicionar até 3 livros ao seu carrinho.',
-            confirmButtonColor: '#004080',
-            confirmButtonText: 'Entendido'
-        }).then(() => {
+// Feedback para quando um livro é criado com sucesso
+if (urlParams.get('sucesso') === '1') {
+    Swal.fire({
+        icon: 'success',
+        title: 'Livro Criado!',
+        text: 'O novo livro foi adicionado ao catálogo com sucesso.',
+        confirmButtonColor: '#004080',
+        confirmButtonText: 'OK'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Limpa a URL para o alerta não repetir se o admin fizer refresh
             window.history.replaceState({}, document.title, window.location.pathname);
-        });
-    }
-
-    if (urlParams.get('msg') === 'sucesso') {
-        Swal.fire({
-            icon: 'success',
-            title: 'Requisição Concluída!',
-            text: 'O pedido foi registado e está pronto para processamento.',
-            confirmButtonColor: '#28a745',
-            confirmButtonText: 'Entendido'
-        }).then(() => {
-            window.history.replaceState({}, document.title, window.location.pathname);
-        });
-    }
+        }
+    });
+}
 </script>
 
 <?php include '../templates/footer.php'; ?>
