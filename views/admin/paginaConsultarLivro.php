@@ -41,12 +41,14 @@ $livro = $resultado->fetch_assoc();
         </section>
     </div>
 
-    <div class="botaoAcoes">
-        <a href="paginaCatalogo.php" class="botaoVoltar">Voltar</a>
-        
-        <a href="paginaEditarLivro.php?id=<?php echo $livro['ID_Livro']; ?>" class="botaoEditar">
+    <div class="containerAcoesFinal">
+        <a href="paginaEditarLivro.php?id=<?php echo $livro['ID_Livro']; ?>" class="btnAzulLargo">
             <i class="fa-solid fa-pen-to-square"></i> Editar Livro
         </a>
+        
+        <div class="grupoBotoesAcaoDireita">
+            <a href="paginaCatalogo.php" class="btnAzulMedio">Voltar</a>
+        </div>
     </div>
 </div>
 

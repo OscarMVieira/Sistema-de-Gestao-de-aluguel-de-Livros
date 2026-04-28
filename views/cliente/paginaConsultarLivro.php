@@ -58,8 +58,8 @@ if (isset($_GET['id'])) {
         </section>
     </div>
 
-    <div class="botaoAcoes">
-        <a href="paginaCatalogo.php" class="botaoVoltar">Voltar</a>
+    <div style="text-align: center; margin-top: 40px; margin-bottom: 20px; width: 100%;">
+        <a href="paginaCatalogo.php" class="btnAzulLargo">Voltar</a>
     </div>
 </div>
 
