@@ -9,6 +9,9 @@ $res = $conn->query($sql);
 $user = $res->fetch_assoc();
 
 include '../templates/headerSemSidebar.php'; 
+
+$tipo_conta = $_SESSION['tipoContaId'] ?? 3;
+$url_voltar = ($tipo_conta == 1) ? "../admin/paginaCatalogo.php" : "../cliente/paginaCatalogo.php";
 ?>
 
 <link rel="stylesheet" href="../../public/css/paginaPerfil.css">
@@ -61,7 +64,7 @@ include '../templates/headerSemSidebar.php';
     </form>
 
     <div class="containerBotao">
-        <a href="../admin/paginaCatalogo.php" class="btnVoltarLargo">Voltar</a>
+        <a href="<?php echo $url_voltar; ?>" class="btnVoltarLargo">Voltar</a>
     </div>
 </div>
 

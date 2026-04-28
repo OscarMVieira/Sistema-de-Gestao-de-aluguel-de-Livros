@@ -114,3 +114,30 @@ body {
     background-color: #003366;
     transform: translateY(-2px);
 }
+
+.containerBotao {
+    text-align: center;
+    margin-top: 50px;
+    grid-column: span 2;
+    width: 100%;
+}
+
+.btnVoltarLargo {
+    background-color: #004080;
+    color: white;
+    padding: 15px 120px;
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btnVoltarLargo:hover {
+    background-color: #003366;
+    transform: scale(1.04);
+    color: white;
+}

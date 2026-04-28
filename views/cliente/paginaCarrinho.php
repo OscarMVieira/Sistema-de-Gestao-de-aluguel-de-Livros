@@ -1,11 +1,15 @@
 <?php 
 session_start();
-require_once '../basedados/basedados.h'; // Ligação à base de dados
+require_once '../basedados/basedados.h'; 
 include '../templates/headerSemSidebar.php'; 
 
 $hoje = date('Y-m-d');
 $dataLimite = date('Y-m-d', strtotime('+30 days'));
 $carrinho = $_SESSION['carrinho'] ?? [];
+
+// Lógica para determinar o destino do botão Voltar com base no tipo de conta
+$tipo_conta = $_SESSION['tipoContaId'] ?? 3; // Assume cliente por defeito
+$url_voltar = ($tipo_conta == 1) ? "../admin/paginaCatalogo.php" : "paginaCatalogo.php";
 ?>
 
 <link rel="stylesheet" href="../../public/css/paginaCarrinho.css">
@@ -16,9 +20,9 @@ $carrinho = $_SESSION['carrinho'] ?? [];
 
     <?php if (empty($carrinho)): ?>
         <div style="text-align:center; padding: 50px; background: white; border-radius: 8px; border: 1px solid #a5c0d6;">
-            <p style="font-size: 1.2rem; color: #666;">O seu carrinho está vazio no momento.</p>
+            <p style="font-size: 1.2rem; color: #666;">O carrinho está vazio no momento.</p>
             <br>
-            <a href="paginaCatalogo.php" class="confirmBtn" style="text-decoration:none; display:inline-block; width:auto; padding:10px 25px;">
+            <a href="<?php echo $url_voltar; ?>" class="btnVoltarLargo" style="text-decoration:none;">
                 VOLTAR AO CATÁLOGO
             </a>
         </div>
@@ -62,16 +66,17 @@ $carrinho = $_SESSION['carrinho'] ?? [];
                     <button type="submit" class="confirmBtn">CONFIRMAR REQUISIÇÃO</button>
                 </div>
             </section>
-            
         </form> 
+
+        <div class="containerBotao">
+            <a href="<?php echo $url_voltar; ?>" class="btnVoltarLargo">Voltar</a>
+        </div>
     <?php endif; ?>
 </div>
 
 <script>
-// Script para Feedback Visual ao Confirmar
 document.getElementById('formRequisicao')?.addEventListener('submit', function(e) {
-    e.preventDefault(); // Interrompe o envio imediato para mostrar o alerta
-
+    e.preventDefault();
     Swal.fire({
         title: 'Confirmar Pedido?',
         text: "Deseja finalizar a requisição dos livros selecionados?",
@@ -83,16 +88,12 @@ document.getElementById('formRequisicao')?.addEventListener('submit', function(e
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            // Mostra animação de processamento
             Swal.fire({
                 title: 'A processar...',
                 text: 'Por favor, aguarde um momento.',
                 allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
+                didOpen: () => { Swal.showLoading(); }
             });
-            // Envia o formulário
             this.submit();
         }
     });
