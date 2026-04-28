@@ -1,10 +1,13 @@
 <?php include '../templates/header.php'; ?>
 <link rel="stylesheet" href="../../public/css/detalhesLivro.css">
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <div class="layoutPrincipal">
     <main class="areaConteudo">
         <h1 class="tituloPagina">Criar Novo Livro</h1>
 
-        <form action="../auth/processarInsercao.php" method="POST" enctype="multipart/form-data">
+        <form action="../auth/processarInsercao.php" method="POST" enctype="multipart/form-data" id="formInsercao">
             
             <div class="gradeInfo">
                 <div style="text-align: left;">
@@ -47,4 +50,19 @@
         </form> 
     </main>
 </div>
+
+<script>
+// Feedback visual de processamento ao submeter
+document.getElementById('formInsercao').addEventListener('submit', function() {
+    Swal.fire({
+        title: 'A criar livro...',
+        text: 'Por favor, aguarde enquanto gravamos os dados.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
+});
+</script>
+
 <?php include '../templates/footer.php'; ?>
