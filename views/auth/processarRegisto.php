@@ -9,7 +9,12 @@ $pass      = $_POST['password'];
 $documento = $_POST['documento'];
 $tipo      = 3; // Valor 3 para o cliente 
 
-// Insere os dados na tabela 'users' que criei
+// validacao da password
+if (!preg_match('/[A-Z]/', $pass) || !preg_match('/[0-9]/', $pass)) {
+    die("<h2>Erro: A password é demasiado fraca. Deve conter pelo menos uma letra maiúscula e um número.</h2><a href='paginaRegisto.php'>Voltar</a>");
+}
+
+// Insere os dados na tabela 'users'[cite: 8]
 $sql = "INSERT INTO users (username, email, password, documento, tipoContaId) 
         VALUES ('$nome', '$email', '$pass', '$documento', '$tipo')";
 
