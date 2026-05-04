@@ -38,9 +38,11 @@
                 <div id="passwordFeedback" style="color: #ff4d4d;">⚠️ Password fraca: deve incluir uma letra maiúscula e um número.</div>
             </div>
             <div class="inputGroup">
-                <label>CC/NIF</label>
-                <input type="text" name="documento" placeholder="CC/NIF" required>
-            </div>  
+    <label>CC/NIF</label>
+    <!-- O 'oninput' remove instantaneamente qualquer coisa que não seja número -->
+    <input type="text" name="documento" placeholder="CC/NIF" required 
+           oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+</div>
 
             <button type="submit" class="btn btnPrimary">Criar Conta</button>
         </form>
