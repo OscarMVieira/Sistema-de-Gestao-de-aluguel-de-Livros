@@ -19,7 +19,7 @@ if (!ctype_digit($documento)) {
     die("<h2>Erro: O campo CC/NIF só pode conter números.</h2><a href='paginaRegisto.php'>Voltar</a>");
 }
 
-// Insere os dados na tabela 'users'[cite: 8]
+// Insere os dados na tabela users
 $sql = "INSERT INTO users (username, email, password, documento, tipoContaId) 
         VALUES ('$nome', '$email', '$pass', '$documento', '$tipo')";
 
