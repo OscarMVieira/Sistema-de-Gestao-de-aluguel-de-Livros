@@ -14,9 +14,9 @@
                     <section class="caixaCard selecaoCapa">
                         <h2 class="tituloCard">Upload Capa</h2>
                         <div class="bordaImagem">
-                            <img src="https://via.placeholder.com/180x260" alt="Capa Preview">
+                            <img src="https://via.placeholder.com/180x260" alt="Capa Preview" id="previewCapa">
                         </div>
-                        <input type="file" name="capa" style="margin-top: 10px;" required>
+                        <input type="file" name="capa" id="inputCapa" style="margin-top: 10px;" required accept=".jpg,.jpeg,.png">
                     </section>
                 </div>
 
@@ -43,7 +43,7 @@
                 <button type="submit" class="btnAzulLargo">Criar Livro</button>
                 
                 <div class="grupoBotoesAcaoDireita">
-                    <button type="reset" class="btnAzulMedio">Limpar Formulário</button>
+                    <button type="reset" class="btnAzulMedio" onclick="resetPreview()">Limpar Formulário</button>
                     <a href="../admin/paginaCatalogo.php" class="btnAzulMedio">Voltar</a>
                 </div>
             </div>
@@ -52,15 +52,48 @@
 </div>
 
 <script>
-// Feedback visual de processamento ao submeter
+// Lógica para Validação e PREVIEW da Imagem
+document.getElementById('inputCapa').addEventListener('change', function() {
+    const ficheiro = this.files[0];
+    const extensoesPermitidas = ['jpg', 'jpeg', 'png'];
+    const preview = document.getElementById('previewCapa');
+    
+    if (ficheiro) {
+        const extensao = ficheiro.name.split('.').pop().toLowerCase();
+
+        if (extensoesPermitidas.includes(extensao)) {
+            // Se o formato for válido, gera a preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            }
+            reader.readAsDataURL(ficheiro);
+        } else {
+            // Se for inválido, bloqueia e limpa
+            Swal.fire({
+                icon: 'error',
+                title: 'Formato Inválido',
+                text: 'Apenas são permitidos formatos .jpg ou .png para capas.',
+                confirmButtonColor: '#004080'
+            });
+            this.value = ''; 
+            preview.src = 'https://via.placeholder.com/180x260';
+        }
+    }
+});
+
+// Função para limpar a preview quando clicas em "Limpar Formulário"
+function resetPreview() {
+    document.getElementById('previewCapa').src = 'https://via.placeholder.com/180x260';
+}
+
+// Feedback visual ao submeter
 document.getElementById('formInsercao').addEventListener('submit', function() {
     Swal.fire({
         title: 'A criar livro...',
         text: 'Por favor, aguarde enquanto gravamos os dados.',
         allowOutsideClick: false,
-        didOpen: () => {
-            Swal.showLoading();
-        }
+        didOpen: () => { Swal.showLoading(); }
     });
 });
 </script>

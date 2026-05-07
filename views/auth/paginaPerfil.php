@@ -1,7 +1,6 @@
 <?php 
 session_start();
-
-require_once '../basedados/basedados.h';// Liga à BD
+require_once '../basedados/basedados.h';
 
 $email_sessao = $_SESSION['email']; 
 $sql = "SELECT * FROM users WHERE email = '$email_sessao'";
@@ -10,6 +9,7 @@ $user = $res->fetch_assoc();
 
 include '../templates/headerSemSidebar.php'; 
 
+// Lógica dinâmica para o botão Voltar com base no ID
 $tipo_conta = $_SESSION['tipoContaId'] ?? 3;
 $url_voltar = ($tipo_conta == 1) ? "../admin/paginaCatalogo.php" : "../cliente/paginaCatalogo.php";
 ?>
@@ -28,7 +28,8 @@ $url_voltar = ($tipo_conta == 1) ? "../admin/paginaCatalogo.php" : "../cliente/p
                     <h2 class="section-label">Foto de Perfil</h2>
                     <div class="photo-card">
                         <img src="../../public/img/<?php echo $user['foto']; ?>" alt="Perfil">
-                        <input type="file" name="nova_foto" class="perfil-btn mudar-foto" style="width: 100%; margin-top:10px;">
+                        <input type="file" name="nova_foto" id="inputFoto" class="perfil-btn mudar-foto" 
+                               style="width: 100%; margin-top:10px;" accept=".jpg,.jpeg,.png">
                     </div>
                     <button type="submit" class="perfil-btn confirmar-btn">Confirmar Alterações</button>
                 </div>
@@ -39,26 +40,22 @@ $url_voltar = ($tipo_conta == 1) ? "../admin/paginaCatalogo.php" : "../cliente/p
                     <div class="field-group">
                         <div class="field-row">
                             <label for="nome">Nome:</label>
-                            <input type="text" name="nome" id="nome" value="<?php echo $user['username']; ?>">
+                            <input type="text" name="nome" id="nome" value="<?php echo htmlspecialchars($user['username']); ?>">
                         </div>
-
                         <div class="field-row">
                             <label for="email">Email:</label>
                             <input type="email" name="email" id="email" value="<?php echo $user['email']; ?>" readonly>
                         </div>
-
                         <div class="field-row">
                             <label for="nif">Nif:</label>
-                            <input type="text" name="documento" id="nif" value="<?php echo $user['documento']; ?>">
+                            <input type="text" name="documento" id="nif" value="<?php echo htmlspecialchars($user['documento']); ?>">
                         </div>
-
                         <div class="field-row">
                             <label for="password">Password:</label>
                             <input type="password" name="password" id="password" placeholder="Nova password">
                         </div>
                     </div>
                 </div>
-
             </div> 
         </div> 
     </form>
@@ -69,18 +66,42 @@ $url_voltar = ($tipo_conta == 1) ? "../admin/paginaCatalogo.php" : "../cliente/p
 </div>
 
 <script>
-// Verifica se o parâmetro 'sucesso=1' está na URL
+// Validação de extensão no cliente
+document.getElementById('inputFoto').addEventListener('change', function() {
+    const ficheiro = this.files[0];
+    const extensoesPermitidas = ['jpg', 'jpeg', 'png'];
+    
+    if (ficheiro) {
+        const extensao = ficheiro.name.split('.').pop().toLowerCase();
+        if (!extensoesPermitidas.includes(extensao)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Formato Inválido',
+                text: 'Apenas são permitidos formatos .jpg ou .png',
+                confirmButtonColor: '#004080'
+            });
+            this.value = ''; 
+        }
+    }
+});
+
+// Feedback de Sucesso ou Erro
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get('sucesso') === '1') {
     Swal.fire({
         icon: 'success',
         title: 'Perfil Atualizado!',
         text: 'As tuas alterações foram guardadas com sucesso.',
-        confirmButtonColor: '#004080',
-        confirmButtonText: 'OK'
+        confirmButtonColor: '#004080'
     }).then(() => {
-        // Limpa a URL para o alerta não repetir no refresh
         window.history.replaceState({}, document.title, window.location.pathname);
+    });
+} else if (urlParams.get('erro') === 'formato_invalido') {
+    Swal.fire({
+        icon: 'error',
+        title: 'Erro no Upload',
+        text: 'O ficheiro enviado não tem um formato válido (.jpg ou .png).',
+        confirmButtonColor: '#004080'
     });
 }
 </script>
