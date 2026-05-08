@@ -10,20 +10,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT * FROM users WHERE email = '$email_login'";
     $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
+    if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        // Verifica a password 
-        if ($pass_login == $row['password']) {
+        // Tenta validar a password com Bcrypt
+        if (password_verify($pass_login, $row['password'])) {
             $_SESSION['username'] = $row['username'];
             $_SESSION['tipo']     = $row['tipoContaId'];
-            $_SESSION['email']     = $row['email'];
-            // Depois de confirmares que a password está correta:
-            $_SESSION['user_id'] = $row['id']; // Garante que o 'id' é o nome da coluna na tua tabela 'users'
+            $_SESSION['email']    = $row['email'];
+            $_SESSION['user_id']  = $row['id']; 
             $_SESSION['tipoContaId'] = $row['tipoContaId'];
 
-
-            // Redirecionamento automático conforme seja o utilizador ou o admin 
             if ($row['tipoContaId'] == 1) {
                 header("Location: ../admin/paginaCatalogo.php"); 
             } else {
@@ -32,7 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
     }
-    // Se falhar (e-mail não existe ou pass errada), volta ao login com erro
+    //redireciona com erro genérico
     header("Location: paginaLogin.php?erro=1");
+    exit();
 }
 ?>

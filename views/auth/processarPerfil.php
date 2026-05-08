@@ -12,7 +12,6 @@ if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] == 0) {
     $extensao = strtolower(pathinfo($_FILES['nova_foto']['name'], PATHINFO_EXTENSION));
     $extensoes_permitidas = ['jpg', 'jpeg', 'png'];
 
-    // Bloqueia se o formato for inválido no servidor
     if (in_array($extensao, $extensoes_permitidas)) {
         $nome_foto = time() . "." . $extensao; 
         $destino = "../../public/img/" . $nome_foto;
@@ -26,18 +25,20 @@ if (isset($_FILES['nova_foto']) && $_FILES['nova_foto']['error'] == 0) {
     }
 }
 
-$sql_pass = !empty($pass) ? ", password='$pass'" : "";
+
+$sql_pass = "";
+if (!empty($pass)) {
+    // Encripta a nova password antes de guardar
+    $password_hashed = password_hash($pass, PASSWORD_BCRYPT);
+    $sql_pass = ", password='$password_hashed'";
+}
 
 $sql = "UPDATE users SET username='$nome', documento='$doc' $sql_foto $sql_pass 
         WHERE email='$email_atual'";
 
 if ($conn->query($sql) === TRUE) {
-    if ($conn->affected_rows > 0) {
-        $_SESSION['username'] = $nome; 
-        header("Location: paginaPerfil.php?sucesso=1");
-    } else {
-        header("Location: paginaPerfil.php");
-    }
+    $_SESSION['username'] = $nome; 
+    header("Location: paginaPerfil.php?sucesso=1");
 } else {
     echo "Erro: " . $conn->error;
 }
