@@ -2,6 +2,7 @@
 include '../templates/header.php'; 
 require_once '../basedados/basedados.h'; 
 
+// Query para buscar dados das requisições e livros
 $query = "SELECT r.*, u.username, l.Titulo_Livro, l.Autor_Livro 
           FROM requisicoes r
           JOIN users u ON r.user_id = u.id
@@ -26,7 +27,7 @@ $resultado = mysqli_query($conn, $query);
                     <th>Data Pedido</th>
                     <th>Livro</th>
                     <th>Cliente</th>
-                    <th>Estado</th>
+                    <th>Levantamento</th> <th>Devolução</th>    <th>Estado</th>
                     <th>Observação</th>
                 </tr>
             </thead>
@@ -39,9 +40,11 @@ $resultado = mysqli_query($conn, $query);
                 <tr>
                     <td>#<?php echo $row['id']; ?></td>
                     <td><?php echo date('d/m/Y', strtotime($row['data_pedido'])); ?></td>
-                    
                     <td><?php echo htmlspecialchars($row['Titulo_Livro']); ?></td>
                     <td><?php echo htmlspecialchars($row['username']); ?></td>
+
+                    <td><?php echo $row['data_levantamento'] ? date('d/m/Y H:i', strtotime($row['data_levantamento'])) : '---'; ?></td>
+                    <td><?php echo $row['data_devolucao'] ? date('d/m/Y H:i', strtotime($row['data_devolucao'])) : '---'; ?></td>
                     
                     <td>
                         <div class="status-wrapper">
@@ -59,22 +62,20 @@ $resultado = mysqli_query($conn, $query);
                     <td>
                         <?php if ($row['estado'] == 'Inativa'): ?>
                             <div class="obs-wrapper">
-                                <textarea id="obs-<?php echo $row['id']; ?>" class="obs-field" placeholder="Observação"><?php echo htmlspecialchars($row['observacao']); ?></textarea>
-                                <button type="button" class="obs-save-btn" onclick="saveObservation(<?php echo $row['id']; ?>)" title="Gravar na BD">
+                                <textarea id="obs-<?php echo $row['id']; ?>" class="obs-field"><?php echo htmlspecialchars($row['observacao']); ?></textarea>
+                                <button type="button" class="obs-save-btn" onclick="saveObservation(<?php echo $row['id']; ?>)">
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
                                 </button>
                             </div>
                         <?php else: ?>
-                            <span class="obs-display">
-                                <?php echo !empty($row['observacao']) ? htmlspecialchars($row['observacao']) : '---'; ?>
-                            </span>
+                            <span class="obs-display"><?php echo !empty($row['observacao']) ? htmlspecialchars($row['observacao']) : '---'; ?></span>
                         <?php endif; ?>
                     </td>
                 </tr>
                 <?php 
                     endwhile; 
                 } else {
-                    echo "<tr><td colspan='6' style='text-align:center; padding: 20px;'>Nenhum pedido encontrado.</td></tr>";
+                    echo "<tr><td colspan='8'>Nenhum pedido encontrado.</td></tr>";
                 }
                 ?>
             </tbody>
@@ -87,10 +88,13 @@ $resultado = mysqli_query($conn, $query);
 </div>
 
 <script>
+// Função para mostrar o select ao clicar no badge
 function toggleStatusMenu(badge) {
-    badge.parentElement.classList.toggle('active');
+    const wrapper = badge.parentElement;
+    wrapper.classList.toggle('active');
 }
 
+// Redireciona para o processamento de estado
 function updateStatus(select, id) {
     const newValue = select.value;
     if(confirm("Alterar estado do pedido #" + id + " para " + newValue + "?")) {
