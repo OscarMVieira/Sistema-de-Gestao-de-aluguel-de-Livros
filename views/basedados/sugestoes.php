@@ -1,21 +1,25 @@
 <?php
 require_once 'basedados.h'; 
 
-$termo = mysqli_real_escape_string($conn, $_GET['q'] ?? '');
+$termo = $_GET['q'] ?? '';
 $sugestoes = [];
 
 if (strlen($termo) >= 1) {
-    $query = "SELECT ID_Livro, Titulo_Livro FROM livros 
-              WHERE Titulo_Livro LIKE '%$termo%' 
-              LIMIT 5";
-    $result = mysqli_query($conn, $query);
+    
+    $stmt = $conn->prepare("SELECT ID_Livro, Titulo_Livro FROM livros WHERE Titulo_Livro LIKE ? LIMIT 5");
+    
+    $busca = "%$termo%";
+    $stmt->bind_param("s", $busca);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    while ($row = mysqli_fetch_assoc($result)) {
+    while ($row = $result->fetch_assoc()) {
         $sugestoes[] = [
             'id' => $row['ID_Livro'],
             'titulo' => $row['Titulo_Livro']
         ];
     }
+    $stmt->close();
 }
 
 echo json_encode($sugestoes); 

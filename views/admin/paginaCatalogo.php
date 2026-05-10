@@ -3,15 +3,37 @@ session_start();
 include '../templates/headerCatalogoAdmin.php'; 
 require_once '../basedados/basedados.h'; 
 
-// Lógica de pesquisa e filtros
-$pesquisa = isset($_GET['pesquisa']) ? $conn->real_escape_string($_GET['pesquisa']) : '';
-$genero_filtro = isset($_GET['genero']) ? $conn->real_escape_string($_GET['genero']) : '';
+$pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '';
+$genero_filtro = isset($_GET['genero']) ? $_GET['genero'] : '';
 
 $sql = "SELECT * FROM livros WHERE 1=1";
-if ($pesquisa != '') { $sql .= " AND (Titulo_Livro LIKE '%$pesquisa%' OR Autor_Livro LIKE '%$pesquisa%')"; }
-if ($genero_filtro != '') { $sql .= " AND Genero = '$genero_filtro'"; }
+$params = [];
+$types = "";
+
+if ($pesquisa != '') { 
+    $sql .= " AND (Titulo_Livro LIKE ? OR Autor_Livro LIKE ?)"; 
+    $termo = "%$pesquisa%";
+    $params[] = $termo;
+    $params[] = $termo;
+    $types .= "ss";
+}
+
+if ($genero_filtro != '') { 
+    $sql .= " AND Genero = ?"; 
+    $params[] = $genero_filtro;
+    $types .= "s";
+}
+
 $sql .= " ORDER BY ID_Livro DESC"; 
-$resultado = $conn->query($sql);
+
+$stmt = $conn->prepare($sql);
+
+if (!empty($params)) {
+    $stmt->bind_param($types, ...$params);
+}
+
+$stmt->execute();
+$resultado = $stmt->get_result();
 
 $sql_generos = "SELECT DISTINCT Genero FROM livros WHERE Genero IS NOT NULL AND Genero != ''";
 $res_generos = $conn->query($sql_generos);
@@ -24,6 +46,7 @@ $res_generos = $conn->query($sql_generos);
 
     <form method="GET" action="paginaCatalogo.php" class="catalog-filters">
         <input type="text" name="pesquisa" placeholder="Filtrar por título ou autor..." value="<?php echo htmlspecialchars($pesquisa); ?>">
+        
         <select name="genero" onchange="this.form.submit()">
             <option value="">Todos os Géneros</option>
             <?php 
@@ -35,7 +58,9 @@ $res_generos = $conn->query($sql_generos);
             }
             ?>
         </select>
+        
         <button type="submit" class="btn-filtro"><i class="fa-solid fa-filter"></i> Filtrar</button>
+        
         <?php if ($pesquisa != '' || $genero_filtro != ''): ?>
             <a href="paginaCatalogo.php" class="btn-limpar">Limpar Filtros</a>
         <?php endif; ?>
@@ -77,23 +102,16 @@ $res_generos = $conn->query($sql_generos);
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
 const urlParams = new URLSearchParams(window.location.search);
-
-// Feedback para quando um livro é criado com sucesso
 if (urlParams.get('sucesso') === '1') {
     Swal.fire({
         icon: 'success',
         title: 'Livro Criado!',
         text: 'O novo livro foi adicionado ao catálogo com sucesso.',
-        confirmButtonColor: '#004080',
-        confirmButtonText: 'OK'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Limpa a URL para o alerta não repetir se o admin fizer refresh
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
+        confirmButtonColor: '#004080'
+    }).then(() => {
+        window.history.replaceState({}, document.title, window.location.pathname);
     });
 }
 </script>

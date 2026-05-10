@@ -2,14 +2,13 @@
 include '../templates/header.php'; 
 require_once '../basedados/basedados.h'; 
 
-// Query para buscar dados das requisições e livros
-$query = "SELECT r.*, u.username, l.Titulo_Livro, l.Autor_Livro 
-          FROM requisicoes r
-          JOIN users u ON r.user_id = u.id
-          JOIN livros l ON r.livro_id = l.ID_Livro 
-          ORDER BY r.data_pedido DESC";
+$sql = "SELECT r.*, u.username, l.Titulo_Livro, l.Autor_Livro 
+        FROM requisicoes r
+        JOIN users u ON r.user_id = u.id
+        JOIN livros l ON r.livro_id = l.ID_Livro 
+        ORDER BY r.data_pedido DESC";
 
-$resultado = mysqli_query($conn, $query);
+$resultado = $conn->query($sql);
 ?>
 
 <link rel="stylesheet" href="../../public/css/gestaoPedidos.css">
@@ -23,18 +22,14 @@ $resultado = mysqli_query($conn, $query);
         <table class="gestao-table">
             <thead>
                 <tr>
-                    <th>Pedido</th>
-                    <th>Data Pedido</th>
-                    <th>Livro</th>
-                    <th>Cliente</th>
-                    <th>Levantamento</th> <th>Devolução</th>    <th>Estado</th>
-                    <th>Observação</th>
+                    <th>Pedido</th> <th>Data Pedido</th> <th>Livro</th> <th>Cliente</th>
+                    <th>Levantamento</th> <th>Devolução</th> <th>Estado</th> <th>Observação</th>
                 </tr>
             </thead>
             <tbody>
                 <?php 
-                if ($resultado && mysqli_num_rows($resultado) > 0) {
-                    while($row = mysqli_fetch_assoc($resultado)): 
+                if ($resultado && $resultado->num_rows > 0) {
+                    while($row = $resultado->fetch_assoc()): 
                         $statusClass = strtolower($row['estado']);
                 ?>
                 <tr>
@@ -42,10 +37,8 @@ $resultado = mysqli_query($conn, $query);
                     <td><?php echo date('d/m/Y', strtotime($row['data_pedido'])); ?></td>
                     <td><?php echo htmlspecialchars($row['Titulo_Livro']); ?></td>
                     <td><?php echo htmlspecialchars($row['username']); ?></td>
-
                     <td><?php echo $row['data_levantamento'] ? date('d/m/Y H:i', strtotime($row['data_levantamento'])) : '---'; ?></td>
                     <td><?php echo $row['data_devolucao'] ? date('d/m/Y H:i', strtotime($row['data_devolucao'])) : '---'; ?></td>
-                    
                     <td>
                         <div class="status-wrapper">
                             <span class="status-badge <?php echo $statusClass; ?>" onclick="toggleStatusMenu(this)">
@@ -72,12 +65,7 @@ $resultado = mysqli_query($conn, $query);
                         <?php endif; ?>
                     </td>
                 </tr>
-                <?php 
-                    endwhile; 
-                } else {
-                    echo "<tr><td colspan='8'>Nenhum pedido encontrado.</td></tr>";
-                }
-                ?>
+                <?php endwhile; } else { echo "<tr><td colspan='8'>Nenhum pedido encontrado.</td></tr>"; } ?>
             </tbody>
         </table>
     </div>
@@ -88,22 +76,12 @@ $resultado = mysqli_query($conn, $query);
 </div>
 
 <script>
-// Função para mostrar o select ao clicar no badge
-function toggleStatusMenu(badge) {
-    const wrapper = badge.parentElement;
-    wrapper.classList.toggle('active');
-}
-
-// Redireciona para o processamento de estado
+function toggleStatusMenu(badge) { badge.parentElement.classList.toggle('active'); }
 function updateStatus(select, id) {
-    const newValue = select.value;
-    if(confirm("Alterar estado do pedido #" + id + " para " + newValue + "?")) {
-        window.location.href = "processarStatus.php?id=" + id + "&novo_estado=" + newValue;
-    } else {
-        location.reload();
-    }
+    if(confirm("Alterar estado do pedido #" + id + " para " + select.value + "?")) {
+        window.location.href = "processarStatus.php?id=" + id + "&novo_estado=" + select.value;
+    } else { location.reload(); }
 }
-
 function saveObservation(id) {
     const obsText = document.getElementById('obs-' + id).value;
     window.location.href = "processarObservacao.php?id=" + id + "&obs=" + encodeURIComponent(obsText);
