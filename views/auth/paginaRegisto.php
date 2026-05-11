@@ -1,85 +1,32 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <title>Biblioteca Digital - Registo</title>
-    <link rel="stylesheet" href="../../public/css/autenticacao.css">
-    <link rel="stylesheet" href="../../public/css/footerAutenticacao.css">
-    <style>
-        #passwordFeedback {
-            font-size: 0.85em;
-            margin-top: 5px;
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="logo">BIBLIOTECA DIGITAL</div>
-    </header>
+<?php
+require_once '../basedados/basedados.h';
 
-    <div class="formContainer">
-        <h2>Novo Registo</h2>
-        <form action="processarRegisto.php" method="POST">
-            <div class="inputGroup">
-                <label>Nome</label>
-                <input type="text" name="nome" placeholder="Nome" required>
-            </div>
-            <div class="inputGroup">
-                <label>E-mail</label>
-                <input type="email" name="email" placeholder="E-mail" required>
-            </div>
-            <div class="inputGroup">
-                <label>Password</label>
-                <!--garante pelo menos uma maiúscula e um número no browser -->
-                <input type="password" name="password" id="password" placeholder="Password" required 
-                       pattern="(?=.*[A-Z])(?=.*\d).{1,}" 
-                       title="A password deve conter pelo menos uma letra maiúscula e um número.">
-                <div id="passwordFeedback" style="color: #ff4d4d;">⚠️ Password fraca: deve incluir uma letra maiúscula e um número.</div>
-            </div>
-            <div class="inputGroup">
-    <label>CC/NIF</label>
-    <!-- O 'oninput' remove instantaneamente qualquer coisa que não seja número -->
-    <input type="text" name="documento" placeholder="CC/NIF" required 
-           oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-</div>
+// Captura e sanitização (SCRUM-98)
+$nome      = htmlspecialchars($_POST['nome']); 
+$email     = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+$pass      = $_POST['password'];
+$documento = preg_replace('/[^0-9]/', '', $_POST['documento']); 
+$tipo      = 2; // Alterado para 2 (Cliente) conforme a tua lógica anterior
 
-            <button type="submit" class="btn btnPrimary">Criar Conta</button>
-        </form>
+// Validação de força de password (mantida)
+if (!preg_match('/[A-Z]/', $pass) || !preg_match('/[0-9]/', $pass)) {
+    die("<h2>Erro: A password é demasiado fraca.</h2><a href='paginaRegisto.php'>Voltar</a>");
+}
 
-        <div class="linkFooter">
-            Já tens conta? <a href="paginaLogin.php">Login</a>
-        </div>
-    </div>
+$password_hashed = password_hash($pass, PASSWORD_BCRYPT);
 
-    <script>
-        const passwordInput = document.getElementById('password');
-        const feedback = document.getElementById('passwordFeedback');
+// SCRUM-97: Inserção protegida
+$stmt = $conn->prepare("INSERT INTO users (username, email, password, documento, tipoContaId) VALUES (?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssi", $nome, $email, $password_hashed, $documento, $tipo);
 
-        passwordInput.addEventListener('input', function() {
-            const val = this.value;
-            // Verifica se tem pelo menos uma maiúscula e um número
-            const hasUpper = /[A-Z]/.test(val);
-            const hasNumber = /[0-9]/.test(val);
+if ($stmt->execute()) {
+    echo "<h2>Registo concluído com sucesso!</h2>";
+    header("Refresh: 2; url=paginaLogin.php");
+} else {
+    // Erro genérico para não dar pistas a atacantes
+    echo "Erro ao processar o registo. Por favor, tente novamente.";
+}
 
-            if (val.length > 0 && (!hasUpper || !hasNumber)) {
-                feedback.style.display = 'block'; // Feedback de password fraca
-            } else {
-                feedback.style.display = 'none';
-            }
-        });
-    </script>
-
-    <footer class="autenticacaoFooter">
-        <div class="footerDivider"></div>
-        <div class="footerLinks">
-            <a href="#">Condições de Uso</a>
-            <a href="#">Aviso de Privacidade</a>
-            <a href="#">Ajuda</a>
-        </div>
-        <div class="footerCopyright">
-            © 1996-2026, Biblioteca Digital, Inc. ou suas afiliadas
-        </div>
-    </footer>
-</body>
-</html>
+$stmt->close();
+$conn->close();
+?>
