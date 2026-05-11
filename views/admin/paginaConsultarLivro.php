@@ -3,40 +3,73 @@ $activePage = 'catalogo';
 include '../templates/header.php'; 
 require_once '../basedados/basedados.h'; 
 
-$id = $_GET['id'];
+// 1. Validação de Campo Obrigatório (ID) e Sanitização
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-$sql = "SELECT * FROM livros WHERE ID_Livro = $id";
-$resultado = $conn->query($sql);
+if ($id <= 0) {
+    header("Location: paginaCatalogo.php");
+    exit();
+}
+
+// 2. SCRUM-97: Prepared Statement para segurança
+$stmt = $conn->prepare("SELECT * FROM livros WHERE ID_Livro = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$resultado = $stmt->get_result();
 $livro = $resultado->fetch_assoc();
+
+// 3. Verificação de Existência (SCRUM-92): Se o livro não existir na BD
+if (!$livro) {
+    echo "<script>alert('Livro não encontrado!'); window.location.href='paginaCatalogo.php';</script>";
+    exit();
+}
+
+// 4. Tratamento de Dados Vazios (Default Values)
+// Se um campo estiver vazio na BD, mostramos "N/A" ou "Não definido" para não quebrar o layout
+$titulo = !empty($livro['Titulo_Livro']) ? htmlspecialchars($livro['Titulo_Livro']) : "Título Indisponível";
+$autor  = !empty($livro['Autor_Livro']) ? htmlspecialchars($livro['Autor_Livro']) : "Autor Desconhecido";
+$genero = !empty($livro['Genero']) ? htmlspecialchars($livro['Genero']) : "Sem Género";
+$capa   = !empty($livro['Capa']) ? $livro['Capa'] : "default_cover.png"; 
 ?>
 
 <link rel="stylesheet" href="../../public/css/detalhesLivro.css">
 
 <div class="centralizador-pagina">
-    <h1 class="tituloPagina">Informações Livro</h1>
+    <h1 class="tituloPagina">Informações do Livro</h1>
 
     <div class="gradeInfo">
         <section class="caixaCard selecaoCapa">
             <h2 class="tituloCard">Capa</h2>
             <div class="bordaImagem">
-                <img src="../../public/img/<?php echo $livro['Capa']; ?>" alt="Capa">
+                <img src="../../public/img/<?php echo $capa; ?>" alt="Capa">
             </div>
         </section>
 
         <section class="caixaCard detalhesLivro">
             <h2 class="tituloCardSublinhado">Informação Principal</h2>
             <div class="linhaForm">
-                <input type="text" value="<?php echo htmlspecialchars($livro['Titulo_Livro']); ?>" readonly>
-                <input type="text" value="<?php echo htmlspecialchars($livro['Genero']); ?>" readonly>
+                <div class="campoIndividual"><label>Título:</label>
+                    <input type="text" value="<?php echo $titulo; ?>" readonly>
+                </div>
+                <div class="campoIndividual"><label>Género:</label>
+                    <input type="text" value="<?php echo $genero; ?>" readonly>
+                </div>
             </div>
             <div class="linhaForm">
-                <input type="text" value="<?php echo htmlspecialchars($livro['Autor_Livro']); ?>" readonly>
-                <input type="text" value="<?php echo $livro['ID_Livro']; ?>" readonly>
+                <div class="campoIndividual"><label>Autor:</label>
+                    <input type="text" value="<?php echo $autor; ?>" readonly>
+                </div>
+                <div class="campoIndividual"><label>ID Interno:</label>
+                    <input type="text" value="<?php echo $livro['ID_Livro']; ?>" readonly>
+                </div>
             </div>
             <div class="containerCampos">
-                <div class="campoIndividual"><label>Data:</label><input type="text" value="--" readonly></div>
-                <div class="campoIndividual"><label>Preço:</label><input type="text" value="--" readonly></div>
-                <div class="campoIndividual"><label>Qtd:</label><input type="text" value="<?php echo $livro['Quantidade']; ?>" readonly></div>
+                <div class="campoIndividual"><label>Stock Atual:</label>
+                    <input type="text" value="<?php echo $livro['Quantidade']; ?> unidades" readonly>
+                </div>
+                <div class="campoIndividual"><label>Estado:</label>
+                    <input type="text" value="<?php echo ($livro['Quantidade'] > 0) ? 'Disponível' : 'Esgotado'; ?>" readonly>
+                </div>
             </div>
         </section>
     </div>
@@ -45,35 +78,8 @@ $livro = $resultado->fetch_assoc();
         <a href="paginaEditarLivro.php?id=<?php echo $livro['ID_Livro']; ?>" class="btnAzulLargo">
             <i class="fa-solid fa-pen-to-square"></i> Editar Livro
         </a>
-        
         <div class="grupoBotoesAcaoDireita">
-            <a href="paginaCatalogo.php" class="btnAzulMedio">Voltar</a>
+            <a href="paginaCatalogo.php" class="btnAzulMedio">Voltar ao Catálogo</a>
         </div>
     </div>
 </div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-// Captura os parâmetros da URL
-const urlParams = new URLSearchParams(window.location.search);
-
-if (urlParams.get('editado') === 'sucesso') {
-    Swal.fire({
-        icon: 'success',
-        title: 'Livro Atualizado!',
-        text: 'As alterações foram gravadas com sucesso.',
-        confirmButtonColor: '#004080',
-        confirmButtonText: 'OK'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // Limpa o parâmetro da URL para não repetir o alerta no refresh
-            const idLivro = urlParams.get('id');
-            const novaUrl = window.location.pathname + "?id=" + idLivro;
-            window.history.replaceState({}, document.title, novaUrl);
-        }
-    });
-}
-</script>
-<?php include '../templates/footer.php'; ?>

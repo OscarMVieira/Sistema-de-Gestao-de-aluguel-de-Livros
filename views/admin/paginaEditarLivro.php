@@ -1,55 +1,121 @@
 <?php 
-$activePage = 'catalogo'; 
-include '../templates/header.php'; 
+session_start();
 require_once '../basedados/basedados.h'; 
 
-$id = $_GET['id'];
+$id = isset($_GET['id']) ? intval($_GET['id']) : (isset($_POST['id']) ? intval($_POST['id']) : 0);
 
-$sql = "SELECT * FROM livros WHERE ID_Livro = $id";
-$resultado = $conn->query($sql);
-$livro = $resultado->fetch_assoc();
+if ($id <= 0) {
+    header("Location: paginaCatalogo.php");
+    exit();
+}
+
+$mensagemSucesso = false;
+$erroValidacao = false;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn_editar'])) {
+    $titulo = trim($_POST['titulo']);
+    $autor  = trim($_POST['autor']);
+    $genero = trim($_POST['genero']);
+    $qtd    = intval($_POST['quantidade']);
+
+    if (empty($titulo) || empty($autor) || empty($genero)) {
+        $erroValidacao = "Erro: Título, Autor e Género não podem ficar em branco!";
+    } else {
+        
+        if (isset($_FILES['capa']) && $_FILES['capa']['error'] == 0) {
+            $nomeCapa = time() . "_" . $_FILES['capa']['name'];
+            move_uploaded_file($_FILES['capa']['tmp_name'], "../../public/img/" . $nomeCapa);
+            
+            
+            $stmt_upd = $conn->prepare("UPDATE livros SET Titulo_Livro=?, Autor_Livro=?, Genero=?, Quantidade=?, Capa=? WHERE ID_Livro=?");
+            $stmt_upd->bind_param("ssisii", $titulo, $autor, $genero, $qtd, $nomeCapa, $id);
+        } else {
+            
+            $stmt_upd = $conn->prepare("UPDATE livros SET Titulo_Livro=?, Autor_Livro=?, Genero=?, Quantidade=? WHERE ID_Livro=?");
+            $stmt_upd->bind_param("ssiii", $titulo, $autor, $genero, $qtd, $id);
+        }
+
+        if ($stmt_upd->execute()) {
+            $mensagemSucesso = true;
+        }
+        $stmt_upd->close();
+    }
+}
+
+$stmt_busca = $conn->prepare("SELECT * FROM livros WHERE ID_Livro = ?");
+$stmt_busca->bind_param("i", $id);
+$stmt_busca->execute();
+$livro = $stmt_busca->get_result()->fetch_assoc();
+
+if (!$livro) {
+    header("Location: paginaCatalogo.php");
+    exit();
+}
+
+include '../templates/header.php'; 
 ?>
 
 <link rel="stylesheet" href="../../public/css/detalhesLivro.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <div class="centralizador-pagina">
     <h1 class="tituloPagina">Editar Livro</h1>
 
-    <form action="processaEdicao.php" method="POST" enctype="multipart/form-data">
-        
-        <input type="hidden" name="id" value="<?php echo $livro['ID_Livro']; ?>">
+    <form action="paginaEditarLivro.php?id=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
 
         <div class="gradeInfo">
             <section class="caixaCard selecaoCapa">
                 <h2 class="tituloCard">Editar Capa</h2>
-                <p class="textoUpload">Upload Capa</p>
                 <div class="bordaImagem">
                     <img src="../../public/img/<?php echo $livro['Capa']; ?>" alt="Capa">
                 </div>
-                <input type="file" name="capa" style="margin-top: 10px;">
+                <input type="file" name="capa" style="margin-top: 15px;">
             </section>
 
             <section class="caixaCard detalhesLivro">
                 <h2 class="tituloCardSublinhado">Informação Principal</h2>
+                
                 <div class="linhaForm">
-                    <input type="text" name="titulo" value="<?php echo htmlspecialchars($livro['Titulo_Livro']); ?>">
-                    <input type="text" name="genero" value="<?php echo htmlspecialchars($livro['Genero']); ?>">
+                    <div class="campoIndividual">
+                        <label>Título:</label>
+                        <input type="text" name="titulo" value="<?php echo htmlspecialchars($livro['Titulo_Livro']); ?>" required>
+                    </div>
+                    <div class="campoIndividual">
+                        <label>Género:</label>
+                        <input type="text" name="genero" value="<?php echo htmlspecialchars($livro['Genero']); ?>" required>
+                    </div>
                 </div>
+
                 <div class="linhaForm">
-                    <input type="text" name="autor" value="<?php echo htmlspecialchars($livro['Autor_Livro']); ?>">
-                    <input type="text" value="<?php echo $livro['ID_Livro']; ?>" readonly>
+                    <div class="campoIndividual">
+                        <label>Autor:</label>
+                        <input type="text" name="autor" value="<?php echo htmlspecialchars($livro['Autor_Livro']); ?>" required>
+                    </div>
+                    <div class="campoIndividual">
+                        <label>ID Interno:</label>
+                        <input type="text" value="<?php echo $id; ?>" readonly style="background-color: #eee;">
+                    </div>
                 </div>
+
                 <div class="containerCampos">
-                    <div class="campoIndividual"><label>Data:</label><input type="text" name="data" value="--"></div>
-                    <div class="campoIndividual"><label>Preço:</label><input type="text" name="preco" value="--"></div>
-                    <div class="campoIndividual"><label>Qtd:</label><input type="text" name="quantidade" value="<?php echo $livro['Quantidade']; ?>"></div>
+                    <div class="campoIndividual">
+                        <label>Data:</label><input type="text" value="--" readonly>
+                    </div>
+                    <div class="campoIndividual">
+                        <label>Preço:</label><input type="text" value="--" readonly>
+                    </div>
+                    <div class="campoIndividual">
+                        <label>Qtd:</label>
+                        <input type="number" name="quantidade" value="<?php echo $livro['Quantidade']; ?>" min="0" required>
+                    </div>
                 </div>
             </section>
         </div>
 
         <div class="containerAcoesFinal">
-            <button type="submit" class="btnAzulLargo">Editar Livro</button>
+            <button type="submit" name="btn_editar" class="btnAzulLargo">
+                <i class="fa-solid fa-pen-to-square"></i> Editar Livro
+            </button>
             
             <div class="grupoBotoesAcaoDireita">
                 <button type="reset" class="btnAzulMedio">Limpar Formulário</button>
@@ -58,5 +124,26 @@ $livro = $resultado->fetch_assoc();
         </div>
     </form> 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+<?php if ($mensagemSucesso): ?>
+    Swal.fire({
+        icon: 'success',
+        title: 'Atualizado!',
+        text: 'O livro foi editado com sucesso.',
+        confirmButtonColor: '#004080'
+    });
+<?php endif; ?>
+
+<?php if ($erroValidacao): ?>
+    Swal.fire({
+        icon: 'error',
+        title: 'Campos Vazios',
+        text: '<?php echo $erroValidacao; ?>',
+        confirmButtonColor: '#d33'
+    });
+<?php endif; ?>
+</script>
 
 <?php include '../templates/footer.php'; ?>
