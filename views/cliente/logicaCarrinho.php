@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once '../basedados/basedados.h'; // Necessário para consultar o stock real
+
 $id = $_GET['id'] ?? 0;
 $acao = $_GET['acao'] ?? '';
 
@@ -7,10 +9,25 @@ if (!isset($_SESSION['carrinho'])) { $_SESSION['carrinho'] = []; }
 
 $status = "";
 if ($acao == 'add' && $id > 0) {
-    // Verifica o limite total de 3 livros
     if (array_sum($_SESSION['carrinho']) < 3) {
-        $_SESSION['carrinho'][$id] = (isset($_SESSION['carrinho'][$id])) ? $_SESSION['carrinho'][$id] + 1 : 1;
-        $status = "adicionado";
+        
+        $stmt = $conn->prepare("SELECT Quantidade FROM livros WHERE ID_Livro = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $livro = $res->fetch_assoc();
+        
+        $stock_disponivel = $livro['Quantidade'] ?? 0;
+        $qtd_no_carrinho = $_SESSION['carrinho'][$id] ?? 0;
+
+        
+        if (($qtd_no_carrinho + 1) <= $stock_disponivel) {
+            $_SESSION['carrinho'][$id] = $qtd_no_carrinho + 1;
+            $status = "adicionado";
+        } else {
+            $status = "sem_stock"; 
+        }
+        $stmt->close();
     } else {
         $status = "limite";
     }
@@ -21,10 +38,7 @@ if ($acao == 'add' && $id > 0) {
     }
 }
 
-// Redireciona de volta para a página anterior (Catálogo) com o status
 $referer = $_SERVER['HTTP_REFERER'] ?? 'paginaCatalogo.php';
-
-// Limpa status antigos da URL para não repetir o alerta
 $referer = preg_replace('/[?&]status=[^&]*/', '', $referer);
 $separador = (strpos($referer, '?') !== false) ? '&' : '?';
 
