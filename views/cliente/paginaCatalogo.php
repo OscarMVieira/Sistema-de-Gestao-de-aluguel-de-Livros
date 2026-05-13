@@ -147,6 +147,16 @@ $res_generos = $conn->query($sql_generos);
             window.history.replaceState({}, document.title, window.location.pathname);
         });
     }
+    if (urlParams.get('status') === 'sem_stock') {
+    Swal.fire({
+        icon: 'error',
+        title: 'Stock Insuficiente',
+        text: 'Não é possível adicionar mais unidades deste livro, pois atingiu o limite do stock disponível.',
+        confirmButtonColor: '#004080'
+    }).then(() => {
+        window.history.replaceState({}, document.title, window.location.pathname);
+    });
+}
 </script>
 
 <?php include '../templates/footer.php'; ?>

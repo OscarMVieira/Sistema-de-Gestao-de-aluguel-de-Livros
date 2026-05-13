@@ -1,5 +1,5 @@
 <?php
-require_once '../basedados/basedados.h'; // Ligação à BD
+require_once '../basedados/basedados.h'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
@@ -8,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $genero = $_POST['genero'];
     $quantidade = $_POST['quantidade'];
 
-    // Lógica para verificar se foi enviada uma nova capa
     if (isset($_FILES['capa']) && $_FILES['capa']['error'] === 0) {
         $nomeImagem = $_FILES['capa']['name'];
         $caminhoDestino = "../../public/img/" . $nomeImagem;
@@ -32,11 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($conn->query($sql) === TRUE) {
-        // PROTEÇÃO: Só envia 'editado=sucesso' se algo mudou mesmo na BD
         if ($conn->affected_rows > 0) {
             header("Location: paginaConsultarLivro.php?id=$id&editado=sucesso");
         } else {
-            // Se os dados forem iguais aos antigos, volta sem mostrar a mensagem
             header("Location: paginaConsultarLivro.php?id=$id");
         }
     } else {
