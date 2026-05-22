@@ -90,7 +90,7 @@ $url_voltar = ($tipo_conta == 1) ? "../admin/paginaCatalogo.php" : "../cliente/p
 </div>
 
 <script>
-// 1. Validação de password em tempo real
+// Validação de password em tempo real
 const passwordInput = document.getElementById('password');
 const feedback = document.getElementById('passwordFeedback');
 
@@ -106,7 +106,7 @@ passwordInput.addEventListener('input', function() {
     }
 });
 
-// 2. Validação de extensão da imagem
+// Validação de extensão da imagem
 document.getElementById('inputFoto').addEventListener('change', function() {
     const ficheiro = this.files[0];
     const extensoesPermitidas = ['jpg', 'jpeg', 'png'];
@@ -125,7 +125,7 @@ document.getElementById('inputFoto').addEventListener('change', function() {
     }
 });
 
-// 3. Alertas de Sucesso ou Erro
+// Alertas de Sucesso ou Erro
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get('sucesso') === '1') {
     Swal.fire({

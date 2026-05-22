@@ -3,7 +3,7 @@ $activePage = 'catalogo';
 include '../templates/header.php'; 
 require_once '../basedados/basedados.h'; 
 
-// 1. Validação de Campo Obrigatório (ID) e Sanitização
+//Validação de Campo Obrigatório (ID) e Sanitização
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($id <= 0) {
@@ -11,20 +11,20 @@ if ($id <= 0) {
     exit();
 }
 
-// 2. SCRUM-97: Prepared Statement para segurança
+//Prepared Statement para segurança
 $stmt = $conn->prepare("SELECT * FROM livros WHERE ID_Livro = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $resultado = $stmt->get_result();
 $livro = $resultado->fetch_assoc();
 
-// 3. Verificação de Existência (SCRUM-92): Se o livro não existir na BD
+//Verificação de Existência: Se o livro não existir na BD
 if (!$livro) {
     echo "<script>alert('Livro não encontrado!'); window.location.href='paginaCatalogo.php';</script>";
     exit();
 }
 
-// 4. Tratamento de Dados Vazios (Default Values)
+//Tratamento de Dados Vazios (Default Values)
 // Se um campo estiver vazio na BD, mostramos "N/A" ou "Não definido" para não quebrar o layout
 $titulo = !empty($livro['Titulo_Livro']) ? htmlspecialchars($livro['Titulo_Livro']) : "Título Indisponível";
 $autor  = !empty($livro['Autor_Livro']) ? htmlspecialchars($livro['Autor_Livro']) : "Autor Desconhecido";

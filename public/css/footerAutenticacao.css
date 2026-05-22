@@ -1,4 +1,4 @@
-/*  */
+/* */
 
 .autenticacaoFooter {
     width: 100%;
@@ -30,7 +30,7 @@
 }
 
 .footerLinks a:hover {
-    color: #ffffff;
+    color: #38bdf8;
     text-decoration: underline;
 }
 

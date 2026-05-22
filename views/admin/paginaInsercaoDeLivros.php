@@ -52,7 +52,7 @@
 </div>
 
 <script>
-// Lógica para Validação e PREVIEW da Imagem
+// Lógica para Validação e preview da Imagem
 document.getElementById('inputCapa').addEventListener('change', function() {
     const ficheiro = this.files[0];
     const extensoesPermitidas = ['jpg', 'jpeg', 'png'];

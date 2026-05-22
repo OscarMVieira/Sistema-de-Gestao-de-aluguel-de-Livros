@@ -6,7 +6,7 @@ $id = $_GET['id'];
 $novo_estado = $_GET['novo_estado'];
 $data_hora_agora = date('Y-m-d H:i:s'); // Registo de data e hora exata
 
-// 1. Obter a informação atual da requisição para validar o stock
+//Obter a informação atual da requisição para validar o stock
 $query_info = "SELECT livro_id, estado FROM requisicoes WHERE id = $id";
 $res_info = mysqli_query($conn, $query_info);
 $req = mysqli_fetch_assoc($res_info);
@@ -38,7 +38,7 @@ if ($novo_estado !== "Inativa") {
     $limpar_obs = ", observacao = ''";
 }
 
-// 2. Atualizar a tabela requisicoes com base na tua estrutura
+// Atualizar a tabela requisicoes com base na tua estrutura
 $sql = "UPDATE requisicoes SET estado = '$novo_estado' $campos_extra $limpar_obs WHERE id = $id";
 
 if (mysqli_query($conn, $sql)) {
