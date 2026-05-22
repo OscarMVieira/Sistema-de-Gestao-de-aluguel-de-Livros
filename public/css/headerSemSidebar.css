@@ -11,7 +11,7 @@ body {
 }
 
 .navbar {
-    background-color: #004080;
+    background-color: #1e293b;
     color: white;
     display: flex;
     align-items: center;
@@ -44,10 +44,9 @@ body {
 }
 
 .home-nav-icon:hover {
-    color: #a5c0d6;
+    color: #38bdf8;
     transform: scale(1.1);
 }
-
 
 .search-bar {
     background: white;
@@ -74,7 +73,6 @@ body {
     overflow-y: auto;
 }
 
-
 .search-bar input {
     border: none;
     padding: 8px 20px;
@@ -87,7 +85,7 @@ body {
     background: none;
     border: none;
     padding: 0 15px;
-    color: #004080;
+    color: #1e293b;
     cursor: pointer;
 }
 
@@ -126,8 +124,8 @@ body {
 }
 
 .cart-icon {
-    background: white;
-    color: #333;
+    background: transparent;
+    color: white;
     padding: 6px 12px;
     border-radius: 4px;
     position: relative;
@@ -136,21 +134,26 @@ body {
     align-items: center;
 }
 
+.cart-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 .badge {
     position: absolute;
     top: -8px;
     right: -8px;
-    background: #555;
+    background: #ef4444;
     color: white;
     font-size: 11px;
     padding: 2px 6px;
     border-radius: 50%;
+    border: 2px solid #1e293b;
 }
 
 .logout-btn {
     background: transparent;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid #ef4444;
+    color: #ef4444;
     padding: 5px 15px;
     border-radius: 4px;
     cursor: pointer;
@@ -160,8 +163,8 @@ body {
 }
 
 .logout-btn:hover {
-    background: white;
-    color: #004080;
+    background: #ef4444;
+    color: white;
 }
 
 .main-container {
@@ -178,7 +181,7 @@ body {
 }
 
 .main-footer {
-    background-color: #0b4c7d;
+    background-color: #0f172a;
     color: white;
     padding: 40px 0; 
     text-align: center;
@@ -205,7 +208,7 @@ body {
 }
 
 .social-icon:hover {
-    color: #a5c0d6; 
+    color: #38bdf8; 
     transform: translateY(-3px); 
 }
 
