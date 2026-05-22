@@ -1,10 +1,17 @@
+:root {
+    --azulMarinho: #004080;
+    --sombra: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
 body {
     margin: 0;
+    font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(rgba(245, 245, 245, 0.7), rgba(245, 245, 245, 0.7)), 
                 url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    min-height: 100vh;
 }
 
 .content {
@@ -17,66 +24,84 @@ body {
 }
 
 .gestao-card {
-    background: #fff;
-    border: 1px solid #999;
-    border-radius: 4px;
-    padding: 20px;
+    background: white;
+    border: none;
+    box-shadow: var(--sombra);
+    border-radius: 12px;
+    padding: 30px;
     width: 100%;
-    max-width: 1350px; /* Alargado para as novas colunas */
+    max-width: 1350px;
     overflow-x: auto;
 }
 
 .gestao-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 10px;
 }
 
-.gestao-table th, .gestao-table td {
-    padding: 12px 5px;
-    border: 1px solid #ddd;
+.gestao-table th {
+    background-color: #f8f9fa;
+    color: var(--azulMarinho);
+    font-weight: 700;
+    padding: 15px;
+    border-bottom: 2px solid #eee;
     text-align: center;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
 }
 
-/* --- LÓGICA DO MENU DE ESTADOS --- */
+.gestao-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
 .status-wrapper {
     position: relative;
     display: inline-block;
+    width: 120px; 
 }
 
 .status-badge {
-    padding: 6px 12px;
-    border-radius: 4px;
+    padding: 8px 12px;
+    border-radius: 6px;
     color: #fff;
     cursor: pointer;
     font-weight: 600;
     display: block;
-    min-width: 100px;
+    width: 100%;
+    box-sizing: border-box;
     transition: 0.2s;
+    text-align: center;
 }
 
 .status-select {
-    display: none; /* Escondido por defeito */
+    display: none; 
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 10;
+    cursor: pointer;
 }
 
-/* Quando o wrapper tem a classe 'active' (via JS), mostra o select */
 .status-wrapper.active .status-select {
     display: block;
 }
 
-/* Cores dos Estados */
+.status-wrapper.active .status-badge {
+    opacity: 0;
+}
+
 .terminada { background-color: #00b300; }
 .levantado { background-color: #0059b3; }
 .inativa    { background-color: #ff3333; }
 .pendente  { background-color: #f39c12; }
 
-/* Estilo do Botão Voltar Largo */
+/* Botão Voltar */
 .containerBotao {
     text-align: center;
     margin-top: 40px;
@@ -84,12 +109,20 @@ body {
 }
 
 .btnVoltarLargo {
-    background-color: #004080;
+    background-color: var(--azulMarinho);
     color: white;
     padding: 15px 120px;
-    font-size: 26px;     
+    font-size: 20px;
     font-weight: bold;
     text-decoration: none;
     border-radius: 8px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
     display: inline-block;
+}
+
+.btnVoltarLargo:hover {
+    background-color: #003366;
+    transform: scale(1.02);
 }

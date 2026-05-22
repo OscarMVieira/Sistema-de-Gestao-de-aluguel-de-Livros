@@ -1,10 +1,17 @@
+:root {
+    --azulMarinho: #004080;
+    --sombra: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
 body {
     margin: 0;
+    font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(rgba(245, 245, 245, 0.7), rgba(245, 245, 245, 0.7)), 
                 url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    min-height: 100vh;
 }
 
 .content {
@@ -13,7 +20,7 @@ body {
     flex-direction: column !important;
     align-items: center !important; 
     padding: 50px 20px !important;
-    background-color: transparent !important; /* Troca o cinza claro original por transparente */
+    background-color: transparent !important;
 }
 
 .pedidos-container {
@@ -31,48 +38,62 @@ body {
     font-weight: 700;
     text-align: center;
 }
+
 .pedidos-card {
     background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border: none;
+    border-radius: 12px;
     padding: 30px;
     width: 100%; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-shadow: var(--sombra);
 }
 
 .section-title {
-    text-align: center;
+    text-align: left;
     font-size: 1.4rem;
     margin-bottom: 25px;
-    font-weight: 600;
+    font-weight: 700;
+    color: var(--azulMarinho);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
 }
 
 .pedidos-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
 .pedidos-table thead tr {
-    background-color: #e0e0e0;
+    background-color: #f8f9fa;
 }
 
 .pedidos-table th {
     padding: 15px;
-    border: 1px solid #ccc;
-    font-weight: 600;
+    border-bottom: 2px solid #eee;
+    color: var(--azulMarinho);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
 }
 
 .pedidos-table td {
-    padding: 15px 10px;
+    padding: 18px 10px;
     text-align: center;
     border-bottom: 1px solid #eee;
+    color: #333;
+}
+
+.pedidos-table tr:hover {
+    background-color: #f0f4f8;
+    transition: background 0.3s;
 }
 
 .status-badge {
     padding: 8px 16px;
-    border-radius: 5px;
+    border-radius: 20px; 
     color: white;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     display: inline-block;
     min-width: 110px;
@@ -80,10 +101,8 @@ body {
 
 .terminada { background-color: #00b300; }
 .levantado { background-color: #0059b3; }
-.inativa { background-color: #ff3333; }
-.pendente { 
-    background-color: #f39c12;
-}
+.inativa   { background-color: #ff3333; }
+.pendente  { background-color: #f39c12; }
 
 .containerBotao {
     text-align: center;
@@ -93,21 +112,21 @@ body {
 }
 
 .btnVoltarLargo {
-    background-color: #004080;
+    background-color: var(--azulMarinho);
     color: white;
     padding: 15px 120px;
-    font-size: 26px;
+    font-size: 20px;
     font-weight: bold;
     text-decoration: none;
     border-radius: 8px;
     display: inline-block;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
 }
 
 .btnVoltarLargo:hover {
     background-color: #003366;
-    transform: scale(1.04);
+    transform: scale(1.02);
     color: white;
 }

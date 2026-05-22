@@ -3,6 +3,7 @@
     --bordaAzul: #99B2CC;
     --preto: #000000;
     --cinza: #666666;
+    --sombra: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -49,15 +50,22 @@ body {
 }
 
 .caixaCard {
-    border: 1px solid var(--bordaAzul);
-    border-radius: 4px;
-    padding: 20px;
+    border: none;
+    box-shadow: var(--sombra);
+    border-radius: 12px;
+    padding: 30px;
     background: white;
+    transition: transform 0.3s ease;
+}
+
+.caixaCard:hover {
+    transform: translateY(-5px);
 }
 
 .selecaoCapa { 
     width: 300px; 
 }
+
 .detalhesLivro { 
     width: 600px; 
     text-align: left; 
@@ -70,14 +78,22 @@ body {
 }
 
 .tituloCardSublinhado { 
-    border-bottom: 2px solid var(--bordaAzul); 
+    border-bottom: 3px solid var(--azulMarinho); 
     padding-bottom: 10px; 
-    text-align: left; 
+    text-align: left;
+    color: var(--azulMarinho);
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
 }
 
 .bordaImagem { 
-    border: 1px solid var(--bordaAzul); 
-    padding: 10px; 
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 10px;
     display: inline-block; 
 }
 
@@ -85,6 +101,8 @@ body {
     width: 180px; 
     height: 260px; 
     display: block; 
+    border-radius: 4px;
+    object-fit: cover;
 }
 
 .linhaForm { 
@@ -95,17 +113,25 @@ body {
 
 .linhaForm input { 
     flex: 1; 
-    padding: 10px; 
-    border: 1px solid var(--bordaAzul); 
-    border-radius: 4px; 
+    padding: 12px; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 6px; 
+    background-color: #f8f9fa;
+    transition: border-color 0.3s;
+}
+
+.linhaForm input:focus {
+    border-color: var(--azulMarinho);
+    outline: none;
 }
 
 .containerCampos { 
     display: flex; 
-    border: 1px solid var(--bordaAzul); 
-    border-radius: 4px; 
-    padding: 10px; 
+    border: 1px solid #eee; 
+    border-radius: 6px; 
+    padding: 15px; 
     gap: 15px; 
+    background: #fafafa;
 }
 
 .campoIndividual { 
@@ -118,8 +144,10 @@ body {
 
 .campoIndividual input { 
     width: 100%; 
-    border: 1px solid #CCC; 
-    padding: 5px; 
+    border: 1px solid #e0e0e0; 
+    padding: 8px; 
+    border-radius: 6px;
+    background-color: #fff;
 }
 
 .containerAcoesFinal {

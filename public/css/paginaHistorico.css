@@ -1,97 +1,78 @@
 body {
     margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(rgba(245, 245, 245, 0.7), rgba(245, 245, 245, 0.7)), 
                 url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000');
     background-size: cover;
-    background-position: center;
     background-attachment: fixed;
+    min-height: 100vh;
 }
 
 .content {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 40px 20px;
-    width: 100%;
-    min-height: 80vh;
-    background-color: transparent !important; /* Permite ver a biblioteca atrás da tabela */
-}
-
-.seccaoHistorico {
-    width: 100%;
+    padding: 50px 20px;
     display: flex;
     justify-content: center;
 }
 
 .containerHistorico {
     width: 100%;
-    max-width: 950px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 1000px;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .tituloHistorico {
-    font-size: 32px;
-    font-weight: bold;
-    color: #333;
+    font-size: 2rem;
+    color: #004080;
     margin-bottom: 30px;
     text-align: center;
-}
-
-.cartaoTabela {
-    background-color: white;
-    border: 1px solid #99B2CC;
-    border-radius: 8px;
-    padding: 25px;
-    width: 100%;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    height: auto;      
-    overflow: visible; 
+    font-weight: 700;
 }
 
 .tabelaHistorico {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 30px;
 }
 
 .tabelaHistorico th {
-    color: #004080;
+    background-color: #f8f9fa;
+    color: #333;
     padding: 15px;
-    border-bottom: 2px solid #004080;
-    font-size: 18px;
     text-align: center;
+    border-bottom: 2px solid #004080;
 }
 
 .tabelaHistorico td {
-    padding: 18px 15px;
-    text-align: center;
-    font-size: 16px;
-    color: #444;
+    padding: 15px;
     border-bottom: 1px solid #eee;
+    text-align: center;
+    color: #555;
+}
+
+.tabelaHistorico tr:hover {
+    background-color: #f1f7ff;
 }
 
 .areaBotoes {
-    margin-top: 35px;
-    margin-bottom: 50px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .botaoVoltar {
     background-color: #004080;
-    color: white;
-    padding: 12px 60px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    transition: background 0.3s ease;
+    color: white !important;
+    padding: 12px 50px;
+    text-decoration: none !important;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
     display: inline-block;
 }
 
 .botaoVoltar:hover {
-    background-color: #002d5a;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    background-color: #003366;
+    transform: scale(1.05);
 }
