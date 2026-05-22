@@ -1,10 +1,17 @@
+:root {
+    --azulMarinho: #004080;
+    --sombra: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
 body {
     margin: 0;
+    font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(rgba(245, 245, 245, 0.7), rgba(245, 245, 245, 0.7)), 
                 url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=2000');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    min-height: 100vh;
 }
 
 .content {
@@ -15,15 +22,11 @@ body {
     justify-content: flex-start;
     padding: 60px 20px !important;
     background-color: transparent !important; 
-    width: auto;
 }
 
 .clientesPageContainer {
     width: 100%;
     max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .pageMainTitle {
@@ -36,44 +39,52 @@ body {
 
 .clientesCard {
     width: 100%;
-    border: 1px solid #999;
-    min-height: 500px;
-    display: flex;
-    flex-direction: column;
+    border: none;
+    box-shadow: var(--sombra);
+    border-radius: 12px;
     background-color: white;
+    padding: 30px;
 }
 
 .cardHeader {
-    background-color: #d9d9d9;
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid #999;
+    background-color: transparent;
+    padding: 0 0 20px 0;
+    text-align: left;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 25px;
 }
 
 .cardHeader h2 {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
+    color: var(--azulMarinho);
     margin: 0;
-    color: #000;
 }
 
 .cardBody {
-    padding: 25px;
+    padding: 0;
 }
 
 .clienteRow {
-    border: 1px solid #004080;
-    border-radius: 3px;
-    padding: 10px 15px;
+    border: none;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+}
+
+.clienteRow:hover {
+    background-color: #f0f4f8;
+    transform: translateX(5px);
 }
 
 .clienteNome {
     font-weight: 600;
-    color: #000;
+    color: #333;
 }
 
 .clienteActions {
@@ -83,22 +94,23 @@ body {
 
 .actionBtn {
     background: white;
-    border: 1px solid #004080;
-    color: #333;
-    padding: 6px 15px;
-    border-radius: 3px;
+    border: 1px solid var(--azulMarinho);
+    color: var(--azulMarinho);
+    padding: 8px 16px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 0.9rem;
-    min-width: 1200x;
-    transition: 0.2s;
+    min-width: 120px; 
+    transition: 0.3s;
     text-decoration: none;    
     display: inline-flex;     
     align-items: center;      
     justify-content: center;  
+    font-weight: 600;
 }
 
 .actionBtn:hover {
-    background-color: #004080;
+    background-color: var(--azulMarinho);
     color: white;
 }
 
@@ -106,27 +118,25 @@ body {
     text-align: center;
     margin-top: 40px;
     width: 100%;
-    margin-bottom: 20px;
 }
 
 .btnVoltarLargo {
-    background-color: #004080;
+    background-color: var(--azulMarinho);
     color: white;
     padding: 15px 120px;
-    font-size: 26px;
+    font-size: 20px;
     font-weight: bold;
     text-decoration: none;
     border-radius: 8px;
-    display: inline-block;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
+    display: inline-block;
 }
 
 .btnVoltarLargo:hover {
     background-color: #003366;
-    transform: scale(1.04);
-    color: white;
+    transform: scale(1.02);
 }
 
 .searchBoxContainer {
@@ -137,27 +147,25 @@ body {
 
 #inputBuscaCliente {
     width: 100%;
-    padding: 12px 15px 12px 45px;
-    border: 2px solid #004080;
-    border-radius: 5px;
+    padding: 15px 20px 15px 50px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     font-size: 16px;
     outline: none;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+#inputBuscaCliente:focus {
+    border-color: var(--azulMarinho);
+    box-shadow: 0 0 0 3px rgba(0, 64, 128, 0.1);
 }
 
 .searchIcon {
     position: absolute;
-    left: 15px;
+    left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    color: #004080;
+    color: var(--azulMarinho);
     font-size: 18px;
-}
-
-.infoCliente {
-    display: flex;
-    flex-direction: column;
-}
-
-.clienteRow {
-    transition: all 0.3s ease;
 }
