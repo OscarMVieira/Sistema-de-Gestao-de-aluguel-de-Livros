@@ -42,10 +42,12 @@ if (isset($_SESSION['tipoContaId'])) {
         </div>
 
         <div class="user-controls">
-            <div class="user-avatar">
-                <i class="fa-solid fa-circle-user"></i>
-            </div>
-            <span class="username"><?php echo $_SESSION['username'] ?? 'Convidado'; ?></span>
+            <a href="../auth/paginaPerfil.php" class="user-profile-link" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
+                <div class="user-avatar">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+                <span class="username"><?php echo $_SESSION['username'] ?? 'Convidado'; ?></span>
+            </a>
 
             <a href="../cliente/paginaCarrinho.php" class="cart-link">
                 <div class="cart-icon">
