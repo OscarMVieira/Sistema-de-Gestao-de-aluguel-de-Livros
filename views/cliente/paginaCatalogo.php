@@ -44,7 +44,7 @@ $res_generos = $conn->query($sql_generos);
 <link rel="stylesheet" href="../../public/css/paginaCatalogo.css">
 
 <div class="catalog-container">
-    <h1 class="main-title">Catálogo de Livros</h1>
+    <h1 class="main-title"></h1>
 
     <form method="GET" action="paginaCatalogo.php" class="catalog-filters">
         <input type="text" name="pesquisa" placeholder="Filtrar por título ou autor..." value="<?php echo htmlspecialchars($pesquisa); ?>">

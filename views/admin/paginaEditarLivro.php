@@ -59,7 +59,7 @@ include '../templates/header.php';
 <link rel="stylesheet" href="../../public/css/detalhesLivro.css">
 
 <div class="centralizador-pagina">
-    <h1 class="tituloPagina">Editar Livro</h1>
+    <h1 class="tituloPagina"></h1>
 
     <form action="paginaEditarLivro.php?id=<?php echo $id; ?>" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $id; ?>">

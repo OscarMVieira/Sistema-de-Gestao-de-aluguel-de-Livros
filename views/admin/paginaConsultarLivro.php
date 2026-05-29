@@ -3,7 +3,6 @@ $activePage = 'catalogo';
 include '../templates/header.php'; 
 require_once '../basedados/basedados.h'; 
 
-//Validação de Campo Obrigatório (ID) e Sanitização
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($id <= 0) {
@@ -11,21 +10,17 @@ if ($id <= 0) {
     exit();
 }
 
-//Prepared Statement para segurança
 $stmt = $conn->prepare("SELECT * FROM livros WHERE ID_Livro = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $resultado = $stmt->get_result();
 $livro = $resultado->fetch_assoc();
 
-//Verificação de Existência: Se o livro não existir na BD
 if (!$livro) {
     echo "<script>alert('Livro não encontrado!'); window.location.href='paginaCatalogo.php';</script>";
     exit();
 }
 
-//Tratamento de Dados Vazios (Default Values)
-// Se um campo estiver vazio na BD, mostramos "N/A" ou "Não definido" para não quebrar o layout
 $titulo = !empty($livro['Titulo_Livro']) ? htmlspecialchars($livro['Titulo_Livro']) : "Título Indisponível";
 $autor  = !empty($livro['Autor_Livro']) ? htmlspecialchars($livro['Autor_Livro']) : "Autor Desconhecido";
 $genero = !empty($livro['Genero']) ? htmlspecialchars($livro['Genero']) : "Sem Género";
@@ -35,7 +30,7 @@ $capa   = !empty($livro['Capa']) ? $livro['Capa'] : "default_cover.png";
 <link rel="stylesheet" href="../../public/css/detalhesLivro.css">
 
 <div class="centralizador-pagina">
-    <h1 class="tituloPagina">Informações do Livro</h1>
+    <h1 class="tituloPagina"></h1>
 
     <div class="gradeInfo">
         <section class="caixaCard selecaoCapa">

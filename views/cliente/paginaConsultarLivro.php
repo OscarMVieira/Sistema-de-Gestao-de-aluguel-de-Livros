@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
 <link rel="stylesheet" href="../../public/css/detalhesLivro.css">
 
 <div class="centralizador-pagina">
-    <h1 class="tituloPagina">Informações Livro</h1>
+    <h1 class="tituloPagina"></h1>
 
     <div class="gradeInfo">
         <section class="caixaCard selecaoCapa">

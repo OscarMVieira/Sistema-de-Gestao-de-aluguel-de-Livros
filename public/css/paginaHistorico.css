@@ -9,7 +9,15 @@ body {
 }
 
 .content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
     padding: 50px 20px;
+    box-sizing: border-box;
+}
+
+.seccaoHistorico {
+    width: 100%;
     display: flex;
     justify-content: center;
 }
@@ -21,6 +29,7 @@ body {
     padding: 40px;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin: 0 auto;
 }
 
 .tituloHistorico {
@@ -31,6 +40,7 @@ body {
     font-weight: 700;
 }
 
+/* Estilização da Tabela */
 .tabelaHistorico {
     width: 100%;
     border-collapse: collapse;
@@ -56,6 +66,7 @@ body {
     background-color: #f1f7ff;
 }
 
+/* Botões */
 .areaBotoes {
     text-align: center;
     margin-top: 20px;
