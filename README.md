@@ -29,13 +29,12 @@ Conforme planeado e de acordo com o nosso relatório de Engenharia de Software:
 
 - **Sprint 2:** Desenvolvimento do sistema de autenticação seguro e registo manual de novos clientes. Criação da base de dados para a requisição, utilizador e livros. Continuação da lógica de conexão entre PHP, base de dados e implementação de JavaScript para algumas funcionalidades.
 
-### ⏳ Em Desenvolvimento / Próximos Passos
-
 - **Sprint 3:** Implementação de algumas funcionalidades, implementação de feedback ao interagir com o site (Colocar o site responsivo) e aperfeiçoar o design do site 
 
 - **Sprint 4:** Aperfeiçoar as funcionalidades do sistema e implementar todas as proteções necessárias de acordo com as nossas leis de negócio. 
 
-- **Sprint 5:** Melhorias necessárias nos dashboards, testes finais e preparação da documentação final para concluir o projeto.
+- **Sprint 5:** Melhorias necessárias nos dashboards, testes finais, correcão de bugs e preparação da documentação final para concluir o projeto.
+
 
 ## 📐 Documentação Técnica
 De acordo com o planeamento da disciplina de Engenharia de Software, o nosso projeto inclui:
@@ -51,11 +50,20 @@ De acordo com o planeamento da disciplina de Engenharia de Software, o nosso pro
 ---
 
 ## 🖼️ Interface do Sistema
-*(falta Substituir os nomes e as fotos das imagens abaixo pelos nossas prints`img/`)*
 
 <p align="center">
-  <img src="public/img/paginaLogin.png" width="45%" alt="Ecrã de Login">
-  <img src="img/dashboard.png" width="45%" alt="Dashboard">
+  <img src="public/img/paginaPrincipal.PNG" width="45%" alt="Página Principal - Catálogo">
+  <img src="public/img/paginaLogin.PNG" width="45%" alt="Ecrã de Login">
+</p>
+
+<p align="center">
+  <img src="public/img/paginaRegisto.PNG" width="45%" alt="Ecrã de Registo">
+  <img src="public/img/paginaPerfil.PNG" width="45%" alt="Perfil do Utilizador">
+</p>
+
+<p align="center">
+  <img src="public/img/paginaCarrinho.png" width="45%" alt="Carrinho de Compras">
+  <img src="public/img/meusPedidos.PNG" width="45%" alt="Meus Pedidos">
 </p>
 
 ---
