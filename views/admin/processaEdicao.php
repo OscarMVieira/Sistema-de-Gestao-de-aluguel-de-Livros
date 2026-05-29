@@ -6,7 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = $_POST['titulo'];
     $autor = $_POST['autor'];
     $genero = $_POST['genero'];
-    $quantidade = $_POST['quantidade'];
+    $quantidade = intval($_POST['quantidade']);
+
+    $disponibilidade = ($quantidade > 0) ? 1 : 0;
 
     if (isset($_FILES['capa']) && $_FILES['capa']['error'] === 0) {
         $nomeImagem = $_FILES['capa']['name'];
@@ -18,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 Titulo_Livro = '$titulo', 
                 Autor_Livro = '$autor', 
                 Genero = '$genero', 
-                Quantidade = '$quantidade', 
+                Quantidade = $quantidade, 
+                Disponibilidade = $disponibilidade,
                 Capa = '$nomeImagem' 
                 WHERE ID_Livro = $id";
     } else {
@@ -26,7 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 Titulo_Livro = '$titulo', 
                 Autor_Livro = '$autor', 
                 Genero = '$genero', 
-                Quantidade = '$quantidade' 
+                Quantidade = $quantidade,
+                Disponibilidade = $disponibilidade
                 WHERE ID_Livro = $id";
     }
 

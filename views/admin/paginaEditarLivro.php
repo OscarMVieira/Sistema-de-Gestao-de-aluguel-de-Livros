@@ -17,6 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn_editar'])) {
     $autor  = trim($_POST['autor']);
     $genero = trim($_POST['genero']);
     $qtd    = intval($_POST['quantidade']);
+    
+    $disponibilidade = ($qtd > 0) ? 1 : 0;
 
     if (empty($titulo) || empty($autor) || empty($genero)) {
         $erroValidacao = "Erro: Título, Autor e Género não podem ficar em branco!";
@@ -26,13 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['btn_editar'])) {
             $nomeCapa = time() . "_" . $_FILES['capa']['name'];
             move_uploaded_file($_FILES['capa']['tmp_name'], "../../public/img/" . $nomeCapa);
             
-            
-            $stmt_upd = $conn->prepare("UPDATE livros SET Titulo_Livro=?, Autor_Livro=?, Genero=?, Quantidade=?, Capa=? WHERE ID_Livro=?");
-            $stmt_upd->bind_param("ssisii", $titulo, $autor, $genero, $qtd, $nomeCapa, $id);
+            $stmt_upd = $conn->prepare("UPDATE livros SET Titulo_Livro=?, Autor_Livro=?, Genero=?, Quantidade=?, Disponibilidade=?, Capa=? WHERE ID_Livro=?");
+            $stmt_upd->bind_param("sssiisi", $titulo, $autor, $genero, $qtd, $disponibilidade, $nomeCapa, $id);
         } else {
             
-            $stmt_upd = $conn->prepare("UPDATE livros SET Titulo_Livro=?, Autor_Livro=?, Genero=?, Quantidade=? WHERE ID_Livro=?");
-            $stmt_upd->bind_param("ssiii", $titulo, $autor, $genero, $qtd, $id);
+            $stmt_upd = $conn->prepare("UPDATE livros SET Titulo_Livro=?, Autor_Livro=?, Genero=?, Quantidade=?, Disponibilidade=? WHERE ID_Livro=?");
+            $stmt_upd->bind_param("sssiii", $titulo, $autor, $genero, $qtd, $disponibilidade, $id);
         }
 
         if ($stmt_upd->execute()) {
