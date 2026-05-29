@@ -1,14 +1,17 @@
+-- Elimina a tabela se for necessário recriar
+DROP TABLE IF EXISTS livros;
+
 CREATE TABLE livros (
     ID_Livro INT AUTO_INCREMENT PRIMARY KEY,
     Titulo_Livro VARCHAR(255) NOT NULL, 
     Autor_Livro VARCHAR(255) NOT NULL,
     Genero VARCHAR(255),
-    Capa VARCHAR(255),
+    Capa VARCHAR(255) DEFAULT 'default.png',
     Quantidade INT DEFAULT 1,
     Disponibilidade BOOLEAN DEFAULT TRUE
-    
 );
 
+-- Os teus inserts continuam iguais, pois já têm as imagens definidas
 INSERT INTO livros (Titulo_Livro, Autor_Livro, Genero, Capa, Quantidade, Disponibilidade) VALUES
 ('1984', 'George Orwell', 'Ficção Científica', '1984.jpg', 5, 1),
 ('O Principezinho', 'Antoine de Saint-Exupéry', 'Infantil', 'principezinho.jpg', 3, 1),
@@ -18,4 +21,3 @@ INSERT INTO livros (Titulo_Livro, Autor_Livro, Genero, Capa, Quantidade, Disponi
 ('Orgulho e Preconceito', 'Jane Austen', 'Romance', 'orgulho_preconceito.jpg', 4, 1),
 ('Memorial do Convento', 'José Saramago', 'Literatura Portuguesa', 'memorial_convento.jpg', 6, 1),
 ('Crime e Castigo', 'Fiódor Dostoiévski', 'Drama', 'crime_castigo.jpg', 1, 1);
-

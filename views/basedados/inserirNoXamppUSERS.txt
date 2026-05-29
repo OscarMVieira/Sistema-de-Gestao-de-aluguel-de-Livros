@@ -7,21 +7,21 @@ DROP TABLE IF EXISTS users;
 -- Cria a tabela com o campo password preparado para o Hash 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100),
-    email VARCHAR(100) UNIQUE,
-    password VARCHAR(255), -- Necessário para guardar o hash de 60 caracteres
+    username VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL, -- Necessário para guardar o hash de 60 caracteres
     documento VARCHAR(20),
     tipoContaId INT DEFAULT 3,
     foto VARCHAR(255) DEFAULT 'default_perfil.png'
 );
 
--- Insere o Admin com a password '123D' encriptada 
--- 
-INSERT INTO users (username, email, password, documento, tipoContaId) 
+-- Insere o Admin com a password '123D' encriptada e a foto padrão explicitamente definida
+INSERT INTO users (username, email, password, documento, tipoContaId, foto) 
 VALUES (
     'Admin Fixo', 
     'admin@teste.com', 
     '$2y$10$QX1abnjcht6uYAoQmSonaeqM7d/SRzJqZrBgtx/XSQ5.G34xjScWK', 
     '000', 
-    1
+    1,
+    'default_perfil.png'
 );
