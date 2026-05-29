@@ -26,6 +26,11 @@ try {
 
         $sql_check_disponibilidade = "UPDATE livros SET Disponibilidade = 0 WHERE ID_Livro = '$livro_id' AND Quantidade <= 0";
         $conn->query($sql_check_disponibilidade);
+
+        $conn->commit();
+        unset($_SESSION['carrinho']);
+
+        $_SESSION['total_itens_carrinho'] = 0;
     }
 
     // Se tudo correr bem, guarda as alterações
