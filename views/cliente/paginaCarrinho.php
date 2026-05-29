@@ -7,8 +7,13 @@ $hoje = date('Y-m-d');
 $dataLimite = date('Y-m-d', strtotime('+30 days'));
 $carrinho = $_SESSION['carrinho'] ?? [];
 
-// Lógica para determinar o destino do botão Voltar com base no tipo de conta
-$tipo_conta = $_SESSION['tipoContaId'] ?? 3; // Assume cliente por defeito
+$totalItens = 0;
+foreach ($carrinho as $id => $qtd) {
+    $totalItens += $qtd;
+}
+$_SESSION['total_itens_carrinho'] = $totalItens;
+
+$tipo_conta = $_SESSION['tipoContaId'] ?? 3; 
 $url_voltar = ($tipo_conta == 1) ? "../admin/paginaCatalogo.php" : "paginaCatalogo.php";
 ?>
 
