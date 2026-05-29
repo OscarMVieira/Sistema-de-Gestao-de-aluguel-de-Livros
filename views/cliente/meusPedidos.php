@@ -25,7 +25,7 @@ $resultado = mysqli_query($conn, $query);
 <link rel="stylesheet" href="../../public/css/meusPedidos.css">
 
 <div class="pedidos-container">
-    <h1 class="page-title">Meus Pedidos</h1>
+    <h1 class="page-title"></h1>
     
     <div class="pedidos-card">
         <h2 class="section-title">Minhas Requisições</h2>

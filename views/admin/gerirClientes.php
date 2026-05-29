@@ -12,7 +12,7 @@ $resultado = $conn->query($sql);
 <link rel="stylesheet" href="../../public/css/gerirClientes.css">
 
 <div class="clientesPageContainer">
-    <h1 class="pageMainTitle">Clientes no Sistema</h1>
+    <h1 class="pageMainTitle"></h1>
 
     <div class="searchBoxContainer">
         <input type="text" id="inputBuscaCliente" placeholder="Pesquisar por nome ou e-mail..." onkeyup="filtrarClientes()">

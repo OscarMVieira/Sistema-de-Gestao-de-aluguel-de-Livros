@@ -21,7 +21,7 @@ $url_voltar = ($tipo_conta == 1) ? "../admin/paginaCatalogo.php" : "paginaCatalo
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="cart-container">
-    <h1 class="mainTitle">Carrinho</h1>
+    <h1 class="mainTitle"></h1>
 
     <?php if (empty($carrinho)): ?>
         <div style="text-align:center; padding: 50px; background: white; border-radius: 8px; border: 1px solid #a5c0d6;">
