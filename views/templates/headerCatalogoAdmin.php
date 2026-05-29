@@ -37,7 +37,9 @@
             <a href="../cliente/paginaCarrinho.php" class="cart-link">
                 <div class="cart-icon">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="badge">0</span>
+                    <span class="badge">
+                    <?php echo $_SESSION['total_itens_carrinho'] ?? 0; ?>
+                </span>
                 </div>
             </a>
 

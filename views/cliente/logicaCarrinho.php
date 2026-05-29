@@ -36,7 +36,34 @@ if ($acao == 'add' && $id > 0) {
         $_SESSION['carrinho'][$id]--;
         if ($_SESSION['carrinho'][$id] <= 0) { unset($_SESSION['carrinho'][$id]); }
     }
+
+} elseif ($acao == 'sub' && $id > 0) {
+    if (isset($_SESSION['carrinho'][$id])) {
+        $_SESSION['carrinho'][$id]--;
+        if ($_SESSION['carrinho'][$id] <= 0) { unset($_SESSION['carrinho'][$id]); }
+    }
 }
+
+$totalItens = 0;
+if (isset($_SESSION['carrinho']) && is_array($_SESSION['carrinho'])) {
+    foreach ($_SESSION['carrinho'] as $idLivro => $quantidade) {
+        $totalItens += $quantidade;
+    }
+}
+$_SESSION['total_itens_carrinho'] = $totalItens; 
+
+
+$referer = $_SERVER['HTTP_REFERER'] ?? 'paginaCatalogo.php';
+$referer = preg_replace('/[?&]status=[^&]*/', '', $referer);
+$separador = (strpos($referer, '?') !== false) ? '&' : '?';
+
+if ($status) {
+    header("Location: " . $referer . $separador . "status=" . $status);
+} else {
+    header("Location: " . $referer);
+}
+exit();
+?>
 
 $referer = $_SERVER['HTTP_REFERER'] ?? 'paginaCatalogo.php';
 $referer = preg_replace('/[?&]status=[^&]*/', '', $referer);
