@@ -5,7 +5,7 @@
 
 <div class="layoutPrincipal">
     <main class="areaConteudo">
-        <h1 class="tituloPagina">Criar Novo Livro</h1>
+        <h1 class="tituloPagina"></h1>
 
         <form action="../auth/processarInsercao.php" method="POST" enctype="multipart/form-data" id="formInsercao">
             

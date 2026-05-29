@@ -15,29 +15,32 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
 }
 
-.layoutPrincipal {
+.content {
+    width: 100%;
     display: flex;
-    flex: 1;
-    background-color: transparent !important;
+    justify-content: center;
+    padding: 50px 20px;
+    box-sizing: border-box;
 }
 
-.areaConteudo {
-    flex: 1;
-    padding: 0 40px;
-    text-align: center;
-    background-color: transparent !important;
+.centralizador-pagina {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .tituloPagina {
     font-size: 42px;
     font-weight: bold;
-    margin: 40px 0;
+    margin-bottom: 40px; 
     text-align: center;
+    color: var(--azulMarinho);
 }
 
 .gradeInfo {
@@ -64,6 +67,9 @@ body {
 
 .selecaoCapa { 
     width: 300px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
 
 .detalhesLivro { 
@@ -118,6 +124,8 @@ body {
     border-radius: 6px; 
     background-color: #f8f9fa;
     transition: border-color 0.3s;
+    font-family: inherit;
+    color: #333;
 }
 
 .linhaForm input:focus {
@@ -148,14 +156,16 @@ body {
     padding: 8px; 
     border-radius: 6px;
     background-color: #fff;
+    color: #333;
 }
 
 .containerAcoesFinal {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    max-width: 1000px;
-    margin: 40px auto;
+    width: 100%;
+    max-width: 930px; 
+    margin: 0 auto 40px auto;
 }
 
 .grupoBotoesAcaoDireita {
@@ -166,11 +176,11 @@ body {
 
 .btnAzulLargo {
     background-color: var(--azulMarinho);
-    color: white;
+    color: white !important;
     padding: 15px 100px;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: bold;
-    text-decoration: none;
+    text-decoration: none !important;
     border-radius: 8px;
     display: inline-flex;
     align-items: center;
@@ -178,17 +188,17 @@ body {
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    min-width: 420px;
+    min-width: 350px;
     text-align: center;
 }
 
 .btnAzulMedio {
     background-color: var(--azulMarinho);
-    color: white;
+    color: white !important;
     padding: 12px 60px;
-    font-size: 20px;      
+    font-size: 18px;      
     font-weight: bold;
-    text-decoration: none;
+    text-decoration: none !important;
     border-radius: 8px;
     display: inline-flex;
     align-items: center;
@@ -196,12 +206,11 @@ body {
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
-    min-width: 300px;    
+    min-width: 250px;    
     text-align: center;
 }
 
 .btnAzulLargo:hover, .btnAzulMedio:hover {
     background-color: #003366;
     transform: scale(1.02);
-    color: white;
 }
