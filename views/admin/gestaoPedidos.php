@@ -14,7 +14,7 @@ $resultado = $conn->query($sql);
 <link rel="stylesheet" href="../../public/css/gestaoPedidos.css">
 
 <div class="gestao-container">
-    <h1 class="page-title">Gestão de Pedidos</h1>
+    <h1 class="page-title"></h1>
     
     <div class="gestao-card">
         <h2 class="section-title">Lista de Requisições</h2>
