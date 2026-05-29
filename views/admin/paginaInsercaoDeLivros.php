@@ -14,9 +14,9 @@
                     <section class="caixaCard selecaoCapa">
                         <h2 class="tituloCard">Upload Capa</h2>
                         <div class="bordaImagem">
-                            <img src="https://via.placeholder.com/180x260" alt="Capa Preview" id="previewCapa">
+                            <img src="../../public/img/default.png" alt="Capa Preview" id="previewCapa">
                         </div>
-                        <input type="file" name="capa" id="inputCapa" style="margin-top: 10px;" required accept=".jpg,.jpeg,.png">
+                        <input type="file" name="capa" id="inputCapa" style="margin-top: 10px;" accept=".jpg,.jpeg,.png">
                     </section>
                 </div>
 
@@ -77,14 +77,16 @@ document.getElementById('inputCapa').addEventListener('change', function() {
                 confirmButtonColor: '#004080'
             });
             this.value = ''; 
-            preview.src = 'https://via.placeholder.com/180x260';
+            // ALTERADO: Volta para a imagem default se der erro no formato
+            preview.src = '../../public/img/default.png';
         }
     }
 });
 
 // Função para limpar a preview quando clicas em "Limpar Formulário"
 function resetPreview() {
-    document.getElementById('previewCapa').src = 'https://via.placeholder.com/180x260';
+    // ALTERADO: Volta para a imagem default ao invés do placeholder antigo
+    document.getElementById('previewCapa').src = '../../public/img/default.png';
 }
 
 // Feedback visual ao submeter
